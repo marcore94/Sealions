@@ -72,16 +72,17 @@ train_datagen = ImageDataGenerator(
 
 def train_generator():
     sl_lst_tmp = os.listdir(TRAIN_PATH + '0_sea_lions')
+    img_lst = []
+    for name in sl_lst_tmp:
+        img = cv2.imread(TRAIN_PATH + '0_sea_lions/' + name)
+        img_lst.append(img[72 - 48:72 + 48, 72 - 48:72 + 48, :])
     bkg_lst_tmp = os.listdir(TRAIN_PATH + '1_background')
     for i in range(EPOCHS // MAX_EPOCHS_WITH_SAME_DATA_SET):
         Y_train = np.array([[1, 0]]*SL_TRAIN_SIZE + [[0, 1]]*SL_TRAIN_SIZE)
-        img_lst = []
-        for name in sl_lst_tmp:
-            img = cv2.imread(TRAIN_PATH + '0_sea_lions/' + name)
-            img_lst.append(img[72-48:72+48, 72-48:72+48, :])
+        img_lst_tmp = []
         for name in rand.sample(bkg_lst_tmp, SL_TRAIN_SIZE):
-            img_lst.append(cv2.imread(TRAIN_PATH + '1_background/' + name))
-        X_train = np.array(img_lst)
+            img_lst_tmp.append(cv2.imread(TRAIN_PATH + '1_background/' + name))
+        X_train = np.array(img_lst+img_lst_tmp)
         gen = train_datagen.flow(X_train, Y_train, batch_size=BATCH_SIZE)
         for j in range(MAX_EPOCHS_WITH_SAME_DATA_SET):
             step = 0
