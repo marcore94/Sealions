@@ -55,11 +55,6 @@ def save_sea_lion_patch_ext(t):
     else:
         coord_y = coord_y - 72
     patch = image[coord_y:coord_y+144, coord_x:coord_x+144, :]
-    r = np.average(patch[:, :, 0])
-    g = np.average(patch[:, :, 1])
-    b = np.average(patch[:, :, 2])
-    if b >= r and b >= g:
-        return
     cv2.imwrite(path + str(number) + '.jpg', patch)
 
 
@@ -75,11 +70,6 @@ def save_sea_lion_patch(t):
     else:
         coord_y = coord_y - 48
     patch = image[coord_y:coord_y+96, coord_x:coord_x+96, :]
-    r = np.average(patch[:, :, 0])
-    g = np.average(patch[:, :, 1])
-    b = np.average(patch[:, :, 2])
-    if b >= r and b >= g:
-        return
     cv2.imwrite(path + str(number) + '.jpg', patch)
 
 
