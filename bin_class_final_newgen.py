@@ -75,7 +75,7 @@ def train_generator():
     img_lst = []
     for name in sl_lst_tmp:
         img = cv2.imread(TRAIN_PATH + '0_sea_lions/' + name)
-        img_lst.append(img[72 - 48:72 + 48, 72 - 48:72 + 48, :])
+        img_lst.append(img)
     bkg_lst_tmp = os.listdir(TRAIN_PATH + '1_background')
     for i in range(EPOCHS // MAX_EPOCHS_WITH_SAME_DATA_SET):
         Y_train = np.array([[1, 0]]*SL_TRAIN_SIZE + [[0, 1]]*SL_TRAIN_SIZE)
