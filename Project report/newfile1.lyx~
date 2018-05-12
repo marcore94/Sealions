@@ -405,6 +405,15 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename 0.jpg
+	lyxscale 1
+	scale 7
+	BoundingBox 2500bp 1000bp 4000bp 3000bp
+
+\end_inset
+
 
 \end_layout
 
@@ -1908,7 +1917,7 @@ Thanks to this information we were able to apply a second important change:
 \end_inset
 
  and 
-\begin_inset Formula $0.9768$
+\begin_inset Formula $97.68\%$
 \end_inset
 
  over the sea lions.
@@ -2552,12 +2561,63 @@ Sea lions detection
 
 \end_layout
 
-\begin_layout Plain Layout
+\end_inset
+
 
 \end_layout
 
+\begin_layout Chapter
+Conclusions
+\end_layout
+
+\begin_layout Standard
+The work done for this project produced a convolutional neural network able
+ to achieve good performance on the classification of sea lions over background.
+ In particular we want to point out how the two major improvement we did
+ to improve the performance of the network, i.e.
+ data augmentation and the management of the dataset during the training,
+ have actually set out the condition for a good classification.
+\begin_inset Newline newline
 \end_inset
 
+The first approach to augmentation didn’t produce the expected results.
+ This was mainly caused by the high variety of data introduced by it and
+ the complexity for the network to learn it.
+ In fact, the high computational cost of the training didn’t allow us to
+ run an high number of epochs.
+ Thus, the benefits of augmentation were overcome by its disadvantages.
+ After we introduced generator and by it optimized the memory usage, we
+ found out that the augmentation provided the expected improvements.
+\begin_inset Newline newline
+\end_inset
+
+There are still some open problems linked to this project.
+ 
+\begin_inset Newline newline
+\end_inset
+
+First of all we have overcome the recognition of puppies due to the intrinsic
+ difficulty of the task.
+ Further works could reintroduce them with a correct classification.
+\begin_inset Newline newline
+\end_inset
+
+Our task was to produce a binary classifier which could distinguish between
+ a sea lion and the background.
+ An extension to this could a multiclass classifier which can effectively
+ recognise among the classes of the original competition.
+\begin_inset Newline newline
+\end_inset
+
+Another approach that could produce an improvement in the results is to
+ exploit transfer learning from models trained with imageNet, for example,
+ since they provide optimal performances in low level feature extraction.
+\begin_inset Newline newline
+\end_inset
+
+The last thing we imagine could work better is a direct object recognition
+ approach without going through the classification task, however this would
+ require a much more detailed ground truth.
  
 \end_layout
 
