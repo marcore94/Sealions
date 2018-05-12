@@ -1,0 +1,555 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass report
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command makeindex
+\paperfontsize default
+\spacing single
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks true
+\pdf_pdfborder true
+\pdf_colorlinks false
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth -2
+\tocdepth 2
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{titlepage}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+begin{center}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename polimi.png
+	lyxscale 10
+	width 4cm
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+	{
+\backslash
+scshape
+\backslash
+LARGE Politecnico di Milano 
+\backslash
+par}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+vspace{1cm}
+\end_layout
+
+\begin_layout Plain Layout
+
+	{
+\backslash
+scshape
+\backslash
+Large Image Analysis and Computer Vision
+\backslash
+par}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+vspace{1.5cm}
+\end_layout
+
+\begin_layout Plain Layout
+
+	{
+\backslash
+huge
+\backslash
+bfseries Homework Report 
+\backslash
+par}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+vfill 	Course teacher
+\backslash
+par	Professor	Vincenzo 
+\backslash
+textsc{Caglioti}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+vfill 	Project supervisors
+\backslash
+par	Professor	Giacomo 
+\backslash
+textsc{Boracchi}
+\backslash
+par	Professor	Diego 
+\backslash
+textsc{Carrera}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+end{center}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+vfill
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+begin{tabular}{r}
+\end_layout
+
+\begin_layout Plain Layout
+
+	{
+\backslash
+small
+\backslash
+itshape Perugini Alex 876359 
+\backslash
+par}
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	{
+\backslash
+small
+\backslash
+itshape Re Marco 873564 
+\backslash
+par}
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	{
+\backslash
+small
+\backslash
+itshape Scotti Vincenzo 875505 
+\backslash
+par}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+end{tabular} 
+\backslash
+hfill
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{titlepage}
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+Problem formulation
+\end_layout
+
+\begin_layout Standard
+The proposed project consisted in the implementation of a convolutional
+ neural network for the classification of sea lions using pictures extracted
+ from aerial images.
+\begin_inset Newline newline
+\end_inset
+
+The idea of the project is based on a Kaggle competition featured in 2017
+ (
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+https://www.kaggle.com/c/noaa-fisheries-steller-sea-lion-population-count
+\end_layout
+
+\end_inset
+
+) where the objective was to provide a sea lions population count using
+ fully convolutional neural network to analyze the aerial images taken by
+ drones.
+ Moreover it was required also to distinguish five classes among sea lions
+ based on age and sex: 
+\end_layout
+
+\begin_layout Itemize
+adult male
+\end_layout
+
+\begin_layout Itemize
+adult female
+\end_layout
+
+\begin_layout Itemize
+subadult male
+\end_layout
+
+\begin_layout Itemize
+juvenile
+\end_layout
+
+\begin_layout Itemize
+puppy 
+\end_layout
+
+\begin_layout Standard
+The original aim of this competition was to automatize work done by biologist
+ to keep track of the sea lions population.
+ This manual work takes up to four months to count sea lions from those
+ images.
+ Due to this long time needed, automatizing this work would allow biologist
+ to focus more on sea lions problems, rather on this counting task.
+\begin_inset Newline newline
+\end_inset
+
+The requirement assigned to our group for the project was to provide a classifie
+r that was able to distinguish only 2 classes:
+\end_layout
+
+\begin_layout Itemize
+sea lion
+\end_layout
+
+\begin_layout Itemize
+background
+\end_layout
+
+\begin_layout Standard
+without any distinction between the sea lions subclasses.
+\begin_inset Newline newline
+\end_inset
+
+To accomplish to the task we used the dataset provided by kaggle that included,
+ for each image, the ground truth expressed as a point centered on each
+ sea lion with different colors for the different classes.
+ 
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+State of the art
+\end_layout
+
+\begin_layout Standard
+Image classification is a fundamental problem in computer vision since it
+ forms the basis for other computer vision tasks.
+ Although the task can be considered second nature for humans, it is much
+ more challenging for an automated system.
+\begin_inset Newline newline
+\end_inset
+
+Traditionally handcrafted features were first extracted from images using
+ feature descriptors, and these served as input to a trainable classifier.
+ In recent years, deep learning models that exploit multiple layers of nonlinear
+ information processing, for feature extraction and transformation as well
+ as for pattern analysis and classification, have been shown to overcome
+ these challenges.
+ Among them, CNNs have become the leading architecture for most image recognitio
+n, classification, and detection tasks.
+\begin_inset Newline newline
+\end_inset
+
+The most significant advance, which has captured intense interest in DCNNs,
+ especially for image classification tasks, was achieved in the ImageNet
+ Large Scale Visual Recognition Challenge (ILSVRC) 2012.
+ Since then, DCNNs have dominated subsequent versions of the ILSVRC and,
+ more specifically, its image classification component.
+ 
+\end_layout
+
+\begin_layout Chapter
+Solution Approach
+\end_layout
+
+\begin_layout Standard
+Images in the provided dataset were taken from drones, thus they are very
+ large and contains a lot of sea lions and different background areas.
+ Due to the impossibility of using the whole images to train the network,
+ the first step before was to create a suitable training dataset.
+ To do this, we extracted patches from the provided dataset.
+\begin_inset Newline newline
+\end_inset
+
+After having extracted them, we decided to apply data augmentation to obtain
+ a more robust classifier.
+ This allowed us to increase a lot the dimension of the original dataset,
+ in particular for what concerns sea lions patches.
+ In fact, due to the nature of the images, they contained much more background
+ patches than sea lions ones.
+ By data augmentation we were able to overcome, partially, this unbalance
+ and to obtain better performance during testing phase.
+\begin_inset Newline newline
+\end_inset
+
+Once performances over patches were satisfying, we moved to an higher level,
+ modifying the network to take as input the whole image and providing an
+ heatmap of it.
+ This gives the possibility, given an image, to see where and how sea lions
+ are distributed in the environment.
+ 
+\end_layout
+
+\begin_layout Chapter*
+Implementation
+\end_layout
+
+\begin_layout Section
+Dataset creation
+\end_layout
+
+\begin_layout Standard
+The first thing to do with images provided by Kaggle is to divide them in
+ train and test set, in particular the first 750 images were used for training
+ and the remaining ones (from 751 to 947) for testing.
+\begin_inset Newline newline
+\end_inset
+
+The extraction of patches from Kaggle images has been done performing the
+ absolute difference between the original image and its corresponding one
+ with colored dots on the sea lions, in this way it’s possible to gather
+ from each image coordinates and class of all the sea lions.
+\begin_inset Newline newline
+\end_inset
+
+Given these coordinates it’s easy to cut from the original images a 96x96
+ area around them and save the patches labeling them as ‘sea lion’.
+\begin_inset Newline newline
+\end_inset
+
+To extract the background we used a sliding window of size 96x96 over the
+ image and cut all the patches which were not intersecting with a sea lion
+ patch and save them with label ‘background’.
+ 
+\end_layout
+
+\begin_layout Section
+Model
+\end_layout
+
+\begin_layout Section
+Data augmentation
+\end_layout
+
+\begin_layout Standard
+As explained before, to increase the dimension of the dataset we applied
+ data augmentation to the sea lions patches.
+ In particular, what we applied is a random combination of four transformation:
+\end_layout
+
+\begin_layout Itemize
+Rotation of a random degree in the range 0 to 360 degrees
+\end_layout
+
+\begin_layout Itemize
+Flipping both vertically and horizontally
+\end_layout
+
+\begin_layout Itemize
+Shifting of a maximum of 10 pixels, both vertically and horizontally
+\end_layout
+
+\begin_layout Itemize
+Zooming of a maximum of 20 pixels
+\end_layout
+
+\begin_layout Section
+Semantic segmentation
+\end_layout
+
+\begin_layout Standard
+As soon as the CNN building and training phases ended we proceeded to extract
+ the fully convolutional model.
+ To do so we reshaped the fully connected final layer to another convolutional
+ layer maintaining the same connections and related weights of the original
+ network, the new final convolutional layer used 2 filters (one for each
+ label) and a 4x4 kernel, with a softmax activation function.
+\begin_inset Newline newline
+\end_inset
+
+Since we dropped the constraints on the input shape it was possible to feed
+ an entire image to the network that produced as output two heatmaps that
+ highlighted respectively the pixels belonging to the sea lion and the backgroun
+d classes according to the probabilities predicted by the classifier.
+\begin_inset Newline newline
+\end_inset
+
+It is important to stress out that we didn’t use any shift-and-stitch or
+ upsampling via deconvolution to yield the dense predictions, instead we
+ applied a simple interpolation to the results.
+ 
+\end_layout
+
+\begin_layout Chapter
+Experimental activity and results
+\end_layout
+
+\end_body
+\end_document
