@@ -409,8 +409,10 @@ status open
 \begin_inset Graphics
 	filename 0.jpg
 	lyxscale 1
-	scale 7
-	BoundingBox 2500bp 1000bp 4000bp 3000bp
+	scale 6
+	BoundingBox 0bp 0bp 5616bp 3744bp
+	clip
+	rotateOrigin centerBottom
 
 \end_inset
 
@@ -550,6 +552,15 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Schermata 2018-05-12 alle 19.08.01.png
+	lyxscale 10
+	scale 40
+
+\end_inset
+
+
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
@@ -574,6 +585,15 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Schermata 2018-05-12 alle 19.08.59.png
+	lyxscale 10
+	scale 40
+
+\end_inset
+
+
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
