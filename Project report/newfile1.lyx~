@@ -67,7 +67,7 @@
 \shortcut idx
 \color #008000
 \end_index
-\secnumdepth -2
+\secnumdepth 2
 \tocdepth 2
 \paragraph_separation indent
 \paragraph_indentation default
@@ -775,8 +775,15 @@ As soon as the CNN building and training phases ended we proceeded to extract
  the fully convolutional model.
  To do so we reshaped the fully connected final layer to another convolutional
  layer maintaining the same connections and related weights of the original
- network, the new final convolutional layer used 2 filters (one for each
- label) and a 4x4 kernel, with a softmax activation function.
+ network, the new final convolutional layer used 
+\begin_inset Formula $2$
+\end_inset
+
+ filters (one for each label) and a 
+\begin_inset Formula $4\times4$
+\end_inset
+
+ kernel, with a softmax activation function.
 \begin_inset Newline newline
 \end_inset
 
@@ -1245,7 +1252,7 @@ First training results
 
 \end_layout
 
-\begin_layout Section*
+\begin_layout Section
 Second training
 \end_layout
 
@@ -2033,7 +2040,16 @@ Loss and accuracy history
 
 \end_inset
 
+During this phase we set the learning rate to 
+\begin_inset Formula $0.0005$
+\end_inset
 
+ and we trained for 
+\begin_inset Formula $60$
+\end_inset
+
+ epochs.
+ 
 \begin_inset Float figure
 wide false
 sideways false
@@ -2085,7 +2101,7 @@ status open
 \begin_inset Graphics
 	filename results_testing_unweighted_4_1.png
 	lyxscale 10
-	scale 60
+	scale 55
 	rotateOrigin center
 
 \end_inset
@@ -2122,7 +2138,7 @@ status open
 \begin_inset Graphics
 	filename results_testing_unweighted_7_1.png
 	lyxscale 10
-	scale 60
+	scale 55
 
 \end_inset
 
@@ -2396,7 +2412,7 @@ Precision and recall scores
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Second training results
+Third training results
 \end_layout
 
 \end_inset
@@ -2593,7 +2609,7 @@ Conclusions
 \begin_layout Standard
 The work done for this project produced a convolutional neural network able
  to achieve good performance on the classification of sea lions over background.
- In particular we want to point out how the two major improvement we did
+ In particular we want to point out how the two major enhancements we did
  to improve the performance of the network, i.e.
  data augmentation and the management of the dataset during the training,
  have actually set out the condition for a good classification.
