@@ -805,6 +805,31 @@ Experimental activity and results
 \end_layout
 
 \begin_layout Section
+Developement tools
+\end_layout
+
+\begin_layout Standard
+In order to perform the tasks required by the project we used jupyter notebooks
+ that allowed to write python code and to execute it section by section,
+ in this way we were able to monitor the results as soon as each step was
+ completed.
+\begin_inset Newline newline
+\end_inset
+
+Thanks to the choice of python we managed to use Keras, an high-level neural
+ networks API, with the TensorFlow framework as backend.
+ The choice of Keras helped to simplify the development while TensorFlow
+ allowed us to take advantage of GPU acceleration that sped up the entire
+ training process significantly.
+\begin_inset Newline newline
+\end_inset
+
+Another aspect that characterized the development was the use of dataframes
+ that allowed a better management of all the informations about the data
+ set.
+\end_layout
+
+\begin_layout Section
 Patch extraction
 \end_layout
 
@@ -1284,7 +1309,17 @@ This generator also enabled us to introduce data augmentation in the training
 \begin_inset Newline newline
 \end_inset
 
-To train the network we decided to create a balanced dataset composed of
+In this first attempt to add augmentation we used an handcrafted tool to
+ apply the transformations, this choice allowed us to work with higher size
+ sea lions patches that were cropped after the transformation to fit the
+ network input.
+ In this way we could avoid interpolation on eventual missing pixels that
+ was necessary with Keras built-in functions since we applied the transformation
+s at runtime.
+\begin_inset Newline newline
+\end_inset
+
+To train the network we decided to create a balanced data set composed of
  all the sea lions patches with augmentation and an equal number of background
  patches random sampled from all the background patches.
  This dataset is used for one epoch and then changed, creating a new one
@@ -1302,17 +1337,27 @@ Although these premises, results were not good and the network very bad,
 \begin_inset Newline newline
 \end_inset
 
-This training allowed us to identify two new problems: changing the dataset
+This training allowed us to identify three new problems: changing the dataset
  at each epoch is time consuming, because loading the patches from disk
- to memory is a bottleneck in the whole procedure; puppies are really hard
- to be identified by the network, with their color and shape can be easily
- mistaken as background also by human eye.
+ to memory is a bottleneck in the whole procedure, moreover because of the
+ handcrafted augmentation tool even the batch creation ws slowed down; puppies
+ are really hard to be identified by the network, with their color and shape
+ can be easily mistaken as background also by human eye.
 \begin_inset Newline newline
 \end_inset
 
-Given that this training was a lot time consuming for the reasons discussed
- before, the network was trained for only 30 epochs, it took a lot of time
- but was not sufficient to learn enough from the data provided.
+Given that this training was particularly time consuming for the reasons
+ discussed before, the network was trained for only 
+\begin_inset Formula $30$
+\end_inset
+
+ epochs with a 
+\begin_inset Formula $0.0005$
+\end_inset
+
+ learning rate.
+ The procedure took a lot of time and was not sufficient to learn enough
+ from the data provided.
  
 \begin_inset Newline newline
 \end_inset
@@ -1922,12 +1967,21 @@ Thanks to this information we were able to apply a second important change:
  to achieve better performances.
  At the end, in the final result, the number of puppies can be estimated
  from the number of sea lions detected.
- Performances of this model were measured again using Accuracy, that was
- 
+\begin_inset Newline newline
+\end_inset
+
+Another remarkable difference with respect to the last training was that
+ we dropped the handcrafted augmentation tool in favor of keras built in
+ one that enabled a much higher throughput in the creation of the training
+ batches.
+\begin_inset Newline newline
+\end_inset
+
+Performances of this model were measured again using accuracy, that is 
 \begin_inset Formula $97.27\%$
 \end_inset
 
- and 
+, and 
 \begin_inset Formula $AUC$
 \end_inset
 
@@ -1935,7 +1989,7 @@ Thanks to this information we were able to apply a second important change:
 \begin_inset Formula $ROC$
 \end_inset
 
- curve which is 
+ curve, which is 
 \begin_inset Formula $99.64\%$
 \end_inset
 
@@ -2413,6 +2467,200 @@ Precision and recall scores
 
 \begin_layout Plain Layout
 Third training results
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename results_testing_unweighted_9_1.png
+	lyxscale 10
+	scale 60
+	rotateOrigin center
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Confusion matrix with the balanced test set
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $Precision$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $Recall$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Sea lions
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.9722$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.9768$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+background
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.9767$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0.9721$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Precision and recall scores on a balanced test set
 \end_layout
 
 \end_inset
