@@ -2869,6 +2869,12 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Detected-sea-lions"
+
+\end_inset
+
 Detected sea lions
 \end_layout
 
@@ -3122,9 +3128,27 @@ Sea lions counting based on blobs
 As can be seen from these numbers, even if the prediction on the nuber of
  sea lions isn't performed with a deeply studied strategy, final results
  aren't too bad.
- In particular the predicted number is clearly an overestimate of the real
- one, but the presence of puppies, which are not considered in this network,
- makes the two nubers be closer one to each other.
+ In particular, looking at figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Detected-sea-lions"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, can be noticed that some animals are not covered by blobs and there are
+ some mistaken blobs over the background, therefore we can say this method
+ is not the best to count sea lions with high precision due to the presence
+ of these errors.
+\end_layout
+
+\begin_layout Standard
+Another final consideration that can be done is that the predicted number
+ is clearly an overestimate of the real one, but the presence of puppies,
+ which are not considered in this network, makes the two nubers be closer
+ one to each other.
 \end_layout
 
 \begin_layout Chapter
