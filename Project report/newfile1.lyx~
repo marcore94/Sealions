@@ -481,8 +481,9 @@ Solution Approach
 Images in the provided dataset were taken from drones, thus they are very
  large and contains a lot of sea lions and different background areas.
  Due to the impossibility of using the whole images to train the network,
- the first step before was to create a suitable training dataset.
- To do this, we extracted patches from the provided dataset.
+ the first step was to create a suitable training dataset.
+ To do this, we extracted patches from the provided dataset and trained
+ a binary classifier on patches.
 \begin_inset Newline newline
 \end_inset
 
@@ -894,11 +895,11 @@ First training
 \end_layout
 
 \begin_layout Standard
-As can be seen from these numbers the dataset is unbalanced, there are a
- lot more background patches than sea lion ones, but the first training
- was meant to be as simple as possible so balanced train and test set were
- created performing random sampling from background and augmentation technique
- was not applied.
+As can be seen from the number of extracted patches the dataset is unbalanced,
+ there are a lot more background patches than sea lion ones, but the first
+ training was meant to be as simple as possible so balanced train and test
+ set were created performing random sampling from background and augmentation
+ technique was not applied.
  This simplified a lot the first training of the network and produced very
  good results.
 \begin_inset Newline newline
@@ -1551,8 +1552,8 @@ As shown by the following tables the presence of a much higher number of
 \begin_inset Newline newline
 \end_inset
 
-We can also notice directly compare the accuracy of this training with the
- previous one.
+We can also directly compare the accuracy of this training with the previous
+ one.
  If we restrict the analysis to the first 30 epochs and on the validation
  set, to have a meaningful comparison, the first training provides an accuracy
  of about 
@@ -1980,7 +1981,7 @@ The purpose of this training was to solve all the problems that came up
 \end_inset
 
 The first adjustment was to change the dataset and reload it from memory
- every 15/20 epochs and not at each epoch, this choice speeded up the whole
+ every 15 epochs and not at each epoch, this choice speeded up the whole
  training phase allowing us to train for more epochs.
  The problem related to puppies was solved analyzing where and how they
  appear in the images, in fact it can be noticed that this particular class
@@ -1999,7 +2000,7 @@ Thanks to this information we were able to apply a second important change:
 \end_inset
 
 Another remarkable difference with respect to the last training was that
- we dropped the handcrafted augmentation tool in favor of keras built in
+ we dropped the handcrafted augmentation tool in favor of Keras built-in
  one that enabled a much higher throughput in the creation of the training
  batches.
 \begin_inset Newline newline
@@ -2728,9 +2729,13 @@ At this point we took the last trained network and, as explained before,
 
 Then we decided to apply a threshold on the heatmap to create a grayscale
  image with white zones corresponding to sea lions.
- On this new image it was possible to apply blob detection to have a rough
- count of how many sea lions are present in the considered image, the obtained
- results are the following…
+ On this new image it was possible to apply blob detection, refined through
+ parameter tuning as for the heatmap threshold, to have a rough count of
+ how many sea lions are present in the considered image.
+ The entire procedure is depicted in the following figures.
+ As shown the results are quite satisfying even though the blobs don’t always
+ overlap correctly with the sea lions.
+ 
 \begin_inset Newline newline
 \end_inset
 
@@ -2927,7 +2932,7 @@ First of all we have overcome the recognition of puppies due to the intrinsic
 
 Our task was to produce a binary classifier which could distinguish between
  a sea lion and the background.
- An extension to this could a multiclass classifier which can effectively
+ An extension to this could be a multiclass classifier which can effectively
  recognise among the classes of the original competition.
 \begin_inset Newline newline
 \end_inset

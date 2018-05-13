@@ -889,7 +889,7 @@ Going deep in the training and testing procedures we noticed some important
  ended up labled in the wrong way, so we also inspected manually the patches
  to cope with this problem, finally there are some images having areas covered
  with black color so we added a check to discard all patches with more than
- 2% of pure black color.
+ 2% of pure black color
 \end_layout
 
 \begin_layout Section
