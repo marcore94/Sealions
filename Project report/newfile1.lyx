@@ -36,7 +36,7 @@
 \pdf_bookmarksnumbered false
 \pdf_bookmarksopen false
 \pdf_bookmarksopenlevel 1
-\pdf_breaklinks false
+\pdf_breaklinks true
 \pdf_pdfborder true
 \pdf_colorlinks false
 \pdf_backref false
@@ -184,7 +184,7 @@ vspace{1.5cm}
 \backslash
 huge
 \backslash
-bfseries Homework Report 
+bfseries Project Report 
 \backslash
 par}
 \end_layout
@@ -322,7 +322,7 @@ The proposed project consisted in the implementation of a convolutional
 The idea of the project is based on a Kaggle competition featured in 2017
  (
 \begin_inset Flex URL
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -906,7 +906,7 @@ As can be seen from these numbers the dataset is unbalanced, there are a
 
 For what concernes the training procedure, we ran it for 100 epochs using
  a learning rate of 
-\begin_inset Formula $0.0001$
+\begin_inset Formula $0.001$
 \end_inset
 
 .
@@ -1092,7 +1092,7 @@ Train set
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -1226,7 +1226,7 @@ Prediction accuracy
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -1310,9 +1310,9 @@ This generator also enabled us to introduce data augmentation in the training
 \end_inset
 
 In this first attempt to add augmentation we used an handcrafted tool to
- apply the transformations, this choice allowed us to work with higher size
- sea lions patches that were cropped after the transformation to fit the
- network input.
+ apply the transformations, to do this we had to work with higher size sea
+ lions patches that were cropped after the transformation to fit the network
+ input.
  In this way we could avoid interpolation on eventual missing pixels that
  was necessary with Keras built-in functions since we applied the transformation
 s at runtime.
@@ -1545,7 +1545,35 @@ Precision-recall curve
 
 As shown by the following tables the presence of a much higher number of
  background patches influenced a lot the metrics used to estimate the model
- performances.
+ performances, in particular while the accuracy was still close to that
+ of the previous training the AUC shows a significant drop and gets close
+ to 0.5 (the random classifier limit).
+\begin_inset Newline newline
+\end_inset
+
+We can also notice directly compare the accuracy of this training with the
+ previous one.
+ If we restrict the analysis to the first 30 epochs and on the validation
+ set, to have a meaningful comparison, the first training provides an accuracy
+ of about 
+\begin_inset Formula $96.6\%$
+\end_inset
+
+, while this one only of the 
+\begin_inset Formula $91.38\%$
+\end_inset
+
+.
+ Also, the variation of accuracy from the beginning of the training is about
+ 
+\begin_inset Formula $4\%$
+\end_inset
+
+, while this one is of less than the 
+\begin_inset Formula $2\%$
+\end_inset
+
+.
 \begin_inset Newline newline
 \end_inset
 
@@ -1627,7 +1655,7 @@ Train set
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -1737,7 +1765,7 @@ Prediction accuracy
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -1843,7 +1871,7 @@ Sea lions
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -1873,7 +1901,7 @@ Sea lions
 \begin_inset Text
 
 \begin_layout Plain Layout
-background
+Background
 \end_layout
 
 \end_inset
@@ -2103,6 +2131,12 @@ During this phase we set the learning rate to
 \end_inset
 
  epochs.
+\begin_inset Newline newline
+\end_inset
+
+The following graphs and tables highlight the enhancements of the new training:
+ the ROC nearly covers all the graph area, resulting in a AUC higher than
+ first training one, the same applies for the precision-recall curve.
  
 \begin_inset Float figure
 wide false
@@ -2275,7 +2309,7 @@ Prediction accuracy
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -2393,7 +2427,7 @@ Sea lions
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -2411,7 +2445,7 @@ Sea lions
 \begin_inset Text
 
 \begin_layout Plain Layout
-background
+Background
 \end_layout
 
 \end_inset
@@ -2476,7 +2510,12 @@ Third training results
 
 \end_inset
 
-
+We also performed some testing in the case of a balanced test set.
+ Here are reported the results in this case and we can see that the precision
+ in classification of sea lions increases highly with respect to the unbalanced
+ test set case.
+ On the other hand, there is a slight decrease in the precision of background
+ classification.
 \begin_inset Float figure
 wide false
 sideways false
@@ -2587,7 +2626,7 @@ Sea lions
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -2617,7 +2656,7 @@ Sea lions
 \begin_inset Text
 
 \begin_layout Plain Layout
-background
+Background
 \end_layout
 
 \end_inset
