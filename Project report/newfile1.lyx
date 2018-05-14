@@ -513,6 +513,12 @@ Implementation
 \end_layout
 
 \begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Dataset-creation"
+
+\end_inset
+
 Dataset creation
 \end_layout
 
@@ -648,6 +654,611 @@ To extract the background we used a sliding window of size
  
 \end_layout
 
+\begin_layout Standard
+The train set at the end of the extraction procedure includes 
+\begin_inset Formula $50079$
+\end_inset
+
+ ‘sea lions’ and 
+\begin_inset Formula $1139531$
+\end_inset
+
+ ‘background’ patches which will be split again in 
+\begin_inset Formula $40411$
+\end_inset
+
+, 
+\begin_inset Formula $9668$
+\end_inset
+
+ and 
+\begin_inset Formula $1129863$
+\end_inset
+
+, 
+\begin_inset Formula $9668$
+\end_inset
+
+ respectively for proper train and validation procedures.
+ The test set instead has 
+\begin_inset Formula $13539$
+\end_inset
+
+ ‘sea lions’ and 
+\begin_inset Formula $277390$
+\end_inset
+
+ ‘background’ patches.
+ Given this dataset divided into classes, train, validation and test set
+ it’s possible to train the model.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Going deep in the training and testing procedures we noticed some important
+ problems with the dataset: 
+\end_layout
+
+\begin_layout Itemize
+mismatches in the ground truth provided by kaggle, we listed and removed
+ all these images
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename mismatch-a_21.jpg
+	lyxscale 2
+	width 50col%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Original image '21'
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \thinspace{}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename mismatch-b_21.jpg
+	lyxscale 2
+	width 50col%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Ground truth image '21'
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Example of mismatch between original image and ground truth provided by
+ kaggle
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+blob detection technique provided some false positives that ended up labled
+ in the wrong way, so we also inspected manually the patches to cope with
+ this problem
+\end_layout
+
+\begin_layout Itemize
+some images have areas covered with black color so we added a check to discard
+ all patches with more than 2% of pure black color, in this way the sliding
+ window gathering the background excludes black patches
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename black-sample-a_22.jpg
+	lyxscale 2
+	width 50col%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Ground truth image '22'
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \thinspace{}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename black-sample-b_26.jpg
+	lyxscale 2
+	width 50col%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Ground truth image '26'
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Example of two images covered with black areas
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+As can be seen from these two images avoiding balck patches is fundamental
+ to have a correct dataset.
+\end_layout
+
+\begin_layout Standard
+Once the extraction procedure has been fully completed and all its related
+ problems have been solved, we detectde new problems related to the patches
+ themselves.
+ In fact the two classes are really unbalanced, there are a lot more background
+ patches than sea lion ones, furthermore 
+\begin_inset Formula $40411$
+\end_inset
+
+ sea lion patches might not be sufficient to learn that class correctly
+ without overfitting.
+\end_layout
+
+\begin_layout Section
+Data augmentation
+\end_layout
+
+\begin_layout Standard
+As explained before, to increase the dimension of the dataset and generalize
+ more over position, rotation and scale we applied data augmentation to
+ the sea lions patches.
+ This technique has been applied to solve the problems related to the dataset
+ that came up after patches extraction 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "sec:Dataset-creation"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, in fact it allows to expand the dataset creating new patches modifying
+ the extracted ones, this is fundamental especially due to the poorness
+ that characterize the sea lion class.
+ Moreover, training a model with augmented patches makes it more robust
+ and consistent in classifying previously unseen samples.
+ In particular, what we applied is a random combination of four transformation:
+\end_layout
+
+\begin_layout Itemize
+Rotation of a random degree in the range 
+\begin_inset Formula $0$
+\end_inset
+
+ to 
+\begin_inset Formula $360$
+\end_inset
+
+ degrees
+\end_layout
+
+\begin_layout Itemize
+Flipping both vertically and horizontally
+\end_layout
+
+\begin_layout Itemize
+Shifting of a maximum of 
+\begin_inset Formula $10$
+\end_inset
+
+ pixels, both vertically and horizontally
+\end_layout
+
+\begin_layout Itemize
+Zooming of a maximum of 
+\begin_inset Formula $20$
+\end_inset
+
+ pixels
+\end_layout
+
+\begin_layout Standard
+The transformation process is, as said before, completely random so the
+ nuber of new patches that can be generated is really high, that's why with
+ these transformations is possible to overcome the problem of lack of sea
+ lion patches and class unbalance.
+\end_layout
+
+\begin_layout Standard
+The first implementation we tried for the augmentation procedure was to
+ build our own handcrafted tool which behaved exactly as described before.
+ This tool was built to receive as input higher size sea lion patches (
+\begin_inset Formula $144\times144$
+\end_inset
+
+) to avoid interpolation of eventual missing pixels due to the transformations
+ and have a final transformed patch as much precise as possible.
+ Of course patches must be modified at runtime, during the network training,
+ because it's impossible to save all the patches that can be generated with
+ augmentation.
+ At this point we noticed that the tool we built was not as fast as we expected
+ so we decided to replace it with the Keras built-in data generator which
+ allows to apply augmentation.
+ Data generator provided by Keras doesn't require bigger patches as input
+ beacuse automatically applies interpolation to fill eventual missing pixels
+ and mantain sizes of the input image.
+ With this augmentation tool the process of loading modified patches at
+ runtime speeded up consistently so the whole train process became less
+ time consuming.
+\end_layout
+
+\begin_layout Standard
+Here follows samples of modified patches
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Augmentation/original.png
+	lyxscale 10
+	width 60col%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Original image
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Augmentation/Augmentation_0.png
+	lyxscale 10
+	width 33col%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Augmented image
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \thinspace{}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Augmentation/Augmentation_1.png
+	lyxscale 10
+	width 33col%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Augmented image
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \thinspace{}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Augmentation/Augmentation_2.png
+	lyxscale 10
+	width 33col%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Augmented image
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Augmentation/Augmentation_3.png
+	lyxscale 10
+	width 33col%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Augmented image
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \thinspace{}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Augmentation/Augmentation_4.png
+	lyxscale 10
+	width 33col%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Augmented image
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \thinspace{}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Augmentation/Augmentation_6.png
+	lyxscale 10
+	width 33col%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Augmented image
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Augmentation samples
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Model
 \end_layout
@@ -728,49 +1339,6 @@ metric: accuracy, evaluation of the model based on how much the classification
 \end_layout
 
 \begin_layout Section
-Data augmentation
-\end_layout
-
-\begin_layout Standard
-As explained before, to increase the dimension of the dataset and generalize
- more over position, rotation and scale we applied data augmentation to
- the sea lions patches.
- In particular, what we applied is a random combination of four transformation:
-\end_layout
-
-\begin_layout Itemize
-Rotation of a random degree in the range 
-\begin_inset Formula $0$
-\end_inset
-
- to 
-\begin_inset Formula $360$
-\end_inset
-
- degrees
-\end_layout
-
-\begin_layout Itemize
-Flipping both vertically and horizontally
-\end_layout
-
-\begin_layout Itemize
-Shifting of a maximum of 
-\begin_inset Formula $10$
-\end_inset
-
- pixels, both vertically and horizontally
-\end_layout
-
-\begin_layout Itemize
-Zooming of a maximum of 
-\begin_inset Formula $20$
-\end_inset
-
- pixels
-\end_layout
-
-\begin_layout Section
 Semantic segmentation
 \end_layout
 
@@ -831,68 +1399,6 @@ Thanks to the choice of python we managed to use Keras, an high-level neural
 Another aspect that characterized the development was the use of dataframes
  that allowed a better management of all the informations about the data
  set.
-\end_layout
-
-\begin_layout Section
-Patch extraction
-\end_layout
-
-\begin_layout Standard
-The experimental activity started with the convolutional neural network
- trained with the first version of the training dataset.
- It consisted in a set of patches, extracted with the procedures explained
- before but without applying augmentation to sea lions ones.
-\begin_inset Newline newline
-\end_inset
-
-The train set at the end of the extraction procedure includes 
-\begin_inset Formula $50079$
-\end_inset
-
- ‘sea lions’ and 
-\begin_inset Formula $1139531$
-\end_inset
-
- ‘background’ patches in the train set which will be split again in 
-\begin_inset Formula $40411$
-\end_inset
-
-, 
-\begin_inset Formula $9668$
-\end_inset
-
- and 
-\begin_inset Formula $1129863$
-\end_inset
-
-, 
-\begin_inset Formula $9668$
-\end_inset
-
- respectively for proper train and validation procedures.
- The test set instead has 
-\begin_inset Formula $13539$
-\end_inset
-
- ‘sea lions’ and 
-\begin_inset Formula $277390$
-\end_inset
-
- ‘background’ patches.
- Given this dataset divided into classes, train, validation and test set
- it’s possible to train the model.
- 
-\begin_inset Newline newline
-\end_inset
-
-Going deep in the training and testing procedures we noticed some important
- problems with the dataset, first of all there were some mismatches in the
- ground truth provided by kaggle so we listed and removed all these images,
- secondly the blob detection technique provided some false positives that
- ended up labled in the wrong way, so we also inspected manually the patches
- to cope with this problem, finally there are some images having areas covered
- with black color so we added a check to discard all patches with more than
- 2% of pure black color.
 \end_layout
 
 \begin_layout Section
