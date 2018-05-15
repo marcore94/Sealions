@@ -2853,7 +2853,7 @@ Second training results
 \end_layout
 
 \begin_layout Section
-Keras augmentation and no-puppies training
+Keras augmentation and puppies exclusion training
 \end_layout
 
 \begin_layout Standard
