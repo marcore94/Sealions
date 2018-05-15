@@ -658,8 +658,9 @@ literal "false"
 
 \end_inset
 
-, however, for training, this required that in the ground truth each pixel
- was labeled with the class of its enclosing object or region in the ground.
+, however, during the training phase, this required that in the ground truth
+ each pixel was labeled with the class of its enclosing object or region
+ in the ground.
 \begin_inset Newline newline
 \end_inset
 
@@ -778,7 +779,7 @@ After having extracted them, we decided to apply data augmentation to obtain
  In fact, due to the nature of the images, they contained much more background
  patches than sea lions ones.
  By data augmentation we were able to overcome, partially, this unbalance
- and to obtain better performance during testing phase becaute it makes
+ and to obtain better performance during testing phase because it makes
  the classifier more insensitive to position, rotation and scaling.
 \begin_inset Newline newline
 \end_inset
@@ -890,7 +891,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Dotted image
+Ground truth image
 \end_layout
 
 \end_inset
@@ -1064,7 +1065,7 @@ Ground truth image '21'
 
 \begin_layout Plain Layout
 Example of mismatch between original image and ground truth provided by
- kaggle
+ Kaggle
 \end_layout
 
 \end_inset
@@ -1182,7 +1183,7 @@ As can be seen from these two images avoiding balck patches is fundamental
 
 \begin_layout Standard
 Once the extraction procedure has been fully completed and all its related
- problems have been solved, we detectde new problems related to the patches
+ problems have been solved, we detected new problems related to the patches
  themselves.
  In fact the two classes are really unbalanced, there are a lot more background
  patches than sea lion ones, furthermore 
@@ -1216,7 +1217,7 @@ literal "false"
 
 .
  This technique has been applied to solve the problems related to the dataset
- that came up after patches extraction
+ that came up after patches extraction 
 \begin_inset CommandInset ref
 LatexCommand eqref
 reference "sec:Dataset-creation"
@@ -1290,19 +1291,19 @@ The first implementation we tried for the augmentation procedure was to
 \end_inset
 
 ) to avoid interpolation of eventual missing pixels due to the transformations
- and have a final transformed patch as much precise as possible.
+ and to have a final transformed patch as much precise as possible.
  Of course patches must be modified at runtime, during the network training,
  because it's impossible to save all the patches that can be generated with
  augmentation.
- At this point we noticed that the tool we built was not as fast as we expected
- so we decided to replace it with the Keras built-in data generator which
- allows to apply augmentation.
+ At this point we noticed that this handcrafted tool was not as fast as
+ expected so we decided to replace it with the Keras built-in data generator
+ which allows to apply augmentation as well.
  Data generator provided by Keras doesn't require bigger patches as input
  beacuse automatically applies interpolation to fill eventual missing pixels
  and mantain sizes of the input image.
  With this augmentation tool the process of loading modified patches at
- runtime speeded up consistently so the whole train process became less
- time consuming.
+ runtime speeded up consistently while the applied transformations are the
+ same, so the whole train process became less time consuming.
 \end_layout
 
 \begin_layout Standard
@@ -1579,14 +1580,14 @@ Starting from the second implementation of the network we added a custom
  batch generator to improve memory management and handle augmentation.
  This was a necessary consequence of the training approach we adopted, in
  fact for what concerns the sea lion patches we decided to leave in memory
- both the training and validation sets, while, due to the huge amount, only
- the validation set patches of background were maintained and the training
- patches were periodically reloaded.
- Moreover to take advantage of Keras queue system for batch processing we
- actually performed augmentation just before yielding the batch to the queue,
- in this way the training could proceed without waiting that the entire
- data set of the current epoch had undergone transformations and we avoided
- to fill all the memory.
+ both the training and validation sets, while for what concerns background
+ patces, due to the huge amount, only the validation set was maintained,
+ the training patches were instead periodically reloaded.
+ Moreover, to take advantage of Keras queue system for batch processing,
+ we actually performed augmentation just before yielding the batch to the
+ queue, in this way the training could proceed without waiting that the
+ entire data set of the current epoch had undergone transformations and
+ we avoided to fill all the memory.
 \begin_inset Newline newline
 \end_inset
 
@@ -1634,7 +1635,7 @@ The DCNN used to classify patches has input size of
 \end_inset
 
 , where each output corresponds to the probability of belonging to a class.
- The network is made up of
+ The network is made up of 
 \begin_inset Formula $9$
 \end_inset
 
@@ -1700,12 +1701,18 @@ metric: accuracy, evaluation of the model based on how much the classification
 \end_layout
 
 \begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Object-Detection"
+
+\end_inset
+
 Object Detection
 \end_layout
 
 \begin_layout Standard
 As soon as the CNN building and training phases ended the fully convolutional
- model extraction could proceed..
+ model extraction could proceed.
  To do so the fully connected final layer was reshaped to another convolutional
  layer maintaining the same connections and related weights of the original
  network, the new final convolutional layer used 
@@ -1729,7 +1736,7 @@ Since the constraints on the input shape were dropped it was possible to
 \end_inset
 
 It is important to stress out that any shift-and-stitch or upsampling via
- deconvolution to yield the dense predictions was used
+ deconvolution to yield the dense predictions was used 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "key-41"
@@ -1748,7 +1755,7 @@ The final step was to use the computed heatmap of an entire image to locate
 \begin_inset Formula $0.9$
 \end_inset
 
-) in order to have a clearer distinction from the background then a blob
+) then, in order to have a clearer distinction from the background, a blob
  detector based on the Laplacian of the Gaussian was applied to results
  
 \begin_inset CommandInset citation
@@ -1778,7 +1785,7 @@ where
 \begin_inset Formula $t$
 \end_inset
 
- is the scale give a scale space representation .
+ is the scale give a scale space representation.
 \begin_inset Formula 
 \[
 L(x,y;t)=g(x,y,t)\times f(x,y)
@@ -1804,9 +1811,9 @@ is computed, which usually results in strong positive responses for blobs
 \end_inset
 
 Since this technique presents some problems with automatic detection of
- blobs with different (unknown) size in the image domain the normalization
- of the Laplacian togheterwas adopted alongside a multi-scale approach implement
-ed by defining a range in which the different possible scales could be tested.
+ blobs with different (unknown) size in the image domain, the normalization
+ of the Laplacian was adopted alongside a multi-scale approach implemented
+ by defining a range in which the different possible scales could be tested.
 \begin_inset Newline newline
 \end_inset
 
@@ -1834,7 +1841,7 @@ Developement tools
 \end_layout
 
 \begin_layout Standard
-In order to perform the tasks required developed the project in Python,
+In order to perform the tasks required we developed the project in Python,
  using PyCharm IDE.
  In particular, we used Jupyter notebooks that allowed to write the code
  and to execute it section by section, in this way we were able to monitor
@@ -1856,7 +1863,7 @@ Another aspect that characterized the development was the use of dataframes
 \end_layout
 
 \begin_layout Section
-Balanced dataset training
+Balanced dataset
 \end_layout
 
 \begin_layout Standard
@@ -2302,7 +2309,7 @@ First training results
 \end_layout
 
 \begin_layout Section
-Batch generator and augmentation training
+Batch generator and augmentation
 \end_layout
 
 \begin_layout Standard
@@ -2945,7 +2952,7 @@ Second training results
 \end_layout
 
 \begin_layout Section
-Keras augmentation and puppies exclusion training
+Keras augmentation and puppies exclusion
 \end_layout
 
 \begin_layout Standard
@@ -3968,8 +3975,18 @@ Object detection and sea lions counting
 \end_layout
 
 \begin_layout Standard
-At this point we took the last trained network and, as explained before,
- replaced the last fully connected layer with a convolutional one maintaining
+At this point we took the last trained network and, as explained before
+ 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "sec:Object-Detection"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, replaced the last fully connected layer with a convolutional one maintaining
  all the weights.
  With this reshaped network we are able to evaluate an entire image and
  obtain a heatmap highlighting zone where is more probable to have a sea
@@ -3982,7 +3999,152 @@ Then we decided to apply a threshold on the heatmap to create a grayscale
  On this new image it was possible to apply blob detection, refined through
  parameter tuning as for the heatmap threshold, to have a rough count of
  how many sea lions are present in the considered image.
- The entire procedure is depicted in the following figures.
+ To do so we used the built in function from the scikit-learn library and
+ after some tests we decided for the following parameters:
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="1" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Heatmap 
+\begin_inset Formula $threshold$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.9
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \thinspace{}
+\end_inset
+
+
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $LoG$
+\end_inset
+
+ scale minimum value
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+20
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $LoG$
+\end_inset
+
+ scale maximum value
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+35
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Detection Parameters
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+The entire procedure is depicted in the following figures.
  As shown the results are quite satisfying even though the blobs don’t always
  overlap correctly with the sea lions.
  
