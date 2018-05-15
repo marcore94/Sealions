@@ -527,16 +527,21 @@ Typical recognition nets were realized to take fixed-size inputs and produce
  non spatial outputs, the fully connected layers of these networks had fixed
  dimensions and threw away spatial coordinates.
  These fully connected layers can also be viewed as convolutions with kernels
- that cover the entire input regions, doing so casts them into fully convolution
-al networks that take inputs of any size and outputs the classification
- maps.
- The classification nets subsample to keep filters small and computational
- requirements reasonable.
- This coarsens the output of a fully convolutional version of these nets,
- reducing it from the size of the input by a factor equal to the pixel stride
- of the receptive fields of the output units.
- To cope with this problem and connect coarse outputs to dense pixels is
- interpolation by upsampling, upsampling can be implemented 
+ that cover the entire input regions, doing so it's possicasts them into
+ fully convolutional networks that take inputs of any size and outputs the
+ classification maps.
+\begin_inset Newline newline
+\end_inset
+
+Since the classification nets subsample to keep filters small and computational
+ requirements reasonable, the output of a fully convolutional version of
+ these nets results coarsen, reducing it from the size of the input by a
+ factor equal to the pixel stride of the receptive fields of the output
+ units.
+ To cope with this problem and connect coarse outputs to dense pixels interpolat
+ion by upsampling can be adopted.
+ Upsampling can be implemented by deconvolution and learned by backpropagation
+ of the pixelwise loss.
 \end_layout
 
 \begin_layout Chapter
@@ -3768,14 +3773,52 @@ Our task was to produce a binary classifier which could distinguish between
 
 Another approach that could produce an improvement in the results is to
  exploit transfer learning from models trained with imageNet, for example,
- since they provide optimal performances in low level feature extraction.
+ since they provide optimal performances in low level feature extraction
+ (citation 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Matt"
+literal "false"
+
+\end_inset
+
+).
 \begin_inset Newline newline
 \end_inset
 
 The last thing we imagine could work better is a direct object recognition
  approach without going through the classification task, however this would
- require a much more detailed ground truth.
- 
+ require a much more detailed ground truth (citation 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "CMR"
+literal "false"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "Matt"
+literal "false"
+
+\end_inset
+
+Libro 1 di Matteucci sull'imparamento di macchine
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "CMR"
+literal "false"
+
+\end_inset
+
+Glorious Colombetti master race book
 \end_layout
 
 \end_body
