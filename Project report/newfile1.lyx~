@@ -26,7 +26,7 @@
 \graphics default
 \default_output_format default
 \output_sync 0
-\bibtex_command default
+\bibtex_command bibtex
 \index_command makeindex
 \float_placement H
 \paperfontsize default
@@ -446,31 +446,258 @@ Sample image from the dataset
 State of the art
 \end_layout
 
+\begin_layout Section
+Introduction
+\end_layout
+
 \begin_layout Standard
 Image classification is a fundamental problem in computer vision since it
- forms the basis for other computer vision tasks.
+ forms the basis for other computer vision tasks such as localization, detection
+, and segmentation
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-4"
+literal "false"
+
+\end_inset
+
+.
  Although the task can be considered second nature for humans, it is much
  more challenging for an automated system.
 \begin_inset Newline newline
 \end_inset
 
 Traditionally handcrafted features were first extracted from images using
- feature descriptors, and these served as input to a trainable classifier.
+ feature descriptors, and these served as input to a trainable classifier,
+ in this way the accuracy of the classification task was profoundly dependent
+ on the design of the feature extraction stage, and this usually proved
+ to be a difficult task that required domain experts
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-7"
+literal "false"
+
+\end_inset
+
+.
  In recent years, deep learning models that exploit multiple layers of nonlinear
  information processing, for feature extraction and transformation as well
  as for pattern analysis and classification, have been shown to overcome
  these challenges.
  Among them, CNNs have become the leading architecture for most image recognitio
-n, classification, and detection tasks.
+n, classification, and detection tasks
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-8,key-9,key-10"
+literal "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
+Convolutional Neural Networks
+\end_layout
+
+\begin_layout Standard
+CNNs are feedforward networks in that information flow takes place in one
+ direction only, from their inputs to their outputs.
+ Just as artificial neural networks (ANN) are biologically inspired, so
+ are CNNs.
+ The visual cortex in the brain, which consists of alternating layers of
+ simple and complex cells, motivates their architecture 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-5,key-6"
+literal "false"
+
+\end_inset
+
+.
+ CNN architectures come in several variations, however, in general, they
+ consist of convolutional and pooling (or subsampling) layers, which are
+ grouped into modules.
+ Either one or more fully connected layers, as in a standard feedforward
+ neural network, follow these modules.
+ Modules are often stacked on top of each other to form a deep model.
+\begin_inset Newline newline
+\end_inset
+
+Despite some early sucesses
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-8,key-9,key-11"
+literal "false"
+
+\end_inset
+
+, deep CNN were brought into the limelight as a result of the deep learning
+ reanaissance
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-12,key-13,key-14"
+literal "false"
+
+\end_inset
+
+, which was fueled by GPUs, larger data sets and better algorithms
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-19,key-20,key-21"
+literal "false"
+
+\end_inset
+
+.
+ Several advances such as GPU implementations and the application of maximum
+ pooling have contributed to the recent popularity.
 \begin_inset Newline newline
 \end_inset
 
 The most significant advance, which has captured intense interest in DCNNs,
  especially for image classification tasks, was achieved in the ImageNet
- Large Scale Visual Recognition Challenge (ILSVRC) 2012.
+ Large Scale Visual Recognition Challenge (ILSVRC) 2012
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-1"
+literal "false"
+
+\end_inset
+
+.
  Since then, DCNNs have dominated subsequent versions of the ILSVRC and,
- more specifically, its image classification component.
- 
+ more specifically, its image classification component
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-3,key-21,key-22"
+literal "false"
+
+\end_inset
+
+.
+ In addition to these advances other improvements affected the performances
+ of DCNN such as non linear activation functions
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-23,key-24"
+literal "false"
+
+\end_inset
+
+, regularization mechanisms 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-25,key-26"
+literal "false"
+
+\end_inset
+
+ and optimization techniques
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-27,key-19"
+literal "false"
+
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+Nowadays convolutional networks are driving the advances in recognition,
+ in fact convnets are not only improving whole-image classification tasks
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-19,key-22,key-3"
+literal "false"
+
+\end_inset
+
+, but also local tasks with structured output such as bounding box object
+ detection
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-30,key-29,key-23"
+literal "false"
+
+\end_inset
+
+, part and keypoint prediction 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-33,key-32"
+literal "false"
+
+\end_inset
+
+ and local correspondence
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-32,key-31"
+literal "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
+Fully convolutional networks
+\end_layout
+
+\begin_layout Standard
+Due to the astonishing results in the aforementioned topics, the natural
+ next step in the progression from coarse to fine inference yield to pixelwise
+ prediction.
+ A prior approach used convnets for semantic segmentation
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-34,key-35,key-36,key-37,key-38,key-39"
+literal "false"
+
+\end_inset
+
+, however, for training, this required that in the ground truth each pixel
+ was labeled with the class of its enclosing object or region in the ground.
+\begin_inset Newline newline
+\end_inset
+
+An important advance in this sense was introduced by fully convolutional
+ neural networks
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-41"
+literal "false"
+
+\end_inset
+
+: the key idea was to extend convnets to arbitrary-sized inputs.
+ Differently from previous approaches that was based on sliding windows
+ , separately computed feature extractors or Recurrent CNN, FCNN exploit
+ end-to-end supervised pre-training for pixelwise prediction.
+\begin_inset Newline newline
+\end_inset
+
+Typical recognition nets were realized to take fixed-size inputs and produce
+ non spatial outputs, the fully connected layers of these networks had fixed
+ dimensions and threw away spatial coordinates.
+ These fully connected layers can also be viewed as convolutions with kernels
+ that cover the entire input regions, doing so it's possible to cast them
+ into fully convolutional networks that take inputs of any size and give
+ as outputs the classification maps.
+\begin_inset Newline newline
+\end_inset
+
+Since the classification nets subsample to keep filters small and computational
+ requirements reasonable, the output of a fully convolutional version of
+ these nets results coarsen, reducing it from the size of the input by a
+ factor equal to the pixel stride of the receptive fields of the output
+ units.
+ To cope with this problem and connect coarse outputs to dense pixels interpolat
+ion by upsampling can be adopted.
+ Upsampling can be implemented by deconvolution and learned by backpropagation
+ of the pixelwise loss.
 \end_layout
 
 \begin_layout Chapter
@@ -508,11 +735,17 @@ Once performances over patches were satisfying, we moved to an higher level,
  
 \end_layout
 
-\begin_layout Chapter*
+\begin_layout Chapter
 Implementation
 \end_layout
 
 \begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Dataset-creation"
+
+\end_inset
+
 Dataset creation
 \end_layout
 
@@ -648,6 +881,611 @@ To extract the background we used a sliding window of size
  
 \end_layout
 
+\begin_layout Standard
+The train set at the end of the extraction procedure includes 
+\begin_inset Formula $50079$
+\end_inset
+
+ ‘sea lions’ and 
+\begin_inset Formula $1139531$
+\end_inset
+
+ ‘background’ patches which will be split again in 
+\begin_inset Formula $40411$
+\end_inset
+
+, 
+\begin_inset Formula $9668$
+\end_inset
+
+ and 
+\begin_inset Formula $1129863$
+\end_inset
+
+, 
+\begin_inset Formula $9668$
+\end_inset
+
+ respectively for proper train and validation procedures.
+ The test set instead has 
+\begin_inset Formula $13539$
+\end_inset
+
+ ‘sea lions’ and 
+\begin_inset Formula $277390$
+\end_inset
+
+ ‘background’ patches.
+ Given this dataset divided into classes, train, validation and test set
+ it’s possible to train the model.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Going deep in the training and testing procedures we noticed some important
+ problems with the dataset: 
+\end_layout
+
+\begin_layout Itemize
+mismatches in the ground truth provided by kaggle, we listed and removed
+ all these images
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename mismatch-a_21.jpg
+	lyxscale 2
+	width 50col%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Original image '21'
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \thinspace{}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename mismatch-b_21.jpg
+	lyxscale 2
+	width 50col%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Ground truth image '21'
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Example of mismatch between original image and ground truth provided by
+ kaggle
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+blob detection technique provided some false positives that ended up labled
+ in the wrong way, so we also inspected manually the patches to cope with
+ this problem
+\end_layout
+
+\begin_layout Itemize
+some images have areas covered with black color so we added a check to discard
+ all patches with more than 2% of pure black color, in this way the sliding
+ window gathering the background excludes black patches
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename black-sample-a_22.jpg
+	lyxscale 2
+	width 50col%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Ground truth image '22'
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \thinspace{}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename black-sample-b_26.jpg
+	lyxscale 2
+	width 50col%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Ground truth image '26'
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Example of two images covered with black areas
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+As can be seen from these two images avoiding balck patches is fundamental
+ to have a correct dataset.
+\end_layout
+
+\begin_layout Standard
+Once the extraction procedure has been fully completed and all its related
+ problems have been solved, we detectde new problems related to the patches
+ themselves.
+ In fact the two classes are really unbalanced, there are a lot more background
+ patches than sea lion ones, furthermore 
+\begin_inset Formula $40411$
+\end_inset
+
+ sea lion patches might not be sufficient to learn that class correctly
+ without overfitting.
+\end_layout
+
+\begin_layout Section
+Data augmentation
+\end_layout
+
+\begin_layout Standard
+As explained before, to increase the dimension of the dataset and generalize
+ more over position, rotation and scale we applied data augmentation to
+ the sea lions patches.
+ This technique has been applied to solve the problems related to the dataset
+ that came up after patches extraction 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "sec:Dataset-creation"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, in fact it allows to expand the dataset creating new patches modifying
+ the extracted ones, this is fundamental especially due to the poorness
+ that characterize the sea lion class.
+ Moreover, training a model with augmented patches makes it more robust
+ and consistent in classifying previously unseen samples.
+ In particular, what we applied is a random combination of four transformation:
+\end_layout
+
+\begin_layout Itemize
+Rotation of a random degree in the range 
+\begin_inset Formula $0$
+\end_inset
+
+ to 
+\begin_inset Formula $360$
+\end_inset
+
+ degrees
+\end_layout
+
+\begin_layout Itemize
+Flipping both vertically and horizontally
+\end_layout
+
+\begin_layout Itemize
+Shifting of a maximum of 
+\begin_inset Formula $10$
+\end_inset
+
+ pixels, both vertically and horizontally
+\end_layout
+
+\begin_layout Itemize
+Zooming of a maximum of 
+\begin_inset Formula $20$
+\end_inset
+
+ pixels
+\end_layout
+
+\begin_layout Standard
+The transformation process is, as said before, completely random so the
+ nuber of new patches that can be generated is really high, that's why with
+ these transformations is possible to overcome the problem of lack of sea
+ lion patches and class unbalance.
+\end_layout
+
+\begin_layout Standard
+The first implementation we tried for the augmentation procedure was to
+ build our own handcrafted tool which behaved exactly as described before.
+ This tool was built to receive as input higher size sea lion patches (
+\begin_inset Formula $144\times144$
+\end_inset
+
+) to avoid interpolation of eventual missing pixels due to the transformations
+ and have a final transformed patch as much precise as possible.
+ Of course patches must be modified at runtime, during the network training,
+ because it's impossible to save all the patches that can be generated with
+ augmentation.
+ At this point we noticed that the tool we built was not as fast as we expected
+ so we decided to replace it with the Keras built-in data generator which
+ allows to apply augmentation.
+ Data generator provided by Keras doesn't require bigger patches as input
+ beacuse automatically applies interpolation to fill eventual missing pixels
+ and mantain sizes of the input image.
+ With this augmentation tool the process of loading modified patches at
+ runtime speeded up consistently so the whole train process became less
+ time consuming.
+\end_layout
+
+\begin_layout Standard
+Here follows samples of modified patches
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Augmentation/original.png
+	lyxscale 10
+	width 60col%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Original image
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Augmentation/Augmentation_0.png
+	lyxscale 10
+	width 33col%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Augmented image
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \thinspace{}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Augmentation/Augmentation_1.png
+	lyxscale 10
+	width 33col%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Augmented image
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \thinspace{}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Augmentation/Augmentation_2.png
+	lyxscale 10
+	width 33col%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Augmented image
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Augmentation/Augmentation_3.png
+	lyxscale 10
+	width 33col%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Augmented image
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \thinspace{}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Augmentation/Augmentation_4.png
+	lyxscale 10
+	width 33col%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Augmented image
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \thinspace{}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Augmentation/Augmentation_6.png
+	lyxscale 10
+	width 33col%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Augmented image
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Augmentation samples
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Model
 \end_layout
@@ -681,9 +1519,9 @@ status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename Untitled Diagram.pdf
+	filename CNNDiagram.pdf
 	lyxscale 10
-	scale 65
+	scale 90
 	rotateOrigin center
 
 \end_inset
@@ -725,49 +1563,6 @@ loss function: binary cross entropy, error function based on class probabilities
 \begin_layout Itemize
 metric: accuracy, evaluation of the model based on how much the classification
  is accurate
-\end_layout
-
-\begin_layout Section
-Data augmentation
-\end_layout
-
-\begin_layout Standard
-As explained before, to increase the dimension of the dataset and generalize
- more over position, rotation and scale we applied data augmentation to
- the sea lions patches.
- In particular, what we applied is a random combination of four transformation:
-\end_layout
-
-\begin_layout Itemize
-Rotation of a random degree in the range 
-\begin_inset Formula $0$
-\end_inset
-
- to 
-\begin_inset Formula $360$
-\end_inset
-
- degrees
-\end_layout
-
-\begin_layout Itemize
-Flipping both vertically and horizontally
-\end_layout
-
-\begin_layout Itemize
-Shifting of a maximum of 
-\begin_inset Formula $10$
-\end_inset
-
- pixels, both vertically and horizontally
-\end_layout
-
-\begin_layout Itemize
-Zooming of a maximum of 
-\begin_inset Formula $20$
-\end_inset
-
- pixels
 \end_layout
 
 \begin_layout Section
@@ -831,68 +1626,6 @@ Thanks to the choice of python we managed to use Keras, an high-level neural
 Another aspect that characterized the development was the use of dataframes
  that allowed a better management of all the informations about the data
  set.
-\end_layout
-
-\begin_layout Section
-Patch extraction
-\end_layout
-
-\begin_layout Standard
-The experimental activity started with the convolutional neural network
- trained with the first version of the training dataset.
- It consisted in a set of patches, extracted with the procedures explained
- before but without applying augmentation to sea lions ones.
-\begin_inset Newline newline
-\end_inset
-
-The train set at the end of the extraction procedure includes 
-\begin_inset Formula $50079$
-\end_inset
-
- ‘sea lions’ and 
-\begin_inset Formula $1139531$
-\end_inset
-
- ‘background’ patches in the train set which will be split again in 
-\begin_inset Formula $40411$
-\end_inset
-
-, 
-\begin_inset Formula $9668$
-\end_inset
-
- and 
-\begin_inset Formula $1129863$
-\end_inset
-
-, 
-\begin_inset Formula $9668$
-\end_inset
-
- respectively for proper train and validation procedures.
- The test set instead has 
-\begin_inset Formula $13539$
-\end_inset
-
- ‘sea lions’ and 
-\begin_inset Formula $277390$
-\end_inset
-
- ‘background’ patches.
- Given this dataset divided into classes, train, validation and test set
- it’s possible to train the model.
- 
-\begin_inset Newline newline
-\end_inset
-
-Going deep in the training and testing procedures we noticed some important
- problems with the dataset, first of all there were some mismatches in the
- ground truth provided by kaggle so we listed and removed all these images,
- secondly the blob detection technique provided some false positives that
- ended up labled in the wrong way, so we also inspected manually the patches
- to cope with this problem, finally there are some images having areas covered
- with black color so we added a check to discard all patches with more than
- 2% of pure black color.
 \end_layout
 
 \begin_layout Section
@@ -2869,6 +3602,12 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Detected-sea-lions"
+
+\end_inset
+
 Detected sea lions
 \end_layout
 
@@ -3122,9 +3861,27 @@ Sea lions counting based on blobs
 As can be seen from these numbers, even if the prediction on the nuber of
  sea lions isn't performed with a deeply studied strategy, final results
  aren't too bad.
- In particular the predicted number is clearly an overestimate of the real
- one, but the presence of puppies, which are not considered in this network,
- makes the two nubers be closer one to each other.
+ In particular, looking at figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Detected-sea-lions"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, can be noticed that some animals are not covered by blobs and there are
+ some mistaken blobs over the background, therefore we can say this method
+ is not the best to count sea lions with high precision due to the presence
+ of these errors.
+\end_layout
+
+\begin_layout Standard
+Another final consideration that can be done is that the predicted number
+ is clearly an overestimate of the real one, but the presence of puppies,
+ which are not considered in this network, makes the two nubers be closer
+ one to each other.
 \end_layout
 
 \begin_layout Chapter
@@ -3172,14 +3929,622 @@ Our task was to produce a binary classifier which could distinguish between
 
 Another approach that could produce an improvement in the results is to
  exploit transfer learning from models trained with imageNet, for example,
- since they provide optimal performances in low level feature extraction.
+ since they provide optimal performances in low level feature extraction
+ (citation 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Matt"
+literal "false"
+
+\end_inset
+
+).
 \begin_inset Newline newline
 \end_inset
 
 The last thing we imagine could work better is a direct object recognition
  approach without going through the classification task, however this would
- require a much more detailed ground truth.
+ require a much more detailed ground truth (citation 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "CMR"
+literal "false"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-1"
+
+\end_inset
+
+Krizhevsky, A., Sutskever, I., & Hinton, G.
+ E.
+ (2012).
+ ImageNet classification with deep convolutional neural networks.
+ In F.
+ Pereira, C.
+ J.
+ C.
+ Burges, L.
+ Bottou, & K.
+ Q.
+ Weinberger (Eds.), Advances in neural information processing systems, 25
+ (pp.
+ 1097–1105).
+ Red Hook, NY: Curran.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-2"
+
+\end_inset
+
+Y.
+ LeCun, B.
+ Boser, J.
+ Denker, D.
+ Henderson, R.
+ E.
+ Howard, W.
+ Hubbard, and L.
+ D.
+ Jackel.
+ Backpropagation applied to hand-written zip code recognition.
+ In Neural Computation, 1989.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-3"
+
+\end_inset
+
+Simonyan, K., & Zisserman, A.
+ (2014).
+ Very deep convolutional networks for large-scale image recognition.
+ arXiv 1409.1556.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-4"
+
+\end_inset
+
+Karpathy, A.
+ (2016).
+ CS231n: Convolutional neural networks for visual recognition.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-5"
+
+\end_inset
+
+Hubel, D.
+ H., & Wiesel, T.
+ N.
+ (1959).
+ Receptive fields of single neurones in the cat’s striate cortex.
+ Journal of Physiology, 148(1), 574–591.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-6"
+
+\end_inset
+
+Hubel, D.
+ H., & Wiesel, T.
+ N.
+ (1962).
+ Receptive fields, binocular interaction and functional architecture in
+ the cat’s visual cortex.
+ Journal of Physiology, 160(1), 106–154.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-7"
+
+\end_inset
+
+LeCun, Y., Bottou, L., Bengio, Y., & Haffner, P.
+ (1998).
+ Gradient-based learning applied to document recognition.
+ Proceedings of the IEEE, 86(11), 2278–2324.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-8"
+literal "false"
+
+\end_inset
+
+LeCun, Y., Boser, B., Denker, J.
+ S., Henderson, D., Howard, R.
+ E., Hubbard, W., & Jackel, L.
+ D.
+ (1989a).
+ Handwritten digit recognition with a back-propagation net- work.
+ In D.
+ S.
+ Touretzky (Ed.), Advances in neural information processing systems, 2 (pp.
+ 396–404).
+ Cambridge, MA: MIT Press.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-9"
+literal "false"
+
+\end_inset
+
+LeCun, Y., Boser, B., Denker, J.
+ S., Henderson, D., Howard, R.
+ E., Hubbard, W., & Jackel, L.
+ D.
+ (1989b).
+ Backpropagation applied to handwritten zip code recogni- tion.
+ Neural Computation, 1(4), 541–551.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-10"
+literal "false"
+
+\end_inset
+
+LeCun, Y., Bengio, Y., & Hinton, G.
+ (2015).
+ Deep learning.
+ Nature, 521(7553), 436– 444.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-11"
+literal "false"
+
+\end_inset
+
+Simard, P.
+ Y., Steinkraus, D., & Platt, J.
+ C.
+ (2003, August).
+ Best practices for convolutional neural networks applied to visual document
+ analysis.
+ In Proceedings of the 7th International Conference on Document Analysis
+ and Recognition (vol.
+ 3, pp.
+ 958– 963).
+ Washington, DC: IEEE Computer Society.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-12"
+literal "false"
+
+\end_inset
+
+Hinton, G.
+ E., Osindero, S., & Teh, Y.
+ (2006).
+ A fast learning algorithm for deep belief nets.
+ Neural Computation, 18(7), 1527–1554.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-13"
+literal "false"
+
+\end_inset
+
+Hinton, G.
+ E., & Salakhutdinov, R.
+ R.
+ (2006).
+ Reducing the dimensionality of data with neural networks.
+ Science, 313(5786), 504–507.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-14"
+literal "false"
+
+\end_inset
+
+Bengio, Y., Lamblin, P., Popovici, D., & Larochelle, H.
+ (2006).
+ Greedy layer-wise training of deep networks.
+ In J.
+ C.
+ Platt, D.
+ Koller, Y.
+ Singer, & S.
+ T.
+ Roweis (Eds.), Advances in neural information processing systems, 19 (pp.
+ 2814–2822).
+ Red Hook, NY: Curran.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-19"
+
+\end_inset
+
+Krizhevsky, A., Sutskever, I., & Hinton, G.
+ E.
+ (2012).
+ ImageNet classification with deep convolutional neural networks.
+ In F.
+ Pereira, C.
+ J.
+ C.
+ Burges, L.
+ Bottou, & K.
+ Q.
+ Weinberger (Eds.), Advances in neural information processing systems, 25
+ (pp.
+ 1097–1105).
+ Red Hook, NY: Curran.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-20"
+
+\end_inset
+
+Deng, L., & Yu, D.
+ (2014).
+ Deep learning: Methods and applications.
+ Foundations and Trends in Signal Processing, 7(3–4), 197–387.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-21"
+
+\end_inset
+
+Zeiler, M.
+ D., & Fergus, R.
+ (2014).
+ Visualizing and understanding convolutional net- works.
+ In Proceedings of the European Conference on Computer Vision (pp.
+ 818–833).
+ Berlin: Springer.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-22"
+
+\end_inset
+
+Szegedy, C., Liu, W., Jia, Y., Sermanet, P., Reed, S., Anguelov, D., .
+ .
+ .
+ Rabinovich, A.
+ (2015).
+ Going deeper with convolutions.
+ In Proceedings of the IEEE Conference on Computer Vision and Pattern Recognitio
+n (pp.
+ 1–9).
+ Los Alamitos, CA: IEEE Com- puter Society.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-23"
+
+\end_inset
+
+He, K., Zhang, X., Ren, S., & Sun, J.
+ (2015a).
+ Deep residual learning for image recog- nition.
+ arXiv 1512.03385.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-24"
+
+\end_inset
+
+Xu, B., Wang, N., Chen, T., & Li, M.
+ (2015).
+ Empirical evaluation of rectified activations in convolutional network.
+ arXiv 1505.00853v2.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-25"
+
+\end_inset
+
+Hinton, G.
+ E., Srivastava, N., Krizhevsky, A., Sutskever, I., & Salakhutdinov, R.
+ R.
+ (2012).
+ Improving neural networks by preventing co-adaptation of feature detectors.
+ arXiv 1207.0580.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-26"
+
+\end_inset
+
+Zeiler, M.
+ D., & Fergus, R.
+ (2013).
+ Stochastic pooling for regularization of deep convolu- tional neural networks.
+ arXiv 1301.3557.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-27"
+
+\end_inset
+
+Glorot, X., & Bengio, Y.
+ (2010).
+ Understanding the difficulty of training deep feed-forward neural networks.
+ In Proceedings of the 13th International Conference on Artificial Intelligence
+ and Statistics (pp.
+ 249–256).
+ jmlr.org/proceedings/papers/v9 /glorot10a/glorot10a.pdf
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-29"
+
+\end_inset
+
+P.
+ Sermanet, D.
+ Eigen, X.
+ Zhang, M.
+ Mathieu, R.
+ Fergus, and Y.
+ LeCun.
+ Overfeat: Integrated recognition, localization and detection using convolutiona
+l networks.
+ In ICLR, 2014.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-30"
+
+\end_inset
+
+R.
+ Girshick, J.
+ Donahue, T.
+ Darrell, and J.
+ Malik.
+ Rich feature hierarchies for accurate object detection and semantic segmentatio
+n.
+ In Computer Vision and Pattern Recognition, 2014.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-31"
+
+\end_inset
+
+P.
+ Fischer, A.
+ Dosovitskiy, and T.
+ Brox.
+ Descriptor matching with convolutional neural networks: a comparison to
+ SIFT.
+ CoRR, abs/1405.5769, 2014.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-32"
+
+\end_inset
+
+J.
+ Long, N.
+ Zhang, and T.
+ Darrell.
+ Do convnets learn correspondence? In NIPS, 2014.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-33"
+
+\end_inset
+
+N.
+ Zhang, J.
+ Donahue, R.
+ Girshick, and T.
+ Darrell.
+ Part- based r-cnns for fine-grained category detection.
+ In Computer Vision–ECCV 2014, pages 834–849.
+ Springer, 2014.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-34"
+
+\end_inset
+
+F.
+ Ning, D.
+ Delhomme, Y.
+ LeCun, F.
+ Piano, L.
+ Bottou, and P.
+ E.
+ Barbano.
+ Toward automatic phenotyping of developing embryos from videos.
+ Image Processing, IEEE Transactions on, 14(9):1360–1371, 2005.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-35"
+
+\end_inset
+
+D.C.Ciresan,A.Giusti,L.M.Gambardella,andJ.Schmid- huber.
+ Deep neural networks segment neuronal membranes in electron microscopy
+ images.
+ In NIPS, pages 2852–2860, 2012.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-36"
+
+\end_inset
+
+C.
+ Farabet, C.
+ Couprie, L.
+ Najman, and Y.
+ LeCun.
+ Learning hierarchical features for scene labeling.
+ Pattern Analysis and Machine Intelligence, IEEE Transactions on, 2013.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-37"
+
+\end_inset
+
+P.
+ H.
+ Pinheiro and R.
+ Collobert.
+ Recurrent convolutional neural networks for scene labeling.
+ In ICML, 2014.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-38"
+
+\end_inset
+
+B.
+ Hariharan, P.
+ Arbela ́ez, R.
+ Girshick, and J.
+ Malik.
+ Simul- taneous detection and segmentation.
+ In European Confer- ence on Computer Vision (ECCV), 2014.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-39"
+
+\end_inset
+
+S.
+ Gupta, R.
+ Girshick, P.
+ Arbelaez, and J.
+ Malik.
+ Learning rich features from RGB-D images for object detection and segmentation.
+ In ECCV.
+ Springer, 2014.
  
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-40"
+
+\end_inset
+
+Y.
+ Ganin and V.
+ Lempitsky.
+ N4-fields: Neural network nearest neighbor fields for image transforms.
+ In ACCV, 2014.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-41"
+
+\end_inset
+
+J.
+ Long, E.
+ Shelhamer and T.
+ Darrel.
+ Fully Convolutional Networks for Semantic Segmentation.
+ In IEEE Xplore, 2015.
 \end_layout
 
 \end_body

@@ -1,0 +1,169 @@
+% Encoding: UTF-8
+
+@Article{,
+  author = {LeCun and Boser and Denkerand Henderson and Hubbardand Jackel},
+  title  = {Backpropagation applied to hand-written zip code recognition},
+  year   = {1989},
+}
+
+@Article{,
+  author = {LeCun and Bengio and Hinton},
+  year   = {2015},
+}
+
+@Article{,
+  author = {Simard and Steinkraus and Platt},
+  year   = {2003},
+}
+
+@Article{,
+  author = {Russakovsky},
+  year   = {2015},
+}
+
+@Article{,
+  author = {Simonyan and Zisserman},
+  title  = {Very deep convolu- tional networks for large-scale image recognition},
+  year   = {2014},
+}
+
+@Article{,
+  author = {Zeiler and Fergus},
+  title  = {Visualizing and understanding convolutional networks},
+  year   = {2014},
+}
+
+@Article{,
+  author = {Liu},
+  year   = {2015},
+}
+
+@Article{,
+  author = {Lin and Chen and Yan},
+  year   = {2013},
+}
+
+@Article{,
+  author = {Zeiler and Fergus},
+  year   = {2013},
+}
+
+@Article{,
+  author = {Karpathy},
+  year   = {2016},
+}
+
+@Article{,
+  author = {Ciresan and Meier and Masci and Gambardella and Schmidhuber},
+  year   = {2011},
+}
+
+@Article{,
+  author = {Krizhevsky and Sutskever and Hinton},
+  title  = {Imagenet classification with deep convolutional neural networks},
+  year   = {2012},
+}
+
+@Article{,
+  author = {Gong and Wang and Guo and Lazebnik},
+  year   = {2014},
+}
+
+@Article{,
+  author = {Szegedy and Vanhoucke and Ioffe and Shlens and Wojna},
+  year   = {2015},
+}
+
+@Article{,
+  author = {He and Zhang and Ren and Sun},
+  year   = {2015},
+}
+
+@Article{,
+  author = {Xu and Wang and Chen and Li},
+  year   = {2015},
+}
+
+@Article{,
+  author = {Tang},
+  year   = {2013},
+}
+
+@Article{,
+  author = {Zhao and Griffin},
+  year   = {2016},
+}
+
+@Article{,
+  author = {Hinton and Srivastava and Krizhevsky and Sutskever and Salakhutdinov},
+  year   = {2012},
+}
+
+@Article{,
+  author = {Glorot and Bengio},
+  year   = {2010},
+}
+
+@Article{,
+  author = {Szegedy and Liu and Jia and Sermanet and Reed and Anguelov and Erhan and Vanhoucke and Rabinovich},
+  title  = {Going deeper with convolutions},
+  year   = {2014},
+}
+
+@Article{,
+  author = {Bengio},
+  year   = {2009},
+}
+
+@Article{,
+  author = {Schmidhuber},
+  year   = {2015},
+}
+
+@Article{,
+  author = {Deng},
+  year   = {2014},
+}
+
+@Article{,
+  author = {Guo},
+  year   = {2016},
+}
+
+@Article{,
+  author = {Donahue and Jia and Vinyals and Hoffman and Zhang and Tzeng and Darrell},
+  title  = {{D}e{CAF}: {A} deep convolutional acti- vation feature for generic visual recognition},
+  year   = {2014},
+}
+
+@Article{,
+  author = {Ning and Delhomme and LeCun and Piano and Bottou and Barbano},
+  title  = {Toward automatic phenotyping of developing embryos from videos},
+  year   = {2005},
+}
+
+@Article{,
+  author = {Farabet and Couprie and Najman and LeCun},
+  title  = {Learning hierarchical features for scene labeling},
+  year   = {2013},
+}
+
+@Book{,
+  title  = {Pattern recognition and machine learning},
+  year   = {2006},
+  author = {Bishop},
+}
+
+@Article{,
+  author = {Carreira and Caseiro and Batista and Sminchisescu},
+  title  = {Semantic segmentation with second-order pooling},
+  year   = {2012},
+}
+
+@Article{,
+  author = {Ciresan and Giusti and Gambardella and Schmidhuber},
+  title  = {Deep neural networks segment neuronal membranes in electron microscopy images},
+  year   = {2012},
+}
+
+@Comment{jabref-meta: databaseType:bibtex;}
