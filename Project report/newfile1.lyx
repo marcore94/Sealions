@@ -1553,6 +1553,56 @@ Augmentation samples
 \end_layout
 
 \begin_layout Section
+Batch generator
+\end_layout
+
+\begin_layout Standard
+Starting from the second implementation of the network we added a custom
+ batch generator to improve memory management and handle augmentation.
+ This was a necessary consequence of the training approach we adopted, in
+ fact for what concerns the sea lion patches we decided to leave in memory
+ both the training and validation sets, while, due to the huge amount, only
+ the validation set patches of background were maintained and the training
+ patches were periodically reloaded.
+ Moreover to take advantage of Keras queue system for batch processing we
+ actually performed augmentation just before yielding the batch to the queue,
+ in this way the training could proceed without waiting that the entire
+ data set of the current epoch had undergone transformations and we avoided
+ to fill all the memory.
+\begin_inset Newline newline
+\end_inset
+
+To be more precise the first step was to load the entire validation set,
+ subsequently all the sea lions patches from the training set were loaded
+ in memory as soon as the first batch request was dispatched, then periodically,
+ always starting from the first call to the generator, an equal amount of
+ background patches from the train set was randomly sampled and loaded.
+ At this point augmentation was applied batch-wise until the end of the
+ training.
+\begin_inset Newline newline
+\end_inset
+
+A key problem related to memory management was that even though pixels required
+ 
+\begin_inset Formula $8bit$
+\end_inset
+
+ for each color channel, since we needed to normalize the values in a 
+\begin_inset Formula $[0,1]$
+\end_inset
+
+ range we were forced to use a 
+\begin_inset Formula $32bit$
+\end_inset
+
+ floating point representation that would make the current data sets four
+ times bigger.
+ Thankfully as a side effect of the use of batch generator only the current
+ batch images were changed to that representation avoiding the explosion
+ of required memory.
+\end_layout
+
+\begin_layout Section
 Model
 \end_layout
 
