@@ -1700,13 +1700,13 @@ metric: accuracy, evaluation of the model based on how much the classification
 \end_layout
 
 \begin_layout Section
-Semantic segmentation
+Object Detection
 \end_layout
 
 \begin_layout Standard
-As soon as the CNN building and training phases ended we proceeded to extract
- the fully convolutional model.
- To do so we reshaped the fully connected final layer to another convolutional
+As soon as the CNN building and training phases ended the fully convolutional
+ model extraction could proceed..
+ To do so the fully connected final layer was reshaped to another convolutional
  layer maintaining the same connections and related weights of the original
  network, the new final convolutional layer used 
 \begin_inset Formula $2$
@@ -1720,17 +1720,109 @@ As soon as the CNN building and training phases ended we proceeded to extract
 \begin_inset Newline newline
 \end_inset
 
-Since we dropped the constraints on the input shape it was possible to feed
- an entire image to the network that produced as output two heatmaps that
- highlighted respectively the pixels belonging to the sea lion and the backgroun
-d classes according to the probabilities predicted by the classifier.
+Since the constraints on the input shape were dropped it was possible to
+ feed an entire image to the network that produced as output two heatmaps
+ that highlighted respectively the pixels belonging to the sea lion and
+ the background classes according to the probabilities predicted by the
+ classifier.
 \begin_inset Newline newline
 \end_inset
 
-It is important to stress out that we didn’t use any shift-and-stitch or
- upsampling via deconvolution to yield the dense predictions, instead we
- applied a simple interpolation to the results.
+It is important to stress out that any shift-and-stitch or upsampling via
+ deconvolution to yield the dense predictions was used
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-41"
+literal "false"
+
+\end_inset
+
+, instead was applied a simple interpolation to the results.
+\begin_inset Newline newline
+\end_inset
+
+The final step was to use the computed heatmap of an entire image to locate
+ all the sea lions.
+ To do so at first the heatmap was hard thresholded (with pixel probabilty
+ threshold set to 
+\begin_inset Formula $0.9$
+\end_inset
+
+) in order to have a clearer distinction from the background then a blob
+ detector based on the Laplacian of the Gaussian was applied to results
  
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-1"
+literal "false"
+
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+Given an input image 
+\begin_inset Formula $f(x,y)$
+\end_inset
+
+, this image is convolved by a Gaussian kernel
+\begin_inset Formula 
+\[
+g(x,y,t)=\frac{1}{2\pi t}e^{-\frac{x^{2}+y^{2}}{2t}}
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $t$
+\end_inset
+
+ is the scale give a scale space representation .
+\begin_inset Formula 
+\[
+L(x,y;t)=g(x,y,t)\times f(x,y)
+\]
+
+\end_inset
+
+Then, the result of applying the Laplacian operator
+\begin_inset Formula 
+\[
+\nabla^{2}L=L_{xx}+L_{yy}
+\]
+
+\end_inset
+
+is computed, which usually results in strong positive responses for blobs
+ of radius 
+\begin_inset Formula $r=\sqrt{2t}$
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+Since this technique presents some problems with automatic detection of
+ blobs with different (unknown) size in the image domain the normalization
+ of the Laplacian togheterwas adopted alongside a multi-scale approach implement
+ed by defining a range in which the different possible scales could be tested.
+\begin_inset Newline newline
+\end_inset
+
+In the end the points of interest 
+\begin_inset Formula $(\hat{x},\hat{y})$
+\end_inset
+
+ are retrived as
+\begin_inset Formula 
+\[
+(\hat{x},\hat{y};\hat{t})=argmaxminlocal_{(\hat{x},\hat{y};\hat{t})}((\nabla_{norm}^{2}L)(x,y;t))
+\]
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Chapter
@@ -3872,7 +3964,7 @@ As can be seen looking at the misclassified patches, the errors committed
 \end_layout
 
 \begin_layout Section
-Semantic segmentation and sea lions counting
+Object detection and sea lions counting
 \end_layout
 
 \begin_layout Standard
@@ -3890,7 +3982,156 @@ Then we decided to apply a threshold on the heatmap to create a grayscale
  On this new image it was possible to apply blob detection, refined through
  parameter tuning as for the heatmap threshold, to have a rough count of
  how many sea lions are present in the considered image.
- The entire procedure is depicted in the following figures.
+ To do so we used the build in function from the scikit-learn library and
+ some tests we decided for the following parameters:
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="1" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Heatmap 
+\begin_inset Formula $threshold$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.9
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \thinspace{}
+\end_inset
+
+
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $LoG$
+\end_inset
+
+ scale minimum value
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+20
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $LoG$
+\end_inset
+
+ scale maximum value
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+35
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Detection Parameters
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+The entire procedure is depicted in the following figures.
  As shown the results are quite satisfying even though the blobs don’t always
  overlap correctly with the sea lions.
  
@@ -5045,6 +5286,22 @@ M.
  Learning and Transferring Mid-Level Image Representations using Convolutional
  Neural Networks.
  In IEEE Xplore, 2014.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-1"
+
+\end_inset
+
+H.
+ Kong, H.
+ Akakin, and S.
+ Sarma.
+ A generalized Laplacian of Gaussian filter for blob detection and its applicati
+ons.
+ In IEEE Xplore, 2013
 \end_layout
 
 \end_body
