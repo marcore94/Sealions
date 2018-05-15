@@ -1206,7 +1206,15 @@ Data augmentation
 \begin_layout Standard
 As explained before, to increase the dimension of the dataset and generalize
  more over position, rotation and scale we applied data augmentation to
- the sea lions patches.
+ the sea lions patches 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-1"
+literal "false"
+
+\end_inset
+
+.
  This technique has been applied to solve the problems related to the dataset
  that came up after patches extraction
 \begin_inset CommandInset ref
@@ -1223,7 +1231,16 @@ noprefix "false"
  that characterize the sea lion class.
  Moreover, training a model with augmented patches makes it more robust
  and consistent in classifying previously unseen samples.
- In particular, what we applied is a random combination of four transformation:
+ In particular, what we applied is a random combination of four transformations
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-2"
+literal "false"
+
+\end_inset
+
+:
 \end_layout
 
 \begin_layout Itemize
@@ -4333,29 +4350,29 @@ Our task was to produce a binary classifier which could distinguish between
 Another approach that could produce an improvement in the results is to
  exploit transfer learning from models trained with imageNet, for example,
  since they provide optimal performances in low level feature extraction
- (citation
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "Matt"
+key "key-3"
 literal "false"
 
 \end_inset
 
-).
+.
 \begin_inset Newline newline
 \end_inset
 
 The last thing we imagine could work better is a direct object recognition
  approach without going through the classification task, however this would
- require a much more detailed ground truth (citation
+ require a much more detailed ground truth 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "CMR"
+key "key-41"
 literal "false"
 
 \end_inset
 
-).
+.
 \end_layout
 
 \begin_layout Bibliography
@@ -4980,6 +4997,54 @@ J.
  Joint training of a convolutional network and a graphical model for human
  pose estimation.
  CoRR, abs/1406.2984, 2014.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-1"
+literal "false"
+
+\end_inset
+
+J.
+ Wang and L.
+ Perez.
+ The Effectiveness of Data Augmentation in Image Classification using Deep
+ Learning.
+ Google Scholar, 2017.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-2"
+
+\end_inset
+
+E.
+ Jannik Bjerrum.
+ SMILES Enumeration as Data Augmentation for Neural Network Modeling of
+ Molecules.
+ ArXiv e-prints, Mar.
+ 2017.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-3"
+
+\end_inset
+
+M.
+ Oquab, L.
+ Bottou, I.
+ Laptev and J.
+ Sivic.
+ Learning and Transferring Mid-Level Image Representations using Convolutional
+ Neural Networks.
+ In IEEE Xplore, 2014.
 \end_layout
 
 \end_body
