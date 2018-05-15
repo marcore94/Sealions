@@ -26,7 +26,7 @@
 \graphics default
 \default_output_format default
 \output_sync 0
-\bibtex_command default
+\bibtex_command bibtex
 \index_command makeindex
 \float_placement H
 \paperfontsize default
@@ -446,9 +446,14 @@ Sample image from the dataset
 State of the art
 \end_layout
 
+\begin_layout Section
+Introduction
+\end_layout
+
 \begin_layout Standard
 Image classification is a fundamental problem in computer vision since it
- forms the basis for other computer vision tasks.
+ forms the basis for other computer vision tasks such as localization, detection
+, and segmentation.
  Although the task can be considered second nature for humans, it is much
  more challenging for an automated system.
 \begin_inset Newline newline
@@ -462,6 +467,18 @@ Traditionally handcrafted features were first extracted from images using
  these challenges.
  Among them, CNNs have become the leading architecture for most image recognitio
 n, classification, and detection tasks.
+\end_layout
+
+\begin_layout Section
+Convolutional Neural Networks
+\end_layout
+
+\begin_layout Standard
+Despite some early sucesses, deep CNN were brought into the limelight as
+ a result of the deep learning reanaissance, which was fueled by GPUs, larger
+ data sets and better algorithms.
+ Several advances such as GPU implementations and the application of maximum
+ pooling have contributed to the recent popularity.
 \begin_inset Newline newline
 \end_inset
 
@@ -470,7 +487,61 @@ The most significant advance, which has captured intense interest in DCNNs,
  Large Scale Visual Recognition Challenge (ILSVRC) 2012.
  Since then, DCNNs have dominated subsequent versions of the ILSVRC and,
  more specifically, its image classification component.
+ In addition to these advances other improvements affected the performances
+ of DCNN such as non linear activation functions, regularization mechanisms
+ and optimization techniques.
+\begin_inset Newline newline
+\end_inset
+
+Nowadays convolutional networks are driving the advances in recognition,
+ in fact convnets are not only improving whole-image classification tasks,
+ but also local tasks with structured output such as bounding box object
+ detection, part and keypoint prediction and local correspondence.
  
+\end_layout
+
+\begin_layout Section
+Fully convolutional networks
+\end_layout
+
+\begin_layout Standard
+Due to the astonishing results in the aforementioned topics, the natural
+ next step in the progression from coarse to fine inference yield to pixelwise
+ prediction.
+ A prior approach used convnets for semantic segmentation, however this
+ required that each pixel was labeled with the class of its enclosing object
+ or region.
+\begin_inset Newline newline
+\end_inset
+
+An important advance in this sense was introduced by fully convolutional
+ neural networks: the key idea was to extend convnets to arbitrary-sized
+ inputs.
+ Differently from previous approaches that was based on sliding windows
+ , separately computed feature extractors or Recurrent CNN, FCNN exploit
+ end-to-end supervised pre-training for pixelwise prediction.
+\begin_inset Newline newline
+\end_inset
+
+Typical recognition nets were realized to take fixed-size inputs and produce
+ non spatial outputs, the fully connected layers of these networks had fixed
+ dimensions and threw away spatial coordinates.
+ These fully connected layers can also be viewed as convolutions with kernels
+ that cover the entire input regions, doing so casts them into fully convolution
+al networks that take inputs of any size and outputs the classification
+ maps.
+\begin_inset Newline newline
+\end_inset
+
+Since the classification nets subsample to keep filters small and computational
+ requirements reasonable, the output of a fully convolutional version of
+ these nets results coarsen, reducing it from the size of the input by a
+ factor equal to the pixel stride of the receptive fields of the output
+ units.
+ To cope with this problem and connect coarse outputs to dense pixels interpolat
+ion by upsampling can be adopted.
+ Upsampling can be implemented by deconvolution and learned by backpropagation
+ of the pixelwise loss.
 \end_layout
 
 \begin_layout Chapter
@@ -508,11 +579,17 @@ Once performances over patches were satisfying, we moved to an higher level,
  
 \end_layout
 
-\begin_layout Chapter*
+\begin_layout Chapter
 Implementation
 \end_layout
 
 \begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Dataset-creation"
+
+\end_inset
+
 Dataset creation
 \end_layout
 
@@ -648,6 +725,571 @@ To extract the background we used a sliding window of size
  
 \end_layout
 
+\begin_layout Standard
+Going deep in the training and testing procedures we noticed some important
+ problems with the dataset: 
+\end_layout
+
+\begin_layout Itemize
+mismatches in the ground truth provided by kaggle, we listed and removed
+ all these images
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename mismatch-a_21.jpg
+	lyxscale 2
+	width 50col%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Original image '21'
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \thinspace{}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename mismatch-b_21.jpg
+	lyxscale 2
+	width 50col%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Ground truth image '21'
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Example of mismatch between original image and ground truth provided by
+ kaggle
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+blob detection technique provided some false positives that ended up labled
+ in the wrong way, so we also inspected manually the patches to cope with
+ this problem
+\end_layout
+
+\begin_layout Itemize
+some images have areas covered with black color so we added a check to discard
+ all patches with more than 2% of pure black color, in this way the sliding
+ window gathering the background excludes black patches
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename black-sample-a_22.jpg
+	lyxscale 2
+	width 50col%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Ground truth image '22'
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \thinspace{}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename black-sample-b_26.jpg
+	lyxscale 2
+	width 50col%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Ground truth image '26'
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Example of two images covered with black areas
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+As can be seen from these two images avoiding balck patches is fundamental
+ to have a correct dataset.
+\end_layout
+
+\begin_layout Standard
+Once the extraction procedure has been fully completed and all its related
+ problems have been solved, we detectde new problems related to the patches
+ themselves.
+ In fact the two classes are really unbalanced, there are a lot more background
+ patches than sea lion ones, furthermore 
+\begin_inset Formula $40411$
+\end_inset
+
+ sea lion patches might not be sufficient to learn that class correctly
+ without overfitting.
+\end_layout
+
+\begin_layout Section
+Data augmentation
+\end_layout
+
+\begin_layout Standard
+As explained before, to increase the dimension of the dataset and generalize
+ more over position, rotation and scale we applied data augmentation to
+ the sea lions patches.
+ This technique has been applied to solve the problems related to the dataset
+ that came up after patches extraction 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "sec:Dataset-creation"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, in fact it allows to expand the dataset creating new patches modifying
+ the extracted ones, this is fundamental especially due to the poorness
+ that characterize the sea lion class.
+ Moreover, training a model with augmented patches makes it more robust
+ and consistent in classifying previously unseen samples.
+ In particular, what we applied is a random combination of four transformation:
+\end_layout
+
+\begin_layout Itemize
+Rotation of a random degree in the range 
+\begin_inset Formula $0$
+\end_inset
+
+ to 
+\begin_inset Formula $360$
+\end_inset
+
+ degrees
+\end_layout
+
+\begin_layout Itemize
+Flipping both vertically and horizontally
+\end_layout
+
+\begin_layout Itemize
+Shifting of a maximum of 
+\begin_inset Formula $10$
+\end_inset
+
+ pixels, both vertically and horizontally
+\end_layout
+
+\begin_layout Itemize
+Zooming of a maximum of 
+\begin_inset Formula $20$
+\end_inset
+
+ pixels
+\end_layout
+
+\begin_layout Standard
+The transformation process is, as said before, completely random so the
+ nuber of new patches that can be generated is really high, that's why with
+ these transformations is possible to overcome the problem of lack of sea
+ lion patches and class unbalance.
+\end_layout
+
+\begin_layout Standard
+The first implementation we tried for the augmentation procedure was to
+ build our own handcrafted tool which behaved exactly as described before.
+ This tool was built to receive as input higher size sea lion patches (
+\begin_inset Formula $144\times144$
+\end_inset
+
+) to avoid interpolation of eventual missing pixels due to the transformations
+ and have a final transformed patch as much precise as possible.
+ Of course patches must be modified at runtime, during the network training,
+ because it's impossible to save all the patches that can be generated with
+ augmentation.
+ At this point we noticed that the tool we built was not as fast as we expected
+ so we decided to replace it with the Keras built-in data generator which
+ allows to apply augmentation.
+ Data generator provided by Keras doesn't require bigger patches as input
+ beacuse automatically applies interpolation to fill eventual missing pixels
+ and mantain sizes of the input image.
+ With this augmentation tool the process of loading modified patches at
+ runtime speeded up consistently so the whole train process became less
+ time consuming.
+\end_layout
+
+\begin_layout Standard
+Here follows samples of modified patches
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Augmentation/original.png
+	lyxscale 10
+	width 60col%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Original image
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Augmentation/Augmentation_0.png
+	lyxscale 10
+	width 33col%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Augmented image
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \thinspace{}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Augmentation/Augmentation_1.png
+	lyxscale 10
+	width 33col%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Augmented image
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \thinspace{}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Augmentation/Augmentation_2.png
+	lyxscale 10
+	width 33col%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Augmented image
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Augmentation/Augmentation_3.png
+	lyxscale 10
+	width 33col%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Augmented image
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \thinspace{}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Augmentation/Augmentation_4.png
+	lyxscale 10
+	width 33col%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Augmented image
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \thinspace{}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Augmentation/Augmentation_6.png
+	lyxscale 10
+	width 33col%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Augmented image
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Augmentation samples
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Model
 \end_layout
@@ -681,9 +1323,9 @@ status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename Untitled Diagram.pdf
+	filename CNNDiagram.pdf
 	lyxscale 10
-	scale 65
+	scale 90
 	rotateOrigin center
 
 \end_inset
@@ -725,49 +1367,6 @@ loss function: binary cross entropy, error function based on class probabilities
 \begin_layout Itemize
 metric: accuracy, evaluation of the model based on how much the classification
  is accurate
-\end_layout
-
-\begin_layout Section
-Data augmentation
-\end_layout
-
-\begin_layout Standard
-As explained before, to increase the dimension of the dataset and generalize
- more over position, rotation and scale we applied data augmentation to
- the sea lions patches.
- In particular, what we applied is a random combination of four transformation:
-\end_layout
-
-\begin_layout Itemize
-Rotation of a random degree in the range 
-\begin_inset Formula $0$
-\end_inset
-
- to 
-\begin_inset Formula $360$
-\end_inset
-
- degrees
-\end_layout
-
-\begin_layout Itemize
-Flipping both vertically and horizontally
-\end_layout
-
-\begin_layout Itemize
-Shifting of a maximum of 
-\begin_inset Formula $10$
-\end_inset
-
- pixels, both vertically and horizontally
-\end_layout
-
-\begin_layout Itemize
-Zooming of a maximum of 
-\begin_inset Formula $20$
-\end_inset
-
- pixels
 \end_layout
 
 \begin_layout Section
@@ -813,14 +1412,15 @@ Developement tools
 \end_layout
 
 \begin_layout Standard
-In order to perform the tasks required by the project we used jupyter notebooks
- that allowed to write python code and to execute it section by section,
- in this way we were able to monitor the results as soon as each step was
- completed.
+In order to perform the tasks required developed the project in Python,
+ using PyCharm IDE.
+ In particular, we used Jupyter notebooks that allowed to write the code
+ and to execute it section by section, in this way we were able to monitor
+ the results as soon as each step was completed.
 \begin_inset Newline newline
 \end_inset
 
-Thanks to the choice of python we managed to use Keras, an high-level neural
+Thanks to the choice of Python we managed to use Keras, an high-level neural
  networks API, with the TensorFlow framework as backend.
  The choice of Keras helped to simplify the development while TensorFlow
  allowed us to take advantage of GPU acceleration that sped up the entire
@@ -834,18 +1434,14 @@ Another aspect that characterized the development was the use of dataframes
 \end_layout
 
 \begin_layout Section
-Patch extraction
+First training (nome da cambiare)
 \end_layout
 
 \begin_layout Standard
-The experimental activity started with the convolutional neural network
- trained with the first version of the training dataset.
- It consisted in a set of patches, extracted with the procedures explained
- before but without applying augmentation to sea lions ones.
-\begin_inset Newline newline
-\end_inset
-
-The train set at the end of the extraction procedure includes 
+Experimental activity started by extracting patches in order to create a
+ train set.
+ By applying the procedure explained in the previous section, we obtained
+ a train set including 
 \begin_inset Formula $50079$
 \end_inset
 
@@ -853,7 +1449,7 @@ The train set at the end of the extraction procedure includes
 \begin_inset Formula $1139531$
 \end_inset
 
- ‘background’ patches in the train set which will be split again in 
+ ‘background’ patches which are split again in 
 \begin_inset Formula $40411$
 \end_inset
 
@@ -879,47 +1475,41 @@ The train set at the end of the extraction procedure includes
 \end_inset
 
  ‘background’ patches.
- Given this dataset divided into classes, train, validation and test set
- it’s possible to train the model.
- 
-\begin_inset Newline newline
-\end_inset
-
-Going deep in the training and testing procedures we noticed some important
- problems with the dataset, first of all there were some mismatches in the
- ground truth provided by kaggle so we listed and removed all these images,
- secondly the blob detection technique provided some false positives that
- ended up labled in the wrong way, so we also inspected manually the patches
- to cope with this problem, finally there are some images having areas covered
- with black color so we added a check to discard all patches with more than
- 2% of pure black color.
-\end_layout
-
-\begin_layout Section
-First training
 \end_layout
 
 \begin_layout Standard
-As can be seen from the number of extracted patches the dataset is unbalanced,
- there are a lot more background patches than sea lion ones, but the first
- training was meant to be as simple as possible so balanced train and test
- set were created performing random sampling from background and augmentation
- technique was not applied.
- This simplified a lot the first training of the network and produced very
- good results.
-\begin_inset Newline newline
+As can be seen from the number of extracted patches the dataset is heavily
+ unbalanced and there are a lot more background patches than sea lion ones.
+ Rather than using all the background patches, we decided as a first attempt
+ to randomly sample them and produce a balanced train set.
+ Extracted sea lions patches were 
+\begin_inset Formula $50079$
 \end_inset
 
-For what concerns the training procedure, we ran it for 100 epochs using
- a learning rate of 
+, so an equal number of background patches were taken.
+ 
+\end_layout
+
+\begin_layout Standard
+The reduced dimensions of the used train set, allowed it to be fit all in
+ memory, producing good performances in terms of minutes per epoch.
+ Thus we could train the network for 
+\begin_inset Formula $100$
+\end_inset
+
+ epochs using a learning rate of 
 \begin_inset Formula $0.001$
 \end_inset
 
 .
-\begin_inset Newline newline
-\end_inset
+ 
+\end_layout
 
-
+\begin_layout Standard
+Testing of the model trained in this way was performed using a balanced
+ test set, using once as before the total number of sea lions patches as
+ an upper bound to the background ones.
+ 
 \begin_inset Float figure
 wide false
 sideways false
@@ -1284,7 +1874,7 @@ First training results
 \end_layout
 
 \begin_layout Section
-Second training
+Second training (titolo da cambiare)
 \end_layout
 
 \begin_layout Standard
