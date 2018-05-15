@@ -550,7 +550,7 @@ literal "false"
 \end_inset
 
 .
- Several advances such as GPU implementations and the application of maximum
+ Several advances such as GPUs implementations and the application of maximum
  pooling have contributed to the recent popularity.
 \begin_inset Newline newline
 \end_inset
@@ -576,7 +576,7 @@ literal "false"
 \end_inset
 
 .
- In addition to these advances other improvements affected the performances
+ In addition to these advances, other improvements affected the performances
  of DCNN such as non linear activation functions
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -648,7 +648,7 @@ Fully convolutional networks
 
 \begin_layout Standard
 Due to the astonishing results in the aforementioned topics, the natural
- next step in the progression from coarse to fine inference yield to pixelwise
+ next step in the progression from coarse to fine inference yields to pixelwise
  prediction.
  A prior approach used convnets for semantic segmentation
 \begin_inset CommandInset citation
@@ -1079,7 +1079,7 @@ Example of mismatch between original image and ground truth provided by
 \end_layout
 
 \begin_layout Itemize
-blob detection technique provided some false positives that ended up labled
+blob detection technique provided some false positives that ended up labeled
  in the wrong way, so we also inspected manually the patches to cope with
  this problem
 \end_layout
@@ -1185,13 +1185,16 @@ As can be seen from these two images avoiding balck patches is fundamental
 Once the extraction procedure has been fully completed and all its related
  problems have been solved, we detected new problems related to the patches
  themselves.
- In fact the two classes are really unbalanced, there are a lot more background
- patches than sea lion ones, furthermore 
+ First of all, if we used the 
 \begin_inset Formula $40411$
 \end_inset
 
- sea lion patches might not be sufficient to learn that class correctly
- without overfitting.
+ sea lion patches, what happens is that they might not be sufficient to
+ correctly classify a sea lion.
+ Also, the two classes are really unbalanced, there are a lot more background
+ patches than sea lion ones.
+ So, if we used all the patches, there was the risk of overfitting over
+ the sea lions ones.
 \end_layout
 
 \begin_layout Section
@@ -1581,9 +1584,13 @@ Starting from the second implementation of the network we added a custom
  This was a necessary consequence of the training approach we adopted, in
  fact for what concerns the sea lion patches we decided to leave in memory
  both the training and validation sets, while for what concerns background
- patces, due to the huge amount, only the validation set was maintained,
- the training patches were instead periodically reloaded.
- Moreover, to take advantage of Keras queue system for batch processing,
+ patches, due to the huge amount, only the validation set was maintained.
+ On the other hand, the training patches were instead periodically reloaded.
+ 
+\end_layout
+
+\begin_layout Standard
+Moreover, to take advantage of Keras queue system for batch processing,
  we actually performed augmentation just before yielding the batch to the
  queue, in this way the training could proceed without waiting that the
  entire data set of the current epoch had undergone transformations and
@@ -1591,11 +1598,11 @@ Starting from the second implementation of the network we added a custom
 \begin_inset Newline newline
 \end_inset
 
-To be more precise the first step was to load the entire validation set,
- subsequently all the sea lions patches from the training set were loaded
- in memory as soon as the first batch request was dispatched, then periodically,
- always starting from the first call to the generator, an equal amount of
- background patches from the train set was randomly sampled and loaded.
+To be more precise, the first step was to load the entire validation set.
+ Subsequently all the sea lions patches from the training set were loaded
+ in memory as soon as the first batch request was dispatched and then periodical
+ly, an equal amount of background patches from the train set was randomly
+ sampled and loaded.
  At this point augmentation was applied batch-wise until the end of the
  training.
 \begin_inset Newline newline
@@ -2361,7 +2368,7 @@ noprefix "false"
 
 To train the network we used the generator to create a balanced data set
  composed of all the sea lions patches with augmentation and an equal number
- of background patches random sampled from all the background patches.
+ of background patches randomly sampled from all the background patches.
  This dataset is used for one epoch and then changed, creating a new one
  with the same criteria.
  In this way the network sees all the sea lions patches different times
@@ -2379,10 +2386,10 @@ Although these premises, results were not good and the network very bad,
 
 This training allowed us to identify three new problems: changing the dataset
  at each epoch is time consuming, because loading the patches from disk
- to memory is a bottleneck in the whole procedure, moreover because of the
- handcrafted augmentation tool even the batch creation was slowed down;
- puppies are really hard to be identified by the network, with their color
- and shape can be easily mistaken as background also by human eye.
+ to memory is a bottleneck in the whole procedure; moreover due to the handcraft
+ed augmentation tool even the batch creation was slowed down; puppies are
+ really hard to be identified by the network, with their color and shape
+ can be easily mistaken as background also by human eye.
 \begin_inset Newline newline
 \end_inset
 
@@ -2956,14 +2963,15 @@ Keras augmentation and puppies exclusion
 \end_layout
 
 \begin_layout Standard
-The purpose of this training was to solve all the problems that came up
- in the previous one.
+The purpose of this further modifications was to solve all the problems
+ that came up in the previous one.
 \begin_inset Newline newline
 \end_inset
 
 The first adjustment was to change the generator and make it reload a different
- dataset from memory every 15 epochs and not at each epoch, this choice
- speeded up the whole training phase allowing us to train for more epochs.
+ dataset from memory every 15 epochs and not at each epoch.
+ This choice speeded up the whole training phase allowing us to train for
+ more epochs.
  The problem related to puppies was solved analyzing where and how they
  appear in the images, in fact it can be noticed that this particular class
  is often next to a female sea lion.
@@ -3676,7 +3684,7 @@ Misclassified patches
 \end_layout
 
 \begin_layout Standard
-In this section are presented some errors made by the network in calssifying
+In this section are presented some errors made by the network in classifying
  patches
 \begin_inset Float figure
 wide false
@@ -3966,8 +3974,8 @@ As can be seen looking at the misclassified patches, the errors committed
  by the network are reasonable, in fact sometimes there are sea lions whose
  color and shape is hardly distinguishable from the background therefore
  are classified as background.
- In other cases rocks or stones have color and shape such taht they interpreted
- as sea lions by the network.
+ In other cases rocks or stones have color and shape such that they are
+ interpreted as sea lions by the network.
 \end_layout
 
 \begin_layout Section
@@ -3976,7 +3984,7 @@ Object detection and sea lions counting
 
 \begin_layout Standard
 At this point we took the last trained network and, as explained before
- 
+ in 
 \begin_inset CommandInset ref
 LatexCommand eqref
 reference "sec:Object-Detection"
