@@ -508,7 +508,7 @@ Once performances over patches were satisfying, we moved to an higher level,
  
 \end_layout
 
-\begin_layout Chapter*
+\begin_layout Chapter
 Implementation
 \end_layout
 
@@ -1292,9 +1292,9 @@ status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename Untitled Diagram.pdf
+	filename CNNDiagram.pdf
 	lyxscale 10
-	scale 65
+	scale 85
 	rotateOrigin center
 
 \end_inset
