@@ -26,7 +26,7 @@
 \graphics default
 \default_output_format default
 \output_sync 0
-\bibtex_command default
+\bibtex_command bibtex
 \index_command makeindex
 \float_placement H
 \paperfontsize default
@@ -446,9 +446,14 @@ Sample image from the dataset
 State of the art
 \end_layout
 
+\begin_layout Section
+Introduction
+\end_layout
+
 \begin_layout Standard
 Image classification is a fundamental problem in computer vision since it
- forms the basis for other computer vision tasks.
+ forms the basis for other computer vision tasks such as localization, detection
+, and segmentation.
  Although the task can be considered second nature for humans, it is much
  more challenging for an automated system.
 \begin_inset Newline newline
@@ -462,15 +467,22 @@ Traditionally handcrafted features were first extracted from images using
  these challenges.
  Among them, CNNs have become the leading architecture for most image recognitio
 n, classification, and detection tasks.
-\begin_inset Newline newline
-\end_inset
+\end_layout
 
+\begin_layout Section
+Convolutional Neural Networks
+\end_layout
+
+\begin_layout Standard
 The most significant advance, which has captured intense interest in DCNNs,
  especially for image classification tasks, was achieved in the ImageNet
  Large Scale Visual Recognition Challenge (ILSVRC) 2012.
  Since then, DCNNs have dominated subsequent versions of the ILSVRC and,
  more specifically, its image classification component.
- 
+\end_layout
+
+\begin_layout Section
+Fully convolutional networks
 \end_layout
 
 \begin_layout Chapter
@@ -1294,7 +1306,7 @@ status open
 \begin_inset Graphics
 	filename CNNDiagram.pdf
 	lyxscale 10
-	scale 85
+	scale 90
 	rotateOrigin center
 
 \end_inset

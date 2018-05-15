@@ -26,7 +26,7 @@
 \graphics default
 \default_output_format default
 \output_sync 0
-\bibtex_command default
+\bibtex_command bibtex
 \index_command makeindex
 \float_placement H
 \paperfontsize default
@@ -446,9 +446,14 @@ Sample image from the dataset
 State of the art
 \end_layout
 
+\begin_layout Section
+Introduction
+\end_layout
+
 \begin_layout Standard
 Image classification is a fundamental problem in computer vision since it
- forms the basis for other computer vision tasks.
+ forms the basis for other computer vision tasks such as localization, detection
+, and segmentation.
  Although the task can be considered second nature for humans, it is much
  more challenging for an automated system.
 \begin_inset Newline newline
@@ -462,6 +467,18 @@ Traditionally handcrafted features were first extracted from images using
  these challenges.
  Among them, CNNs have become the leading architecture for most image recognitio
 n, classification, and detection tasks.
+\end_layout
+
+\begin_layout Section
+Convolutional Neural Networks
+\end_layout
+
+\begin_layout Standard
+Despite some early sucesses, deep CNN were brought into the limelight as
+ a result of the deep learning reanaissance, which was fueled by GPUs, larger
+ data sets and better algorithms.
+ Several advances such as GPU implementations and the application of maximum
+ pooling have contributed to the recent popularity.
 \begin_inset Newline newline
 \end_inset
 
@@ -470,7 +487,61 @@ The most significant advance, which has captured intense interest in DCNNs,
  Large Scale Visual Recognition Challenge (ILSVRC) 2012.
  Since then, DCNNs have dominated subsequent versions of the ILSVRC and,
  more specifically, its image classification component.
+ In addition to these advances other improvements affected the performances
+ of DCNN such as non linear activation functions, regularization mechanisms
+ and optimization techniques.
+\begin_inset Newline newline
+\end_inset
+
+Nowadays convolutional networks are driving the advances in recognition,
+ in fact convnets are not only improving whole-image classification tasks,
+ but also local tasks with structured output such as bounding box object
+ detection, part and keypoint prediction and local correspondence.
  
+\end_layout
+
+\begin_layout Section
+Fully convolutional networks
+\end_layout
+
+\begin_layout Standard
+Due to the astonishing results in the aforementioned topics, the natural
+ next step in the progression from coarse to fine inference yield to pixelwise
+ prediction.
+ A prior approach used convnets for semantic segmentation, however this
+ required that each pixel was labeled with the class of its enclosing object
+ or region.
+\begin_inset Newline newline
+\end_inset
+
+An important advance in this sense was introduced by fully convolutional
+ neural networks: the key idea was to extend convnets to arbitrary-sized
+ inputs.
+ Differently from previous approaches that was based on sliding windows
+ , separately computed feature extractors or Recurrent CNN, FCNN exploit
+ end-to-end supervised pre-training for pixelwise prediction.
+\begin_inset Newline newline
+\end_inset
+
+Typical recognition nets were realized to take fixed-size inputs and produce
+ non spatial outputs, the fully connected layers of these networks had fixed
+ dimensions and threw away spatial coordinates.
+ These fully connected layers can also be viewed as convolutions with kernels
+ that cover the entire input regions, doing so casts them into fully convolution
+al networks that take inputs of any size and outputs the classification
+ maps.
+\begin_inset Newline newline
+\end_inset
+
+Since the classification nets subsample to keep filters small and computational
+ requirements reasonable, the output of a fully convolutional version of
+ these nets results coarsen, reducing it from the size of the input by a
+ factor equal to the pixel stride of the receptive fields of the output
+ units.
+ To cope with this problem and connect coarse outputs to dense pixels interpolat
+ion by upsampling can be adopted.
+ Upsampling can be implemented by deconvolution and learned by backpropagation
+ of the pixelwise loss.
 \end_layout
 
 \begin_layout Chapter
