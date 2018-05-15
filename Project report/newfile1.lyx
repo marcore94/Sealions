@@ -1194,6 +1194,12 @@ Once the extraction procedure has been fully completed and all its related
 \end_layout
 
 \begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Data-augmentation"
+
+\end_inset
+
 Data augmentation
 \end_layout
 
@@ -1542,6 +1548,12 @@ Augmentation samples
 \end_layout
 
 \begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Batch-generator"
+
+\end_inset
+
 Batch generator
 \end_layout
 
@@ -1735,14 +1747,23 @@ Another aspect that characterized the development was the use of dataframes
 \end_layout
 
 \begin_layout Section
-First training (nome da cambiare)
+Balanced dataset training
 \end_layout
 
 \begin_layout Standard
 Experimental activity started by extracting patches in order to create a
  train set.
- By applying the procedure explained in the previous section, we obtained
- a train set including 
+ By applying the procedure explained in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Dataset-creation"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, we obtained a train set including 
 \begin_inset Formula $50079$
 \end_inset
 
@@ -1779,7 +1800,7 @@ Experimental activity started by extracting patches in order to create a
 \end_layout
 
 \begin_layout Standard
-As can be seen from the number of extracted patches the dataset is heavily
+As can be seen from the numbers of extracted patches the dataset is heavily
  unbalanced and there are a lot more background patches than sea lion ones.
  Rather than using all the background patches, we decided as a first attempt
  to randomly sample them and produce a balanced train set.
@@ -2172,7 +2193,7 @@ First training results
 \end_layout
 
 \begin_layout Section
-Second training
+Batch generator and augmentation training
 \end_layout
 
 \begin_layout Standard
@@ -2186,36 +2207,45 @@ After that, we decided to use the whole dataset both for training and testing
 
 Memory related problems were linked to the fact that training dataset was
  of some Gigabytes, thus it couldn’t fit all in the memory at the same time.
- To overcome this we created a batch generator which retrieved a limited
- number of patches from the memory and fed them to the network at each epoch.
+ To overcome this we created a batch generator which, as explained in section
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Batch-generator"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, retrieved a limited number of patches from the memory and fed them to
+ the network at each epoch.
  In this way only a little amount of patches were moved into the RAM at
  the same time.
- After they were used by the network, they were flushed.
 \begin_inset Newline newline
 \end_inset
 
-This generator also enabled us to introduce data augmentation in the training
+This generator also enabled us to introduce data augmentation in this training
  step.
- As stated in the previous sections, it was needed due to the high difference
- in number between sea lions and background patches and also to obtain more
- robust results in classification, in fact with this technique it’s more
- likely to be rotation and scale invariant.
+ It was needed due to the high difference in number between sea lions and
+ background patches and also to obtain more robust results in classification,
+ see section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Data-augmentation"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ for more details.
 \begin_inset Newline newline
 \end_inset
 
-In this first attempt to add augmentation we used an handcrafted tool to
- apply the transformations, to do this we had to work with higher size sea
- lions patches that were cropped after the transformation to fit the network
- input.
- In this way we could avoid interpolation on eventual missing pixels that
- was necessary with Keras built-in functions since we applied the transformation
-s at runtime.
-\begin_inset Newline newline
-\end_inset
-
-To train the network we decided to create a balanced data set composed of
- all the sea lions patches with augmentation and an equal number of background
- patches random sampled from all the background patches.
+To train the network we used the generator to create a balanced data set
+ composed of all the sea lions patches with augmentation and an equal number
+ of background patches random sampled from all the background patches.
  This dataset is used for one epoch and then changed, creating a new one
  with the same criteria.
  In this way the network sees all the sea lions patches different times
@@ -2351,13 +2381,6 @@ status open
 
 \begin_layout Plain Layout
 \align center
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
 \begin_inset Graphics
 	filename bin_class_ra_with_augmented_testing_8_1.png
 	lyxscale 10
@@ -2367,57 +2390,6 @@ status open
 \end_inset
 
 
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset Formula $ROC$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\begin_inset Newline newline
-\end_inset
-
-
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename bin_class_ra_with_augmented_testing_11_1.png
-	lyxscale 10
-	scale 50
-	rotateOrigin center
-
-\end_inset
-
-
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Precision-recall curve
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Plain Layout
@@ -2427,7 +2399,7 @@ Precision-recall curve
 \begin_inset Formula $ROC$
 \end_inset
 
- and precision-recall curves
+ curves
 \end_layout
 
 \end_inset
@@ -2864,7 +2836,7 @@ Second training results
 \end_layout
 
 \begin_layout Section
-Third training
+Keras augmentation and no-puppies training
 \end_layout
 
 \begin_layout Standard
@@ -2873,9 +2845,9 @@ The purpose of this training was to solve all the problems that came up
 \begin_inset Newline newline
 \end_inset
 
-The first adjustment was to change the dataset and reload it from memory
- every 15 epochs and not at each epoch, this choice speeded up the whole
- training phase allowing us to train for more epochs.
+The first adjustment was to change the generator and make it reload a different
+ dataset from memory every 15 epochs and not at each epoch, this choice
+ speeded up the whole training phase allowing us to train for more epochs.
  The problem related to puppies was solved analyzing where and how they
  appear in the images, in fact it can be noticed that this particular class
  is often next to a female sea lion.
@@ -2895,7 +2867,17 @@ Thanks to this information we were able to apply a second important change:
 Another remarkable difference with respect to the last training was that
  we dropped the handcrafted augmentation tool in favor of Keras built-in
  one that enabled a much higher throughput in the creation of the training
- batches.
+ batches, as seen in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Data-augmentation"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
 \begin_inset Newline newline
 \end_inset
 
@@ -3106,50 +3088,17 @@ status open
 \end_inset
 
 
-\begin_inset Newline newline
-\end_inset
-
-
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename results_testing_unweighted_7_1.png
-	lyxscale 10
-	scale 55
-
-\end_inset
-
-
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Precision-recall curve
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Confusion matrix, 
+Confusion matrix and 
 \begin_inset Formula $ROC$
 \end_inset
 
- and precision-recall curves
+ curve
 \end_layout
 
 \end_inset
