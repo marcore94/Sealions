@@ -485,20 +485,7 @@ literal "false"
  as for pattern analysis and classification, have been shown to overcome
  these challenges.
  Among them, CNNs have become the leading architecture for most image recognitio
-n, classification, and detection tasks.
-\end_layout
-
-\begin_layout Section
-Convolutional Neural Networks
-\end_layout
-
-\begin_layout Standard
-Despite some early sucesses, deep CNN were brought into the limelight as
- a result of the deep learning reanaissance, which was fueled by GPUs, larger
- data sets and better algorithms.
- Several advances such as GPU implementations and the application of maximum
- pooling have contributed to the recent popularity.n, classification, and
- detection tasks
+n, classification, and detection tasks
 \begin_inset CommandInset citation
 LatexCommand cite
 key "key-8,key-9,key-10"
@@ -519,7 +506,7 @@ CNNs are feedforward networks in that information flow takes place in one
  Just as artificial neural networks (ANN) are biologically inspired, so
  are CNNs.
  The visual cortex in the brain, which consists of alternating layers of
- simple and complex cells, motivates their architecture
+ simple and complex cells, motivates their architecture 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "key-5,key-6"
@@ -598,7 +585,7 @@ literal "false"
 
 \end_inset
 
-, regularization mechanisms
+, regularization mechanisms 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "key-25,key-26"
@@ -636,7 +623,7 @@ literal "false"
 
 \end_inset
 
-, part and keypoint prediction
+, part and keypoint prediction 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "key-33,key-32"
@@ -688,6 +675,7 @@ literal "false"
 : the key idea was to extend convnets to arbitrary-sized inputs by model
  transfer.
  Differently from previous approaches that was based on sliding windows
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "key-29"
@@ -695,7 +683,7 @@ literal "false"
 
 \end_inset
 
-, separately computed feature extractors
+, separately computed feature extractors 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "key-23"
@@ -712,6 +700,7 @@ literal "false"
 \end_inset
 
 , FCNN exploit end-to-end supervised pre-training for pixelwise prediction
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "key-41,key-43"

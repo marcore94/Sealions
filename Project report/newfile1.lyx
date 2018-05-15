@@ -3619,18 +3619,6 @@ sideways false
 status open
 
 \begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Misclassified patches
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
 \align center
 \begin_inset Float figure
 wide false
@@ -3642,7 +3630,7 @@ status open
 \begin_inset Graphics
 	filename Misclassified/misclassified_1_0.png
 	lyxscale 10
-	width 35col%
+	width 31col%
 
 \end_inset
 
@@ -3675,7 +3663,7 @@ status open
 \begin_inset Graphics
 	filename Misclassified/misclassified_1_1.png
 	lyxscale 10
-	width 35col%
+	width 40col%
 
 \end_inset
 
@@ -3708,7 +3696,7 @@ status open
 \begin_inset Graphics
 	filename Misclassified/misclassified_2_0.png
 	lyxscale 10
-	width 35col%
+	width 31col%
 
 \end_inset
 
@@ -3741,7 +3729,7 @@ status open
 \begin_inset Graphics
 	filename Misclassified/misclassified_2_1.png
 	lyxscale 10
-	width 35col%
+	width 40col%
 
 \end_inset
 
@@ -3774,7 +3762,7 @@ status open
 \begin_inset Graphics
 	filename Misclassified/misclassified_3_0.png
 	lyxscale 10
-	width 35col%
+	width 31col%
 
 \end_inset
 
@@ -3807,7 +3795,7 @@ status open
 \begin_inset Graphics
 	filename Misclassified/misclassified_3_1.png
 	lyxscale 10
-	width 35col%
+	width 40col%
 
 \end_inset
 
@@ -3840,7 +3828,7 @@ status open
 \begin_inset Graphics
 	filename Misclassified/misclassified_4_0.png
 	lyxscale 10
-	width 35col%
+	width 31col%
 
 \end_inset
 
@@ -3873,7 +3861,7 @@ status open
 \begin_inset Graphics
 	filename Misclassified/misclassified_4_1.png
 	lyxscale 10
-	width 35col%
+	width 40col%
 
 \end_inset
 
@@ -3887,6 +3875,15 @@ Prediction values
 \end_inset
 
 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Misclassified patches
 \end_layout
 
 \end_inset
