@@ -485,6 +485,19 @@ literal "false"
  as for pattern analysis and classification, have been shown to overcome
  these challenges.
  Among them, CNNs have become the leading architecture for most image recognitio
+n, classification, and detection tasks.
+\end_layout
+
+\begin_layout Section
+Convolutional Neural Networks
+\end_layout
+
+\begin_layout Standard
+Despite some early sucesses, deep CNN were brought into the limelight as
+ a result of the deep learning reanaissance, which was fueled by GPUs, larger
+ data sets and better algorithms.
+ Several advances such as GPU implementations and the application of maximum
+ pooling have contributed to the recent popularity.
 n, classification, and detection tasks
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -506,7 +519,7 @@ CNNs are feedforward networks in that information flow takes place in one
  Just as artificial neural networks (ANN) are biologically inspired, so
  are CNNs.
  The visual cortex in the brain, which consists of alternating layers of
- simple and complex cells, motivates their architecture 
+ simple and complex cells, motivates their architecture
 \begin_inset CommandInset citation
 LatexCommand cite
 key "key-5,key-6"
@@ -585,7 +598,7 @@ literal "false"
 
 \end_inset
 
-, regularization mechanisms 
+, regularization mechanisms
 \begin_inset CommandInset citation
 LatexCommand cite
 key "key-25,key-26"
@@ -623,7 +636,7 @@ literal "false"
 
 \end_inset
 
-, part and keypoint prediction 
+, part and keypoint prediction
 \begin_inset CommandInset citation
 LatexCommand cite
 key "key-33,key-32"
@@ -653,7 +666,7 @@ Due to the astonishing results in the aforementioned topics, the natural
  A prior approach used convnets for semantic segmentation
 \begin_inset CommandInset citation
 LatexCommand cite
-key "key-34,key-35,key-36,key-37,key-38,key-39"
+key "key-34,key-35,key-36,key-37,key-38,key-39,key-40"
 literal "false"
 
 \end_inset
@@ -672,20 +685,69 @@ literal "false"
 
 \end_inset
 
-: the key idea was to extend convnets to arbitrary-sized inputs.
+: the key idea was to extend convnets to arbitrary-sized inputs by model
+ transfer.
  Differently from previous approaches that was based on sliding windows
- , separately computed feature extractors or Recurrent CNN, FCNN exploit
- end-to-end supervised pre-training for pixelwise prediction.
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-29"
+literal "false"
+
+\end_inset
+
+, separately computed feature extractors
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-23"
+literal "false"
+
+\end_inset
+
+ or Recurrent CNN
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-42"
+literal "false"
+
+\end_inset
+
+, FCNN exploit end-to-end supervised pre-training for pixelwise prediction
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-41,key-43"
+literal "false"
+
+\end_inset
+
+.
 \begin_inset Newline newline
 \end_inset
 
 Typical recognition nets were realized to take fixed-size inputs and produce
- non spatial outputs, the fully connected layers of these networks had fixed
- dimensions and threw away spatial coordinates.
+ non spatial outputs
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-3,key-21,key-22"
+literal "false"
+
+\end_inset
+
+, the fully connected layers of these networks had fixed dimensions and
+ threw away spatial coordinates.
  These fully connected layers can also be viewed as convolutions with kernels
  that cover the entire input regions, doing so it's possible to cast them
  into fully convolutional networks that take inputs of any size and give
- as outputs the classification maps.
+ as outputs the classification maps
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-41"
+literal "false"
+
+\end_inset
+
+.
 \begin_inset Newline newline
 \end_inset
 
@@ -697,7 +759,15 @@ Since the classification nets subsample to keep filters small and computational
  To cope with this problem and connect coarse outputs to dense pixels interpolat
 ion by upsampling can be adopted.
  Upsampling can be implemented by deconvolution and learned by backpropagation
- of the pixelwise loss.
+ of the pixelwise loss
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-41"
+literal "false"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Chapter
@@ -878,52 +948,52 @@ To extract the background we used a sliding window of size
 
  over the image and cut all the patches which were not intersecting with
  a sea lion patch and save them with label ‘background’.
- 
+
 \end_layout
 
 \begin_layout Standard
-The train set at the end of the extraction procedure includes 
+The train set at the end of the extraction procedure includes
 \begin_inset Formula $50079$
 \end_inset
 
- ‘sea lions’ and 
+ ‘sea lions’ and
 \begin_inset Formula $1139531$
 \end_inset
 
- ‘background’ patches which will be split again in 
+ ‘background’ patches which will be split again in
 \begin_inset Formula $40411$
 \end_inset
 
-, 
+,
 \begin_inset Formula $9668$
 \end_inset
 
- and 
+ and
 \begin_inset Formula $1129863$
 \end_inset
 
-, 
+,
 \begin_inset Formula $9668$
 \end_inset
 
  respectively for proper train and validation procedures.
- The test set instead has 
+ The test set instead has
 \begin_inset Formula $13539$
 \end_inset
 
- ‘sea lions’ and 
+ ‘sea lions’ and
 \begin_inset Formula $277390$
 \end_inset
 
  ‘background’ patches.
  Given this dataset divided into classes, train, validation and test set
  it’s possible to train the model.
- 
+
 \begin_inset Newline newline
 \end_inset
 
 Going deep in the training and testing procedures we noticed some important
- problems with the dataset: 
+ problems with the dataset:
 \end_layout
 
 \begin_layout Itemize
@@ -1130,7 +1200,7 @@ Once the extraction procedure has been fully completed and all its related
  problems have been solved, we detectde new problems related to the patches
  themselves.
  In fact the two classes are really unbalanced, there are a lot more background
- patches than sea lion ones, furthermore 
+ patches than sea lion ones, furthermore
 \begin_inset Formula $40411$
 \end_inset
 
@@ -1147,7 +1217,7 @@ As explained before, to increase the dimension of the dataset and generalize
  more over position, rotation and scale we applied data augmentation to
  the sea lions patches.
  This technique has been applied to solve the problems related to the dataset
- that came up after patches extraction 
+ that came up after patches extraction
 \begin_inset CommandInset ref
 LatexCommand eqref
 reference "sec:Dataset-creation"
@@ -1199,7 +1269,7 @@ Zooming of a maximum of
 
 \begin_layout Standard
 The transformation process is, as said before, completely random so the
- nuber of new patches that can be generated is really high, that's why with
+ number of new patches that can be generated is really high, that's why with
  these transformations is possible to overcome the problem of lack of sea
  lion patches and class unbalance.
 \end_layout
@@ -1491,16 +1561,16 @@ Model
 \end_layout
 
 \begin_layout Standard
-The DCNN used to classify patches has input size of 
+The DCNN used to classify patches has input size of
 \begin_inset Formula $96\times96\times3$
 \end_inset
 
- and output size of 
+ and output size of
 \begin_inset Formula $2$
 \end_inset
 
 , where each output corresponds to the probability of belonging to a class.
- The network is made up of 
+ The network is made up of
 \begin_inset Formula $9$
 \end_inset
 
@@ -1553,7 +1623,7 @@ Other characteristics of the model are:
 
 \begin_layout Itemize
 optimizer: Adam, a stochastic optimization method which uses gradients and
- second moment gradients to perform parameter update 
+ second moment gradients to perform parameter update
 \end_layout
 
 \begin_layout Itemize
@@ -1608,14 +1678,15 @@ Developement tools
 \end_layout
 
 \begin_layout Standard
-In order to perform the tasks required by the project we used jupyter notebooks
- that allowed to write python code and to execute it section by section,
- in this way we were able to monitor the results as soon as each step was
- completed.
+In order to perform the tasks required developed the project in Python,
+ using PyCharm IDE.
+ In particular, we used Jupyter notebooks that allowed to write the code
+ and to execute it section by section, in this way we were able to monitor
+ the results as soon as each step was completed.
 \begin_inset Newline newline
 \end_inset
 
-Thanks to the choice of python we managed to use Keras, an high-level neural
+Thanks to the choice of Python we managed to use Keras, an high-level neural
  networks API, with the TensorFlow framework as backend.
  The choice of Keras helped to simplify the development while TensorFlow
  allowed us to take advantage of GPU acceleration that sped up the entire
@@ -1629,29 +1700,81 @@ Another aspect that characterized the development was the use of dataframes
 \end_layout
 
 \begin_layout Section
-First training
+First training (nome da cambiare)
 \end_layout
 
 \begin_layout Standard
-As can be seen from the number of extracted patches the dataset is unbalanced,
- there are a lot more background patches than sea lion ones, but the first
- training was meant to be as simple as possible so balanced train and test
- set were created performing random sampling from background and augmentation
- technique was not applied.
- This simplified a lot the first training of the network and produced very
- good results.
-\begin_inset Newline newline
+Experimental activity started by extracting patches in order to create a
+ train set.
+ By applying the procedure explained in the previous section, we obtained
+ a train set including
+\begin_inset Formula $50079$
 \end_inset
 
-For what concerns the training procedure, we ran it for 100 epochs using
- a learning rate of 
+ ‘sea lions’ and
+\begin_inset Formula $1139531$
+\end_inset
+
+ ‘background’ patches which are split again in
+\begin_inset Formula $40411$
+\end_inset
+
+,
+\begin_inset Formula $9668$
+\end_inset
+
+ and
+\begin_inset Formula $1129863$
+\end_inset
+
+,
+\begin_inset Formula $9668$
+\end_inset
+
+ respectively for proper train and validation procedures.
+ The test set instead has
+\begin_inset Formula $13539$
+\end_inset
+
+ ‘sea lions’ and
+\begin_inset Formula $277390$
+\end_inset
+
+ ‘background’ patches.
+\end_layout
+
+\begin_layout Standard
+As can be seen from the number of extracted patches the dataset is heavily
+ unbalanced and there are a lot more background patches than sea lion ones.
+ Rather than using all the background patches, we decided as a first attempt
+ to randomly sample them and produce a balanced train set.
+ Extracted sea lions patches were
+\begin_inset Formula $50079$
+\end_inset
+
+, so an equal number of background patches were taken.
+
+\end_layout
+
+\begin_layout Standard
+The reduced dimensions of the used train set, allowed it to be fit all in
+ memory, producing good performances in terms of minutes per epoch.
+ Thus we could train the network for
+\begin_inset Formula $100$
+\end_inset
+
+ epochs using a learning rate of
 \begin_inset Formula $0.001$
 \end_inset
 
 .
-\begin_inset Newline newline
-\end_inset
 
+\end_layout
+
+\begin_layout Standard
+Testing of the model trained in this way was performed using a balanced
+ test set, using once as before the total number of sea lions patches as
+ an upper bound to the background ones.
 
 \begin_inset Float figure
 wide false
@@ -3930,7 +4053,7 @@ Our task was to produce a binary classifier which could distinguish between
 Another approach that could produce an improvement in the results is to
  exploit transfer learning from models trained with imageNet, for example,
  since they provide optimal performances in low level feature extraction
- (citation 
+ (citation
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Matt"
@@ -3944,7 +4067,7 @@ literal "false"
 
 The last thing we imagine could work better is a direct object recognition
  approach without going through the classification task, however this would
- require a much more detailed ground truth (citation 
+ require a much more detailed ground truth (citation
 \begin_inset CommandInset citation
 LatexCommand cite
 key "CMR"
@@ -4515,7 +4638,7 @@ S.
  Learning rich features from RGB-D images for object detection and segmentation.
  In ECCV.
  Springer, 2014.
- 
+
 \end_layout
 
 \begin_layout Bibliography
@@ -4545,6 +4668,39 @@ J.
  Darrel.
  Fully Convolutional Networks for Semantic Segmentation.
  In IEEE Xplore, 2015.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-42"
+
+\end_inset
+
+B.
+ Hariharan, P.
+ Arbela ́ez, R.
+ Girshick, and J.
+ Malik.
+ Hypercolumns for object segmentation and fine-grained localization.
+ In Computer Vision and Pattern Recognition, 2015.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-43"
+
+\end_inset
+
+J.
+ Tompson, A.
+ Jain, Y.
+ LeCun, and C.
+ Bregler.
+ Joint training of a convolutional network and a graphical model for human
+ pose estimation.
+ CoRR, abs/1406.2984, 2014.
 \end_layout
 
 \end_body

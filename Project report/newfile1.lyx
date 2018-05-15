@@ -497,8 +497,8 @@ Despite some early sucesses, deep CNN were brought into the limelight as
  a result of the deep learning reanaissance, which was fueled by GPUs, larger
  data sets and better algorithms.
  Several advances such as GPU implementations and the application of maximum
- pooling have contributed to the recent popularity.
-n, classification, and detection tasks
+ pooling have contributed to the recent popularity.n, classification, and
+ detection tasks
 \begin_inset CommandInset citation
 LatexCommand cite
 key "key-8,key-9,key-10"
@@ -688,7 +688,6 @@ literal "false"
 : the key idea was to extend convnets to arbitrary-sized inputs by model
  transfer.
  Differently from previous approaches that was based on sliding windows
-
 \begin_inset CommandInset citation
 LatexCommand cite
 key "key-29"
@@ -713,7 +712,6 @@ literal "false"
 \end_inset
 
 , FCNN exploit end-to-end supervised pre-training for pixelwise prediction
-
 \begin_inset CommandInset citation
 LatexCommand cite
 key "key-41,key-43"
@@ -948,47 +946,45 @@ To extract the background we used a sliding window of size
 
  over the image and cut all the patches which were not intersecting with
  a sea lion patch and save them with label ‘background’.
-
 \end_layout
 
 \begin_layout Standard
-The train set at the end of the extraction procedure includes
+The train set at the end of the extraction procedure includes 
 \begin_inset Formula $50079$
 \end_inset
 
- ‘sea lions’ and
+ ‘sea lions’ and 
 \begin_inset Formula $1139531$
 \end_inset
 
- ‘background’ patches which will be split again in
+ ‘background’ patches which will be split again in 
 \begin_inset Formula $40411$
 \end_inset
 
-,
+, 
 \begin_inset Formula $9668$
 \end_inset
 
- and
+ and 
 \begin_inset Formula $1129863$
 \end_inset
 
-,
+, 
 \begin_inset Formula $9668$
 \end_inset
 
  respectively for proper train and validation procedures.
- The test set instead has
+ The test set instead has 
 \begin_inset Formula $13539$
 \end_inset
 
- ‘sea lions’ and
+ ‘sea lions’ and 
 \begin_inset Formula $277390$
 \end_inset
 
  ‘background’ patches.
  Given this dataset divided into classes, train, validation and test set
  it’s possible to train the model.
-
 \begin_inset Newline newline
 \end_inset
 
@@ -1200,7 +1196,7 @@ Once the extraction procedure has been fully completed and all its related
  problems have been solved, we detectde new problems related to the patches
  themselves.
  In fact the two classes are really unbalanced, there are a lot more background
- patches than sea lion ones, furthermore
+ patches than sea lion ones, furthermore 
 \begin_inset Formula $40411$
 \end_inset
 
@@ -1269,9 +1265,9 @@ Zooming of a maximum of
 
 \begin_layout Standard
 The transformation process is, as said before, completely random so the
- number of new patches that can be generated is really high, that's why with
- these transformations is possible to overcome the problem of lack of sea
- lion patches and class unbalance.
+ number of new patches that can be generated is really high, that's why
+ with these transformations is possible to overcome the problem of lack
+ of sea lion patches and class unbalance.
 \end_layout
 
 \begin_layout Standard
@@ -1561,11 +1557,11 @@ Model
 \end_layout
 
 \begin_layout Standard
-The DCNN used to classify patches has input size of
+The DCNN used to classify patches has input size of 
 \begin_inset Formula $96\times96\times3$
 \end_inset
 
- and output size of
+ and output size of 
 \begin_inset Formula $2$
 \end_inset
 
@@ -1707,36 +1703,36 @@ First training (nome da cambiare)
 Experimental activity started by extracting patches in order to create a
  train set.
  By applying the procedure explained in the previous section, we obtained
- a train set including
+ a train set including 
 \begin_inset Formula $50079$
 \end_inset
 
- ‘sea lions’ and
+ ‘sea lions’ and 
 \begin_inset Formula $1139531$
 \end_inset
 
- ‘background’ patches which are split again in
+ ‘background’ patches which are split again in 
 \begin_inset Formula $40411$
 \end_inset
 
-,
+, 
 \begin_inset Formula $9668$
 \end_inset
 
- and
+ and 
 \begin_inset Formula $1129863$
 \end_inset
 
-,
+, 
 \begin_inset Formula $9668$
 \end_inset
 
  respectively for proper train and validation procedures.
- The test set instead has
+ The test set instead has 
 \begin_inset Formula $13539$
 \end_inset
 
- ‘sea lions’ and
+ ‘sea lions’ and 
 \begin_inset Formula $277390$
 \end_inset
 
@@ -1748,34 +1744,31 @@ As can be seen from the number of extracted patches the dataset is heavily
  unbalanced and there are a lot more background patches than sea lion ones.
  Rather than using all the background patches, we decided as a first attempt
  to randomly sample them and produce a balanced train set.
- Extracted sea lions patches were
+ Extracted sea lions patches were 
 \begin_inset Formula $50079$
 \end_inset
 
 , so an equal number of background patches were taken.
-
 \end_layout
 
 \begin_layout Standard
 The reduced dimensions of the used train set, allowed it to be fit all in
  memory, producing good performances in terms of minutes per epoch.
- Thus we could train the network for
+ Thus we could train the network for 
 \begin_inset Formula $100$
 \end_inset
 
- epochs using a learning rate of
+ epochs using a learning rate of 
 \begin_inset Formula $0.001$
 \end_inset
 
 .
-
 \end_layout
 
 \begin_layout Standard
 Testing of the model trained in this way was performed using a balanced
  test set, using once as before the total number of sea lions patches as
  an upper bound to the background ones.
-
 \begin_inset Float figure
 wide false
 sideways false
@@ -3574,6 +3567,308 @@ Precision and recall scores on a balanced test set
 
 \end_layout
 
+\begin_layout Subsection
+Misclassified patches
+\end_layout
+
+\begin_layout Standard
+In this section are presented some errors made by the network in calssifying
+ patches
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Misclassified patches
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Misclassified/misclassified_1_0.png
+	lyxscale 10
+	width 35col%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Background patch
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \thinspace{}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Misclassified/misclassified_1_1.png
+	lyxscale 10
+	width 35col%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Prediction values
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Misclassified/misclassified_2_0.png
+	lyxscale 10
+	width 35col%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Background patch
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \thinspace{}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Misclassified/misclassified_2_1.png
+	lyxscale 10
+	width 35col%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Prediction values
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Misclassified/misclassified_3_0.png
+	lyxscale 10
+	width 35col%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Sea lion patch
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \thinspace{}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Misclassified/misclassified_3_1.png
+	lyxscale 10
+	width 35col%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Prediction values
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Misclassified/misclassified_4_0.png
+	lyxscale 10
+	width 35col%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Sea lion patch
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \thinspace{}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Misclassified/misclassified_4_1.png
+	lyxscale 10
+	width 35col%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Prediction values
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+As can be seen looking at the misclassified patches, the errors committed
+ by the network are reasonable, in fact sometimes there are sea lions whose
+ color and shape is hardly distinguishable from the background therefore
+ are classified as background.
+ In other cases rocks or stones have color and shape such taht they interpreted
+ as sea lions by the network.
+\end_layout
+
 \begin_layout Section
 Semantic segmentation and sea lions counting
 \end_layout
@@ -4638,7 +4933,6 @@ S.
  Learning rich features from RGB-D images for object detection and segmentation.
  In ECCV.
  Springer, 2014.
-
 \end_layout
 
 \begin_layout Bibliography
