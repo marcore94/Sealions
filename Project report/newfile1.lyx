@@ -453,20 +453,47 @@ Introduction
 \begin_layout Standard
 Image classification is a fundamental problem in computer vision since it
  forms the basis for other computer vision tasks such as localization, detection
-, and segmentation.
+, and segmentation
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-4"
+literal "false"
+
+\end_inset
+
+.
  Although the task can be considered second nature for humans, it is much
  more challenging for an automated system.
 \begin_inset Newline newline
 \end_inset
 
 Traditionally handcrafted features were first extracted from images using
- feature descriptors, and these served as input to a trainable classifier.
+ feature descriptors, and these served as input to a trainable classifier,
+ in this way the accuracy of the classification task was profoundly dependent
+ on the design of the feature extraction stage, and this usually proved
+ to be a difficult task that required domain experts
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-7"
+literal "false"
+
+\end_inset
+
+.
  In recent years, deep learning models that exploit multiple layers of nonlinear
  information processing, for feature extraction and transformation as well
  as for pattern analysis and classification, have been shown to overcome
  these challenges.
  Among them, CNNs have become the leading architecture for most image recognitio
-n, classification, and detection tasks.
+n, classification, and detection tasks
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-8,key-9,key-10"
+literal "false"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Section
@@ -474,9 +501,55 @@ Convolutional Neural Networks
 \end_layout
 
 \begin_layout Standard
-Despite some early sucesses, deep CNN were brought into the limelight as
- a result of the deep learning reanaissance, which was fueled by GPUs, larger
- data sets and better algorithms.
+CNNs are feedforward networks in that information flow takes place in one
+ direction only, from their inputs to their outputs.
+ Just as artificial neural networks (ANN) are biologically inspired, so
+ are CNNs.
+ The visual cortex in the brain, which consists of alternating layers of
+ simple and complex cells, motivates their architecture 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-5,key-6"
+literal "false"
+
+\end_inset
+
+.
+ CNN architectures come in several variations, however, in general, they
+ consist of convolutional and pooling (or subsampling) layers, which are
+ grouped into modules.
+ Either one or more fully connected layers, as in a standard feedforward
+ neural network, follow these modules.
+ Modules are often stacked on top of each other to form a deep model.
+\begin_inset Newline newline
+\end_inset
+
+Despite some early sucesses
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-8,key-9,key-11"
+literal "false"
+
+\end_inset
+
+, deep CNN were brought into the limelight as a result of the deep learning
+ reanaissance
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-12,key-13,key-14"
+literal "false"
+
+\end_inset
+
+, which was fueled by GPUs, larger data sets and better algorithms
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-19,key-20,key-21"
+literal "false"
+
+\end_inset
+
+.
  Several advances such as GPU implementations and the application of maximum
  pooling have contributed to the recent popularity.
 \begin_inset Newline newline
@@ -484,20 +557,89 @@ Despite some early sucesses, deep CNN were brought into the limelight as
 
 The most significant advance, which has captured intense interest in DCNNs,
  especially for image classification tasks, was achieved in the ImageNet
- Large Scale Visual Recognition Challenge (ILSVRC) 2012.
+ Large Scale Visual Recognition Challenge (ILSVRC) 2012
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-1"
+literal "false"
+
+\end_inset
+
+.
  Since then, DCNNs have dominated subsequent versions of the ILSVRC and,
- more specifically, its image classification component.
+ more specifically, its image classification component
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-3,key-21,key-22"
+literal "false"
+
+\end_inset
+
+.
  In addition to these advances other improvements affected the performances
- of DCNN such as non linear activation functions, regularization mechanisms
- and optimization techniques.
+ of DCNN such as non linear activation functions
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-23,key-24"
+literal "false"
+
+\end_inset
+
+, regularization mechanisms 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-25,key-26"
+literal "false"
+
+\end_inset
+
+ and optimization techniques
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-27,key-19"
+literal "false"
+
+\end_inset
+
+.
 \begin_inset Newline newline
 \end_inset
 
 Nowadays convolutional networks are driving the advances in recognition,
- in fact convnets are not only improving whole-image classification tasks,
- but also local tasks with structured output such as bounding box object
- detection, part and keypoint prediction and local correspondence.
- 
+ in fact convnets are not only improving whole-image classification tasks
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-19,key-22,key-3"
+literal "false"
+
+\end_inset
+
+, but also local tasks with structured output such as bounding box object
+ detection
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-30,key-29,key-23"
+literal "false"
+
+\end_inset
+
+, part and keypoint prediction 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-33,key-32"
+literal "false"
+
+\end_inset
+
+ and local correspondence
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-32,key-31"
+literal "false"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Section
@@ -508,28 +650,91 @@ Fully convolutional networks
 Due to the astonishing results in the aforementioned topics, the natural
  next step in the progression from coarse to fine inference yield to pixelwise
  prediction.
- A prior approach used convnets for semantic segmentation, however this
- required that each pixel was labeled with the class of its enclosing object
- or region.
+ A prior approach used convnets for semantic segmentation
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-34,key-35,key-36,key-37,key-38,key-39,key-40"
+literal "false"
+
+\end_inset
+
+, however, for training, this required that in the ground truth each pixel
+ was labeled with the class of its enclosing object or region in the ground.
 \begin_inset Newline newline
 \end_inset
 
 An important advance in this sense was introduced by fully convolutional
- neural networks: the key idea was to extend convnets to arbitrary-sized
- inputs.
+ neural networks
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-41"
+literal "false"
+
+\end_inset
+
+: the key idea was to extend convnets to arbitrary-sized inputs by model
+ transfer.
  Differently from previous approaches that was based on sliding windows
- , separately computed feature extractors or Recurrent CNN, FCNN exploit
- end-to-end supervised pre-training for pixelwise prediction.
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-29"
+literal "false"
+
+\end_inset
+
+, separately computed feature extractors 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-23"
+literal "false"
+
+\end_inset
+
+ or Recurrent CNN
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-42"
+literal "false"
+
+\end_inset
+
+, FCNN exploit end-to-end supervised pre-training for pixelwise prediction
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-41,key-43"
+literal "false"
+
+\end_inset
+
+.
 \begin_inset Newline newline
 \end_inset
 
 Typical recognition nets were realized to take fixed-size inputs and produce
- non spatial outputs, the fully connected layers of these networks had fixed
- dimensions and threw away spatial coordinates.
+ non spatial outputs
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-3,key-21,key-22"
+literal "false"
+
+\end_inset
+
+, the fully connected layers of these networks had fixed dimensions and
+ threw away spatial coordinates.
  These fully connected layers can also be viewed as convolutions with kernels
  that cover the entire input regions, doing so it's possible to cast them
  into fully convolutional networks that take inputs of any size and give
- as outputs the classification maps.
+ as outputs the classification maps
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-41"
+literal "false"
+
+\end_inset
+
+.
 \begin_inset Newline newline
 \end_inset
 
@@ -541,7 +746,15 @@ Since the classification nets subsample to keep filters small and computational
  To cope with this problem and connect coarse outputs to dense pixels interpolat
 ion by upsampling can be adopted.
  Upsampling can be implemented by deconvolution and learned by backpropagation
- of the pixelwise loss.
+ of the pixelwise loss
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-41"
+literal "false"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Chapter
@@ -3802,23 +4015,626 @@ literal "false"
 \begin_layout Bibliography
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
-key "Matt"
-literal "false"
+key "key-1"
 
 \end_inset
 
-Libro 1 di Matteucci sull'imparamento di macchine
+Krizhevsky, A., Sutskever, I., & Hinton, G.
+ E.
+ (2012).
+ ImageNet classification with deep convolutional neural networks.
+ In F.
+ Pereira, C.
+ J.
+ C.
+ Burges, L.
+ Bottou, & K.
+ Q.
+ Weinberger (Eds.), Advances in neural information processing systems, 25
+ (pp.
+ 1097–1105).
+ Red Hook, NY: Curran.
 \end_layout
 
 \begin_layout Bibliography
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
-key "CMR"
+key "key-2"
+
+\end_inset
+
+Y.
+ LeCun, B.
+ Boser, J.
+ Denker, D.
+ Henderson, R.
+ E.
+ Howard, W.
+ Hubbard, and L.
+ D.
+ Jackel.
+ Backpropagation applied to hand-written zip code recognition.
+ In Neural Computation, 1989.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-3"
+
+\end_inset
+
+Simonyan, K., & Zisserman, A.
+ (2014).
+ Very deep convolutional networks for large-scale image recognition.
+ arXiv 1409.1556.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-4"
+
+\end_inset
+
+Karpathy, A.
+ (2016).
+ CS231n: Convolutional neural networks for visual recognition.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-5"
+
+\end_inset
+
+Hubel, D.
+ H., & Wiesel, T.
+ N.
+ (1959).
+ Receptive fields of single neurones in the cat’s striate cortex.
+ Journal of Physiology, 148(1), 574–591.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-6"
+
+\end_inset
+
+Hubel, D.
+ H., & Wiesel, T.
+ N.
+ (1962).
+ Receptive fields, binocular interaction and functional architecture in
+ the cat’s visual cortex.
+ Journal of Physiology, 160(1), 106–154.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-7"
+
+\end_inset
+
+LeCun, Y., Bottou, L., Bengio, Y., & Haffner, P.
+ (1998).
+ Gradient-based learning applied to document recognition.
+ Proceedings of the IEEE, 86(11), 2278–2324.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-8"
 literal "false"
 
 \end_inset
 
-Glorious Colombetti master race book
+LeCun, Y., Boser, B., Denker, J.
+ S., Henderson, D., Howard, R.
+ E., Hubbard, W., & Jackel, L.
+ D.
+ (1989a).
+ Handwritten digit recognition with a back-propagation net- work.
+ In D.
+ S.
+ Touretzky (Ed.), Advances in neural information processing systems, 2 (pp.
+ 396–404).
+ Cambridge, MA: MIT Press.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-9"
+literal "false"
+
+\end_inset
+
+LeCun, Y., Boser, B., Denker, J.
+ S., Henderson, D., Howard, R.
+ E., Hubbard, W., & Jackel, L.
+ D.
+ (1989b).
+ Backpropagation applied to handwritten zip code recogni- tion.
+ Neural Computation, 1(4), 541–551.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-10"
+literal "false"
+
+\end_inset
+
+LeCun, Y., Bengio, Y., & Hinton, G.
+ (2015).
+ Deep learning.
+ Nature, 521(7553), 436– 444.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-11"
+literal "false"
+
+\end_inset
+
+Simard, P.
+ Y., Steinkraus, D., & Platt, J.
+ C.
+ (2003, August).
+ Best practices for convolutional neural networks applied to visual document
+ analysis.
+ In Proceedings of the 7th International Conference on Document Analysis
+ and Recognition (vol.
+ 3, pp.
+ 958– 963).
+ Washington, DC: IEEE Computer Society.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-12"
+literal "false"
+
+\end_inset
+
+Hinton, G.
+ E., Osindero, S., & Teh, Y.
+ (2006).
+ A fast learning algorithm for deep belief nets.
+ Neural Computation, 18(7), 1527–1554.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-13"
+literal "false"
+
+\end_inset
+
+Hinton, G.
+ E., & Salakhutdinov, R.
+ R.
+ (2006).
+ Reducing the dimensionality of data with neural networks.
+ Science, 313(5786), 504–507.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-14"
+literal "false"
+
+\end_inset
+
+Bengio, Y., Lamblin, P., Popovici, D., & Larochelle, H.
+ (2006).
+ Greedy layer-wise training of deep networks.
+ In J.
+ C.
+ Platt, D.
+ Koller, Y.
+ Singer, & S.
+ T.
+ Roweis (Eds.), Advances in neural information processing systems, 19 (pp.
+ 2814–2822).
+ Red Hook, NY: Curran.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-19"
+
+\end_inset
+
+Krizhevsky, A., Sutskever, I., & Hinton, G.
+ E.
+ (2012).
+ ImageNet classification with deep convolutional neural networks.
+ In F.
+ Pereira, C.
+ J.
+ C.
+ Burges, L.
+ Bottou, & K.
+ Q.
+ Weinberger (Eds.), Advances in neural information processing systems, 25
+ (pp.
+ 1097–1105).
+ Red Hook, NY: Curran.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-20"
+
+\end_inset
+
+Deng, L., & Yu, D.
+ (2014).
+ Deep learning: Methods and applications.
+ Foundations and Trends in Signal Processing, 7(3–4), 197–387.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-21"
+
+\end_inset
+
+Zeiler, M.
+ D., & Fergus, R.
+ (2014).
+ Visualizing and understanding convolutional net- works.
+ In Proceedings of the European Conference on Computer Vision (pp.
+ 818–833).
+ Berlin: Springer.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-22"
+
+\end_inset
+
+Szegedy, C., Liu, W., Jia, Y., Sermanet, P., Reed, S., Anguelov, D., .
+ .
+ .
+ Rabinovich, A.
+ (2015).
+ Going deeper with convolutions.
+ In Proceedings of the IEEE Conference on Computer Vision and Pattern Recognitio
+n (pp.
+ 1–9).
+ Los Alamitos, CA: IEEE Com- puter Society.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-23"
+
+\end_inset
+
+He, K., Zhang, X., Ren, S., & Sun, J.
+ (2015a).
+ Deep residual learning for image recog- nition.
+ arXiv 1512.03385.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-24"
+
+\end_inset
+
+Xu, B., Wang, N., Chen, T., & Li, M.
+ (2015).
+ Empirical evaluation of rectified activations in convolutional network.
+ arXiv 1505.00853v2.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-25"
+
+\end_inset
+
+Hinton, G.
+ E., Srivastava, N., Krizhevsky, A., Sutskever, I., & Salakhutdinov, R.
+ R.
+ (2012).
+ Improving neural networks by preventing co-adaptation of feature detectors.
+ arXiv 1207.0580.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-26"
+
+\end_inset
+
+Zeiler, M.
+ D., & Fergus, R.
+ (2013).
+ Stochastic pooling for regularization of deep convolu- tional neural networks.
+ arXiv 1301.3557.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-27"
+
+\end_inset
+
+Glorot, X., & Bengio, Y.
+ (2010).
+ Understanding the difficulty of training deep feed-forward neural networks.
+ In Proceedings of the 13th International Conference on Artificial Intelligence
+ and Statistics (pp.
+ 249–256).
+ jmlr.org/proceedings/papers/v9 /glorot10a/glorot10a.pdf
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-29"
+
+\end_inset
+
+P.
+ Sermanet, D.
+ Eigen, X.
+ Zhang, M.
+ Mathieu, R.
+ Fergus, and Y.
+ LeCun.
+ Overfeat: Integrated recognition, localization and detection using convolutiona
+l networks.
+ In ICLR, 2014.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-30"
+
+\end_inset
+
+R.
+ Girshick, J.
+ Donahue, T.
+ Darrell, and J.
+ Malik.
+ Rich feature hierarchies for accurate object detection and semantic segmentatio
+n.
+ In Computer Vision and Pattern Recognition, 2014.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-31"
+
+\end_inset
+
+P.
+ Fischer, A.
+ Dosovitskiy, and T.
+ Brox.
+ Descriptor matching with convolutional neural networks: a comparison to
+ SIFT.
+ CoRR, abs/1405.5769, 2014.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-32"
+
+\end_inset
+
+J.
+ Long, N.
+ Zhang, and T.
+ Darrell.
+ Do convnets learn correspondence? In NIPS, 2014.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-33"
+
+\end_inset
+
+N.
+ Zhang, J.
+ Donahue, R.
+ Girshick, and T.
+ Darrell.
+ Part- based r-cnns for fine-grained category detection.
+ In Computer Vision–ECCV 2014, pages 834–849.
+ Springer, 2014.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-34"
+
+\end_inset
+
+F.
+ Ning, D.
+ Delhomme, Y.
+ LeCun, F.
+ Piano, L.
+ Bottou, and P.
+ E.
+ Barbano.
+ Toward automatic phenotyping of developing embryos from videos.
+ Image Processing, IEEE Transactions on, 14(9):1360–1371, 2005.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-35"
+
+\end_inset
+
+D.C.Ciresan,A.Giusti,L.M.Gambardella,andJ.Schmid- huber.
+ Deep neural networks segment neuronal membranes in electron microscopy
+ images.
+ In NIPS, pages 2852–2860, 2012.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-36"
+
+\end_inset
+
+C.
+ Farabet, C.
+ Couprie, L.
+ Najman, and Y.
+ LeCun.
+ Learning hierarchical features for scene labeling.
+ Pattern Analysis and Machine Intelligence, IEEE Transactions on, 2013.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-37"
+
+\end_inset
+
+P.
+ H.
+ Pinheiro and R.
+ Collobert.
+ Recurrent convolutional neural networks for scene labeling.
+ In ICML, 2014.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-38"
+
+\end_inset
+
+B.
+ Hariharan, P.
+ Arbela ́ez, R.
+ Girshick, and J.
+ Malik.
+ Simul- taneous detection and segmentation.
+ In European Confer- ence on Computer Vision (ECCV), 2014.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-39"
+
+\end_inset
+
+S.
+ Gupta, R.
+ Girshick, P.
+ Arbelaez, and J.
+ Malik.
+ Learning rich features from RGB-D images for object detection and segmentation.
+ In ECCV.
+ Springer, 2014.
+ 
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-40"
+
+\end_inset
+
+Y.
+ Ganin and V.
+ Lempitsky.
+ N4-fields: Neural network nearest neighbor fields for image transforms.
+ In ACCV, 2014.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-41"
+
+\end_inset
+
+J.
+ Long, E.
+ Shelhamer and T.
+ Darrel.
+ Fully Convolutional Networks for Semantic Segmentation.
+ In IEEE Xplore, 2015.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-42"
+
+\end_inset
+
+B.
+ Hariharan, P.
+ Arbela ́ez, R.
+ Girshick, and J.
+ Malik.
+ Hypercolumns for object segmentation and fine-grained localization.
+ In Computer Vision and Pattern Recognition, 2015.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-43"
+
+\end_inset
+
+J.
+ Tompson, A.
+ Jain, Y.
+ LeCun, and C.
+ Bregler.
+ Joint training of a convolutional network and a graphical model for human
+ pose estimation.
+ CoRR, abs/1406.2984, 2014.
 \end_layout
 
 \end_body
