@@ -1653,6 +1653,38 @@ A key problem related to memory management was that even though pixels required
  Thankfully as a side effect of the use of batch generator only the current
  batch images were changed to that representation avoiding the explosion
  of required memory.
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename BG.pdf
+	lyxscale 10
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Batch generator working diagram
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
