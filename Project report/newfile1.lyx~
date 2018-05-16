@@ -1663,7 +1663,7 @@ status open
 \begin_inset Graphics
 	filename BG.pdf
 	lyxscale 10
-	scale 50
+	scale 60
 
 \end_inset
 
@@ -1763,7 +1763,7 @@ The optimizer we chose is Adam, a memory and computationally efficient algorithm
 \begin_inset Formula $\hat{m_{t}}$
 \end_inset
 
-the bias corrected first moment and 
+ the bias corrected first moment and 
 \begin_inset Formula $\hat{v_{t}}$
 \end_inset
 
@@ -1814,7 +1814,11 @@ L(\theta)=-(y\cdot\log(p)+(1-y)\cdot\log(1-p))
 
 \end_inset
 
- As a metric to evaluate the performances of the model, we used the binary
+
+\end_layout
+
+\begin_layout Standard
+As a metric to evaluate the performances of the model, we used the binary
  accuracy.
  For each test sample, it takes as input the predicted probability 
 \begin_inset Formula $p$
@@ -1825,7 +1829,7 @@ L(\theta)=-(y\cdot\log(p)+(1-y)\cdot\log(1-p))
 \end_inset
 
 .
- Then in means over all the samples the number of correctly classified ones,
+ Then it means over all the samples the number of correctly classified ones,
  i.e.
  if 
 \begin_inset Formula $p>0.5$
@@ -1849,11 +1853,11 @@ acc=\frac{TP+TN}{P+N}
 \begin_inset Formula $P$
 \end_inset
 
-,
+, 
 \begin_inset Formula $N$
 \end_inset
 
-,
+, 
 \begin_inset Formula $TP$
 \end_inset
 

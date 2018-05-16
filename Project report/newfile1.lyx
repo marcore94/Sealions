@@ -1786,7 +1786,15 @@ tely bounded by the stepsize
  goes to 0 in this regions.
  Finally, in the context of Deep Convolutional Neural Networks, Adam shows
  performances similar or better than SGD with momentum, including also the
- benefit of the adaptive learning rate.
+ benefit of the adaptive learning rate
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-42"
+literal "false"
+
+\end_inset
+
+.
  
 \end_layout
 
@@ -5518,6 +5526,24 @@ M.
  Learning and Transferring Mid-Level Image Representations using Convolutional
  Neural Networks.
  In IEEE Xplore, 2014.
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "42"
+key "key-42"
+literal "false"
+
+\end_inset
+
+D.
+ P.
+ Kingma, J.
+ L.
+ Ba.
+ Adam: A method for stochastic optimization.
+ ICLR, 2015
 \end_layout
 
 \end_body
