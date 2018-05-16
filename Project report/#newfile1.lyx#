@@ -1797,7 +1797,7 @@ As a metric to evaluate the performances of the model, we used the binary
 \end_inset
 
 .
- Then it means over all the samples the number of correctly classified ones,
+ Then in means over all the samples the number of correctly classified ones,
  i.e.
  if 
 \begin_inset Formula $p>0.5$
@@ -1821,11 +1821,11 @@ acc=\frac{TP+TN}{P+N}
 \begin_inset Formula $P$
 \end_inset
 
-, 
+,
 \begin_inset Formula $N$
 \end_inset
 
-, 
+,
 \begin_inset Formula $TP$
 \end_inset
 

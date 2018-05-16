@@ -577,7 +577,7 @@ literal "false"
 
 .
  In addition to these advances, other improvements affected the performances
- of DCNN such as non linear activation functions
+ of DCNN such as non linear activation functions 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "key-19,key-20"
@@ -853,9 +853,9 @@ The first thing to do with images provided by Kaggle is to divide them in
 \end_inset
 
 The extraction of patches from Kaggle images has been done performing the
- absolute difference between the original image and its corresponding one
- with colored dots on the sea lions, in this way it’s possible to gather
- from each image coordinates and class of all the sea lions.
+ absolute difference between the original image and its corresponding ground
+ truth with colored dots on the sea lions, in this way it’s possible to
+ gather from each image coordinates and class of all the sea lions.
 \begin_inset Newline newline
 \end_inset
 
@@ -935,7 +935,7 @@ Ground truth image
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Comparison of train and train-dotted images provided by kaggle
+Comparison of train image and ground truth provided by kaggle
 \end_layout
 
 \end_inset
@@ -1717,21 +1717,7 @@ CNN model
 
 \end_inset
 
-Other characteristics of the model are:
-\end_layout
 
-\begin_layout Itemize
-optimizer: Adam, a stochastic optimization method which uses gradients and
- second moment gradients to perform parameter update
-\end_layout
-
-\begin_layout Itemize
-loss function: binary cross entropy, error function based on class probabilities
-\end_layout
-
-\begin_layout Itemize
-metric: accuracy, evaluation of the model based on how much the classification
- is accurate
 \end_layout
 
 \begin_layout Standard
