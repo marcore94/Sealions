@@ -2110,7 +2110,7 @@ As can be seen from the numbers of extracted patches the dataset is heavily
 
 \begin_layout Standard
 The simplicity of this first training attempt allowed us to tune the network
- in diffenrent ways and test the results:
+ in different ways and test the results:
 \end_layout
 
 \begin_layout Itemize
