@@ -541,10 +541,10 @@ literal "false"
 
 \end_inset
 
-, which was fueled by GPUs, larger data sets and better algorithms
+, which was fueled by GPUs, larger data sets and better algorithms 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "key-19,key-20,key-21"
+key "key-16,key-3,key-1"
 literal "false"
 
 \end_inset
@@ -557,7 +557,7 @@ literal "false"
 
 The most significant advance, which has captured intense interest in DCNNs,
  especially for image classification tasks, was achieved in the ImageNet
- Large Scale Visual Recognition Challenge (ILSVRC) 2012
+ Large Scale Visual Recognition Challenge (ILSVRC) 2012 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "key-1"
@@ -567,20 +567,20 @@ literal "false"
 
 .
  Since then, DCNNs have dominated subsequent versions of the ILSVRC and,
- more specifically, its image classification component
+ more specifically, its image classification component 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "key-3,key-21,key-22"
+key "key-3,key-17,key-18"
 literal "false"
 
 \end_inset
 
 .
  In addition to these advances, other improvements affected the performances
- of DCNN such as non linear activation functions
+ of DCNN such as non linear activation functions 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "key-23,key-24"
+key "key-19,key-20"
 literal "false"
 
 \end_inset
@@ -588,15 +588,15 @@ literal "false"
 , regularization mechanisms 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "key-25,key-26"
+key "key-21,key-22"
 literal "false"
 
 \end_inset
 
- and optimization techniques
+ and optimization techniques 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "key-27,key-19"
+key "key-23,key-1"
 literal "false"
 
 \end_inset
@@ -607,9 +607,10 @@ literal "false"
 
 Nowadays convolutional networks are driving the advances in recognition,
  in fact convnets are not only improving whole-image classification tasks
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "key-19,key-22,key-3"
+key "key-1,key-3,key-18"
 literal "false"
 
 \end_inset
@@ -618,7 +619,7 @@ literal "false"
  detection
 \begin_inset CommandInset citation
 LatexCommand cite
-key "key-30,key-29,key-23"
+key "key-24,key-25,key-19"
 literal "false"
 
 \end_inset
@@ -626,15 +627,15 @@ literal "false"
 , part and keypoint prediction 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "key-33,key-32"
+key "key-28,key-27"
 literal "false"
 
 \end_inset
 
- and local correspondence
+ and local correspondence 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "key-32,key-31"
+key "key-27,key-26"
 literal "false"
 
 \end_inset
@@ -650,10 +651,10 @@ Fully convolutional networks
 Due to the astonishing results in the aforementioned topics, the natural
  next step in the progression from coarse to fine inference yields to pixelwise
  prediction.
- A prior approach used convnets for semantic segmentation
+ A prior approach used convnets for semantic segmentation 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "key-34,key-35,key-36,key-37,key-38,key-39,key-40"
+key "key-29,key-30,key-31,key-32,key-33,key-34,key-35"
 literal "false"
 
 \end_inset
@@ -665,10 +666,10 @@ literal "false"
 \end_inset
 
 An important advance in this sense was introduced by fully convolutional
- neural networks
+ neural networks 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "key-41"
+key "key-36"
 literal "false"
 
 \end_inset
@@ -679,7 +680,7 @@ literal "false"
  
 \begin_inset CommandInset citation
 LatexCommand cite
-key "key-29"
+key "key-24"
 literal "false"
 
 \end_inset
@@ -687,15 +688,15 @@ literal "false"
 , separately computed feature extractors 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "key-23"
+key "key-19"
 literal "false"
 
 \end_inset
 
- or Recurrent CNN
+ or Recurrent CNN 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "key-42"
+key "key-25"
 literal "false"
 
 \end_inset
@@ -704,7 +705,7 @@ literal "false"
  
 \begin_inset CommandInset citation
 LatexCommand cite
-key "key-41,key-43"
+key "key-36"
 literal "false"
 
 \end_inset
@@ -717,7 +718,7 @@ Typical recognition nets were realized to take fixed-size inputs and produce
  non spatial outputs
 \begin_inset CommandInset citation
 LatexCommand cite
-key "key-3,key-21,key-22"
+key "key-1,key-3,key-18"
 literal "false"
 
 \end_inset
@@ -730,7 +731,7 @@ literal "false"
  as outputs the classification maps
 \begin_inset CommandInset citation
 LatexCommand cite
-key "key-41"
+key "key-36"
 literal "false"
 
 \end_inset
@@ -750,7 +751,7 @@ ion by upsampling can be adopted.
  of the pixelwise loss
 \begin_inset CommandInset citation
 LatexCommand cite
-key "key-41"
+key "key-36"
 literal "false"
 
 \end_inset
@@ -763,12 +764,38 @@ Solution Approach
 \end_layout
 
 \begin_layout Standard
-Images in the provided dataset were taken from drones, thus they are very
+The main idea for this project is to realize a Deep CNN classifier that
+ is able to distinguish sea lions from their habitat, the choice of a Deep
+ CNN is due to the great results that they can achive in this kind of tasks
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-1,key-3,key-19"
+literal "false"
+
+\end_inset
+
+.
+ The successive step was to extend the classifier to a Fully CNN 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-36"
+literal "false"
+
+\end_inset
+
+, in this way the object detection task proposed by the orginal Kaggle competiti
+on can be pursued.
+\begin_inset Newline newline
+\end_inset
+
+Images in the provided data set were taken from drones, thus they are very
  large and contains a lot of sea lions and different background areas.
  Due to the impossibility of using the whole images to train the network,
  the first step was to create a suitable training dataset.
- To do this, we extracted patches from the provided dataset and trained
- a binary classifier on patches.
+ To do this, we extracted both sea lions centered patches and background
+ patches by cropping the images provided in the original data set and trained
+ the binary classifier on these patches.
 \begin_inset Newline newline
 \end_inset
 
@@ -779,7 +806,7 @@ After having extracted them, we decided to apply data augmentation to obtain
  In fact, due to the nature of the images, they contained much more background
  patches than sea lions ones.
  By data augmentation we were able to overcome, partially, this unbalance
- and to obtain better performance during testing phase because it makes
+ and to obtain better performance during testing phase, because it makes
  the classifier more insensitive to position, rotation and scaling.
 \begin_inset Newline newline
 \end_inset
@@ -1213,7 +1240,7 @@ As explained before, to increase the dimension of the dataset and generalize
  the sea lions patches 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "key-1"
+key "key-39"
 literal "false"
 
 \end_inset
@@ -1239,7 +1266,7 @@ noprefix "false"
  
 \begin_inset CommandInset citation
 LatexCommand cite
-key "key-2"
+key "key-40"
 literal "false"
 
 \end_inset
@@ -4615,7 +4642,7 @@ Another approach that could produce an improvement in the results is to
  
 \begin_inset CommandInset citation
 LatexCommand cite
-key "key-3"
+key "key-41"
 literal "false"
 
 \end_inset
@@ -4629,7 +4656,7 @@ The last thing we imagine could work better is a direct object recognition
  require a much more detailed ground truth 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "key-41"
+key "key-36"
 literal "false"
 
 \end_inset
@@ -4880,31 +4907,25 @@ Bengio, Y., Lamblin, P., Popovici, D., & Larochelle, H.
 \begin_layout Bibliography
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
-key "key-19"
+key "key-15"
+literal "false"
 
 \end_inset
 
-Krizhevsky, A., Sutskever, I., & Hinton, G.
- E.
- (2012).
- ImageNet classification with deep convolutional neural networks.
- In F.
- Pereira, C.
- J.
- C.
- Burges, L.
- Bottou, & K.
- Q.
- Weinberger (Eds.), Advances in neural information processing systems, 25
- (pp.
- 1097–1105).
- Red Hook, NY: Curran.
+H.
+ Kong, H.
+ Akakin, and S.
+ Sarma.
+ A generalized Laplacian of Gaussian filter for blob detection and its applicati
+ons.
+ In IEEE Xplore, 2013
 \end_layout
 
 \begin_layout Bibliography
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
-key "key-20"
+key "key-16"
+literal "false"
 
 \end_inset
 
@@ -4917,7 +4938,8 @@ Deng, L., & Yu, D.
 \begin_layout Bibliography
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
-key "key-21"
+key "key-17"
+literal "false"
 
 \end_inset
 
@@ -4933,7 +4955,8 @@ Zeiler, M.
 \begin_layout Bibliography
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
-key "key-22"
+key "key-18"
+literal "false"
 
 \end_inset
 
@@ -4952,20 +4975,22 @@ n (pp.
 \begin_layout Bibliography
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
-key "key-23"
+key "key-19"
+literal "false"
 
 \end_inset
 
 He, K., Zhang, X., Ren, S., & Sun, J.
  (2015a).
- Deep residual learning for image recog- nition.
+ Deep residual learning for image recognition.
  arXiv 1512.03385.
 \end_layout
 
 \begin_layout Bibliography
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
-key "key-24"
+key "key-20"
+literal "false"
 
 \end_inset
 
@@ -4978,7 +5003,8 @@ Xu, B., Wang, N., Chen, T., & Li, M.
 \begin_layout Bibliography
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
-key "key-25"
+key "key-21"
+literal "false"
 
 \end_inset
 
@@ -4993,7 +5019,8 @@ Hinton, G.
 \begin_layout Bibliography
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
-key "key-26"
+key "key-22"
+literal "false"
 
 \end_inset
 
@@ -5007,7 +5034,8 @@ Zeiler, M.
 \begin_layout Bibliography
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
-key "key-27"
+key "key-23"
+literal "false"
 
 \end_inset
 
@@ -5023,7 +5051,8 @@ Glorot, X., & Bengio, Y.
 \begin_layout Bibliography
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
-key "key-29"
+key "key-24"
+literal "false"
 
 \end_inset
 
@@ -5042,7 +5071,8 @@ l networks.
 \begin_layout Bibliography
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
-key "key-30"
+key "key-25"
+literal "false"
 
 \end_inset
 
@@ -5059,7 +5089,8 @@ n.
 \begin_layout Bibliography
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
-key "key-31"
+key "key-26"
+literal "false"
 
 \end_inset
 
@@ -5075,7 +5106,8 @@ P.
 \begin_layout Bibliography
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
-key "key-32"
+key "key-27"
+literal "false"
 
 \end_inset
 
@@ -5089,7 +5121,8 @@ J.
 \begin_layout Bibliography
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
-key "key-33"
+key "key-28"
+literal "false"
 
 \end_inset
 
@@ -5106,7 +5139,8 @@ N.
 \begin_layout Bibliography
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
-key "key-34"
+key "key-29"
+literal "false"
 
 \end_inset
 
@@ -5125,7 +5159,8 @@ F.
 \begin_layout Bibliography
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
-key "key-35"
+key "key-30"
+literal "false"
 
 \end_inset
 
@@ -5138,7 +5173,8 @@ D.C.Ciresan,A.Giusti,L.M.Gambardella,andJ.Schmid- huber.
 \begin_layout Bibliography
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
-key "key-36"
+key "key-31"
+literal "false"
 
 \end_inset
 
@@ -5154,7 +5190,8 @@ C.
 \begin_layout Bibliography
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
-key "key-37"
+key "key-32"
+literal "false"
 
 \end_inset
 
@@ -5169,7 +5206,8 @@ P.
 \begin_layout Bibliography
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
-key "key-38"
+key "key-33"
+literal "false"
 
 \end_inset
 
@@ -5185,7 +5223,8 @@ B.
 \begin_layout Bibliography
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
-key "key-39"
+key "key-34"
+literal "false"
 
 \end_inset
 
@@ -5202,7 +5241,8 @@ S.
 \begin_layout Bibliography
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
-key "key-40"
+key "key-35"
+literal "false"
 
 \end_inset
 
@@ -5216,7 +5256,8 @@ Y.
 \begin_layout Bibliography
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
-key "key-41"
+key "key-36"
+literal "false"
 
 \end_inset
 
@@ -5231,7 +5272,8 @@ J.
 \begin_layout Bibliography
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
-key "key-42"
+key "key-37"
+literal "false"
 
 \end_inset
 
@@ -5247,7 +5289,8 @@ B.
 \begin_layout Bibliography
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
-key "key-43"
+key "key-38"
+literal "false"
 
 \end_inset
 
@@ -5264,7 +5307,7 @@ J.
 \begin_layout Bibliography
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
-key "key-1"
+key "key-39"
 literal "false"
 
 \end_inset
@@ -5280,7 +5323,8 @@ J.
 \begin_layout Bibliography
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
-key "key-2"
+key "key-40"
+literal "false"
 
 \end_inset
 
@@ -5295,7 +5339,8 @@ E.
 \begin_layout Bibliography
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
-key "key-3"
+key "key-41"
+literal "false"
 
 \end_inset
 
@@ -5307,22 +5352,6 @@ M.
  Learning and Transferring Mid-Level Image Representations using Convolutional
  Neural Networks.
  In IEEE Xplore, 2014.
-\end_layout
-
-\begin_layout Bibliography
-\begin_inset CommandInset bibitem
-LatexCommand bibitem
-key "key-1"
-
-\end_inset
-
-H.
- Kong, H.
- Akakin, and S.
- Sarma.
- A generalized Laplacian of Gaussian filter for blob detection and its applicati
-ons.
- In IEEE Xplore, 2013
 \end_layout
 
 \end_body
