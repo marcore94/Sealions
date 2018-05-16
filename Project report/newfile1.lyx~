@@ -577,11 +577,7 @@ literal "false"
 
 .
  In addition to these advances, other improvements affected the performances
-<<<<<<< HEAD
- of DCNN such as non linear activation functions
-=======
  of DCNN such as non linear activation functions 
->>>>>>> 90b64df3c17abb305c9e0e68c91a833fc4d5038f
 \begin_inset CommandInset citation
 LatexCommand cite
 key "key-19,key-20"
@@ -780,7 +776,7 @@ literal "false"
 \end_inset
 
 .
- The successive step will be to extend the classifier to a Fully CNN 
+ The successive step was to extend the classifier to a Fully CNN 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "key-36"
@@ -810,7 +806,7 @@ After having extracted them, we decided to apply data augmentation to obtain
  In fact, due to the nature of the images, they contained much more background
  patches than sea lions ones.
  By data augmentation we were able to overcome, partially, this unbalance
- and to obtain better performance during testing phase because it makes
+ and to obtain better performance during testing phase, because it makes
  the classifier more insensitive to position, rotation and scaling.
 \begin_inset Newline newline
 \end_inset
@@ -1963,12 +1959,41 @@ As can be seen from the numbers of extracted patches the dataset is heavily
 \end_inset
 
 , so an equal number of background patches were taken.
+ The reduced dimensions of the used train set, allowed it to be fit all
+ in memory, producing good performances in terms of minutes per epoch.
 \end_layout
 
 \begin_layout Standard
-The reduced dimensions of the used train set, allowed it to be fit all in
- memory, producing good performances in terms of minutes per epoch.
- Thus we could train the network for 
+The simplicity of this first training attempt allowed us to tune the network
+ in diffenrent ways and test the results:
+\end_layout
+
+\begin_layout Itemize
+learning rate: the best learning rate to improve at each epoch ended out
+ to be 
+\begin_inset Formula $0.001$
+\end_inset
+
+, in fact a smaller one seemed not sufficient to learn while an higher one
+ made loss values fluctuating up and down not converging
+\end_layout
+
+\begin_layout Itemize
+optimizer: we tried replacing Adam with stochastic gradient descent (SGD)
+ but with poor results, in fact it didn't give the same improvement performaces
+ of Adam so we kept the latter
+\end_layout
+
+\begin_layout Itemize
+dropout: a technique we tested to avoid overfitting was adding a dropout
+ layer between each layer of the network, this didn't brought any improvement,
+ the network wasn't able to learn enough during training so we decided to
+ stick to the original model
+\end_layout
+
+\begin_layout Standard
+After all these trials and considerations we were able to train the network
+ for 
 \begin_inset Formula $100$
 \end_inset
 

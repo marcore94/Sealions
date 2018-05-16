@@ -853,9 +853,9 @@ The first thing to do with images provided by Kaggle is to divide them in
 \end_inset
 
 The extraction of patches from Kaggle images has been done performing the
- absolute difference between the original image and its corresponding one
- with colored dots on the sea lions, in this way it’s possible to gather
- from each image coordinates and class of all the sea lions.
+ absolute difference between the original image and its corresponding ground
+ truth with colored dots on the sea lions, in this way it’s possible to
+ gather from each image coordinates and class of all the sea lions.
 \begin_inset Newline newline
 \end_inset
 
@@ -935,7 +935,7 @@ Ground truth image
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Comparison of train and train-dotted images provided by kaggle
+Comparison of train image and ground truth provided by kaggle
 \end_layout
 
 \end_inset
