@@ -1749,21 +1749,122 @@ CNN model
 
 \end_inset
 
-Other characteristics of the model are:
+
 \end_layout
 
-\begin_layout Itemize
-optimizer: Adam, a stochastic optimization method which uses gradients and
- second moment gradients to perform parameter update
+\begin_layout Standard
+The optimizer we chose is Adam, a memory and computationally efficient algorithm
+ for first-order gradient-based optimization of stochastic objective functions.
+ Defining 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ the step size, 
+\begin_inset Formula $\hat{m_{t}}$
+\end_inset
+
+the bias corrected first moment and 
+\begin_inset Formula $\hat{v_{t}}$
+\end_inset
+
+the bias corrected second raw moment, the update rule at timestep 
+\begin_inset Formula $t$
+\end_inset
+
+ can be written as 
+\begin_inset Formula $\Delta_{t}=\alpha\cdot\hat{m_{t}}/\sqrt{\hat{v_{t}}}$
+\end_inset
+
+.
+ In more common scenarios, the effective magnitude of the steps can be approxima
+tely bounded by the stepsize 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ and moreover this update rule also provides smaller steps in proximity
+ of local optima, due to the ratio of first and secondo order moments, which
+ goes to 0 in this regions.
+ Finally, in the context of Deep Convolutional Neural Networks, Adam shows
+ performances similar or better than SGD with momentum, including also the
+ benefit of the adaptive learning rate.
+ 
 \end_layout
 
-\begin_layout Itemize
-loss function: binary cross entropy, error function based on class probabilities
-\end_layout
+\begin_layout Standard
+Binary cross entropy is the loss function we decided to use for training.
+ It measures performances of a binary classifier by increasing the evaluated
+ loss as the predicted probability diverges from the true label.
+ For model parameters 
+\begin_inset Formula $\theta$
+\end_inset
 
-\begin_layout Itemize
-metric: accuracy, evaluation of the model based on how much the classification
- is accurate
+, true labels 
+\begin_inset Formula $y$
+\end_inset
+
+ and predicted probabilities 
+\begin_inset Formula $p$
+\end_inset
+
+, the binary cross entropy is computed as: 
+\begin_inset Formula 
+\[
+L(\theta)=-(y\cdot\log(p)+(1-y)\cdot\log(1-p))
+\]
+
+\end_inset
+
+ As a metric to evaluate the performances of the model, we used the binary
+ accuracy.
+ For each test sample, it takes as input the predicted probability 
+\begin_inset Formula $p$
+\end_inset
+
+ and the true label 
+\begin_inset Formula $y$
+\end_inset
+
+.
+ Then in means over all the samples the number of correctly classified ones,
+ i.e.
+ if 
+\begin_inset Formula $p>0.5$
+\end_inset
+
+ and 
+\begin_inset Formula $y=1$
+\end_inset
+
+, the labeling is considered correct, otherwise it isn't.
+ In particular, this is Keras implementation of it, while the formal definition
+ is 
+\begin_inset Formula 
+\[
+acc=\frac{TP+TN}{P+N}
+\]
+
+\end_inset
+
+ where 
+\begin_inset Formula $P$
+\end_inset
+
+,
+\begin_inset Formula $N$
+\end_inset
+
+,
+\begin_inset Formula $TP$
+\end_inset
+
+ and 
+\begin_inset Formula $TN$
+\end_inset
+
+ are respectively total number of positive samples, total number of negatives,
+ correctly classified true positives and correctly classified true negatives.
+ This means that the accuracy is defined as the proportion of true results
+ among the total number of cases examinated.
 \end_layout
 
 \begin_layout Section

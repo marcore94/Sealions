@@ -577,7 +577,11 @@ literal "false"
 
 .
  In addition to these advances, other improvements affected the performances
+<<<<<<< HEAD
+ of DCNN such as non linear activation functions
+=======
  of DCNN such as non linear activation functions 
+>>>>>>> 02c0fa61e15b2bf619619c8964486e8bee76077d
 \begin_inset CommandInset citation
 LatexCommand cite
 key "key-19,key-20"
@@ -853,9 +857,9 @@ The first thing to do with images provided by Kaggle is to divide them in
 \end_inset
 
 The extraction of patches from Kaggle images has been done performing the
- absolute difference between the original image and its corresponding ground
- truth with colored dots on the sea lions, in this way it’s possible to
- gather from each image coordinates and class of all the sea lions.
+ absolute difference between the original image and its corresponding one
+ with colored dots on the sea lions, in this way it’s possible to gather
+ from each image coordinates and class of all the sea lions.
 \begin_inset Newline newline
 \end_inset
 
@@ -935,7 +939,7 @@ Ground truth image
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Comparison of train image and ground truth provided by kaggle
+Comparison of train and train-dotted images provided by kaggle
 \end_layout
 
 \end_inset
@@ -1653,38 +1657,6 @@ A key problem related to memory management was that even though pixels required
  Thankfully as a side effect of the use of batch generator only the current
  batch images were changed to that representation avoiding the explosion
  of required memory.
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename BG.pdf
-	lyxscale 10
-	scale 60
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Batch generator working diagram
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Section
@@ -1749,7 +1721,21 @@ CNN model
 
 \end_inset
 
+Other characteristics of the model are:
+\end_layout
 
+\begin_layout Itemize
+optimizer: Adam, a stochastic optimization method which uses gradients and
+ second moment gradients to perform parameter update
+\end_layout
+
+\begin_layout Itemize
+loss function: binary cross entropy, error function based on class probabilities
+\end_layout
+
+\begin_layout Itemize
+metric: accuracy, evaluation of the model based on how much the classification
+ is accurate
 \end_layout
 
 \begin_layout Standard
@@ -1763,7 +1749,7 @@ The optimizer we chose is Adam, a memory and computationally efficient algorithm
 \begin_inset Formula $\hat{m_{t}}$
 \end_inset
 
- the bias corrected first moment and 
+the bias corrected first moment and 
 \begin_inset Formula $\hat{v_{t}}$
 \end_inset
 
@@ -1814,11 +1800,7 @@ L(\theta)=-(y\cdot\log(p)+(1-y)\cdot\log(1-p))
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
-As a metric to evaluate the performances of the model, we used the binary
+ As a metric to evaluate the performances of the model, we used the binary
  accuracy.
  For each test sample, it takes as input the predicted probability 
 \begin_inset Formula $p$
@@ -1829,7 +1811,7 @@ As a metric to evaluate the performances of the model, we used the binary
 \end_inset
 
 .
- Then it means over all the samples the number of correctly classified ones,
+ Then in means over all the samples the number of correctly classified ones,
  i.e.
  if 
 \begin_inset Formula $p>0.5$
@@ -1853,11 +1835,11 @@ acc=\frac{TP+TN}{P+N}
 \begin_inset Formula $P$
 \end_inset
 
-, 
+,
 \begin_inset Formula $N$
 \end_inset
 
-, 
+,
 \begin_inset Formula $TP$
 \end_inset
 
