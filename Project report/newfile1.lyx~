@@ -524,7 +524,7 @@ literal "false"
 \begin_inset Newline newline
 \end_inset
 
-Despite some early sucesses
+Despite some early successes
 \begin_inset CommandInset citation
 LatexCommand cite
 key "key-8,key-9,key-11"
@@ -533,7 +533,7 @@ literal "false"
 \end_inset
 
 , deep CNN were brought into the limelight as a result of the deep learning
- reanaissance
+ renaissance
 \begin_inset CommandInset citation
 LatexCommand cite
 key "key-12,key-13,key-14"
@@ -624,7 +624,7 @@ literal "false"
 
 \end_inset
 
-, part and keypoint prediction 
+, part and key-point prediction 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "key-28,key-27"
@@ -649,7 +649,7 @@ Fully convolutional networks
 
 \begin_layout Standard
 Due to the astonishing results in the aforementioned topics, the natural
- next step in the progression from coarse to fine inference yields to pixelwise
+ next step in the progression from coarse to fine inference yields to pixel-wise
  prediction.
  A prior approach used convnets for semantic segmentation 
 \begin_inset CommandInset citation
@@ -701,7 +701,7 @@ literal "false"
 
 \end_inset
 
-, FCNN exploit end-to-end supervised pre-training for pixelwise prediction
+, FCNN exploit end-to-end supervised pre-training for pixel-wise prediction
  
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -747,8 +747,8 @@ Since the classification nets subsample to keep filters small and computational
  units.
  To cope with this problem and connect coarse outputs to dense pixels interpolat
 ion by upsampling can be adopted.
- Upsampling can be implemented by deconvolution and learned by backpropagation
- of the pixelwise loss
+ Upsampling can be implemented by deconvolution and learned by back-propagation
+ of the pixel-wise loss
 \begin_inset CommandInset citation
 LatexCommand cite
 key "key-36"
@@ -766,7 +766,7 @@ Solution Approach
 \begin_layout Standard
 The main idea for this project is to realize a Deep CNN classifier that
  is able to distinguish sea lions from their habitat, the choice of a Deep
- CNN is due to the great results that they can achive in this kind of tasks
+ CNN is due to the great results that they can achieve in this kind of tasks
  
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -784,8 +784,8 @@ literal "false"
 
 \end_inset
 
-, in this way the object detection task proposed by the orginal Kaggle competiti
-on can be pursued.
+, in this way the object detection task proposed by the original Kaggle
+ competition can be pursued.
 \begin_inset Newline newline
 \end_inset
 
@@ -813,7 +813,7 @@ After having extracted them, we decided to apply data augmentation to obtain
 
 Once performances over patches were satisfying, we moved to an higher level,
  modifying the network to take as input the whole image and providing an
- heatmap of it.
+ heat-map of it.
  This gives the possibility, given an image, to see where and how sea lions
  are distributed in the environment and to compute an estimate of how many
  sea lions are present in that image.
@@ -935,7 +935,7 @@ Ground truth image
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Comparison of train image and ground truth provided by kaggle
+Comparison of train image and ground truth provided by Kaggle
 \end_layout
 
 \end_inset
@@ -2110,7 +2110,7 @@ As can be seen from the numbers of extracted patches the dataset is heavily
 
 \begin_layout Standard
 The simplicity of this first training attempt allowed us to tune the network
- in diffenrent ways and test the results:
+ in different ways and test the results:
 \end_layout
 
 \begin_layout Itemize
