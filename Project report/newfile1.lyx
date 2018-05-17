@@ -654,7 +654,7 @@ Due to the astonishing results in the aforementioned topics, the natural
  A prior approach used convnets for semantic segmentation 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "key-29,key-30,key-31,key-32,key-33,key-34,key-35"
+key "key-29,key-30,key-31,key-32,key-33"
 literal "false"
 
 \end_inset
@@ -669,7 +669,7 @@ An important advance in this sense was introduced by fully convolutional
  neural networks 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "key-36"
+key "key-34"
 literal "false"
 
 \end_inset
@@ -705,7 +705,7 @@ literal "false"
  
 \begin_inset CommandInset citation
 LatexCommand cite
-key "key-36"
+key "key-34"
 literal "false"
 
 \end_inset
@@ -731,7 +731,7 @@ literal "false"
  as outputs the classification maps
 \begin_inset CommandInset citation
 LatexCommand cite
-key "key-36"
+key "key-34"
 literal "false"
 
 \end_inset
@@ -751,7 +751,7 @@ ion by upsampling can be adopted.
  of the pixel-wise loss
 \begin_inset CommandInset citation
 LatexCommand cite
-key "key-36"
+key "key-34"
 literal "false"
 
 \end_inset
@@ -779,7 +779,7 @@ literal "false"
  The successive step was to extend the classifier to a Fully CNN 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "key-36"
+key "key-34"
 literal "false"
 
 \end_inset
@@ -1240,7 +1240,7 @@ As explained before, to increase the dimension of the dataset and generalize
  the sea lions patches 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "key-39"
+key "key-37"
 literal "false"
 
 \end_inset
@@ -1266,7 +1266,7 @@ noprefix "false"
  
 \begin_inset CommandInset citation
 LatexCommand cite
-key "key-40"
+key "key-38"
 literal "false"
 
 \end_inset
@@ -1789,7 +1789,7 @@ tely bounded by the step-size
  benefit of the adaptive learning rate
 \begin_inset CommandInset citation
 LatexCommand cite
-key "key-42"
+key "key-40"
 literal "false"
 
 \end_inset
@@ -1918,7 +1918,7 @@ It is important to stress out that any shift-and-stitch or upsampling via
  deconvolution to yield the dense predictions was used 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "key-41"
+key "key-39"
 literal "false"
 
 \end_inset
@@ -4816,7 +4816,7 @@ Another approach that could produce an improvement in the results is to
  
 \begin_inset CommandInset citation
 LatexCommand cite
-key "key-41"
+key "key-39"
 literal "false"
 
 \end_inset
@@ -4830,7 +4830,7 @@ The last thing we imagine could work better is a direct object recognition
  require a much more detailed ground truth 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "key-36"
+key "key-34"
 literal "false"
 
 \end_inset
@@ -5338,7 +5338,7 @@ literal "false"
 
 \end_inset
 
-D.C.Ciresan,A.Giusti,L.M.Gambardella,andJ.Schmid- huber.
+D.C.Ciresan,A.Giusti,L.M.Gambardella,andJ.Schmidhuber.
  Deep neural networks segment neuronal membranes in electron microscopy
  images.
  In NIPS, pages 2852–2860, 2012.
@@ -5390,7 +5390,7 @@ B.
  Arbela ́ez, R.
  Girshick, and J.
  Malik.
- Simul- taneous detection and segmentation.
+ Simultaneous detection and segmentation.
  In European Confer- ence on Computer Vision (ECCV), 2014.
 \end_layout
 
@@ -5398,39 +5398,6 @@ B.
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
 key "key-34"
-literal "false"
-
-\end_inset
-
-S.
- Gupta, R.
- Girshick, P.
- Arbelaez, and J.
- Malik.
- Learning rich features from RGB-D images for object detection and segmentation.
- In ECCV.
- Springer, 2014.
-\end_layout
-
-\begin_layout Bibliography
-\begin_inset CommandInset bibitem
-LatexCommand bibitem
-key "key-35"
-literal "false"
-
-\end_inset
-
-Y.
- Ganin and V.
- Lempitsky.
- N4-fields: Neural network nearest neighbor fields for image transforms.
- In ACCV, 2014.
-\end_layout
-
-\begin_layout Bibliography
-\begin_inset CommandInset bibitem
-LatexCommand bibitem
-key "key-36"
 literal "false"
 
 \end_inset
@@ -5446,7 +5413,7 @@ J.
 \begin_layout Bibliography
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
-key "key-37"
+key "key-35"
 literal "false"
 
 \end_inset
@@ -5463,7 +5430,7 @@ B.
 \begin_layout Bibliography
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
-key "key-38"
+key "key-36"
 literal "false"
 
 \end_inset
@@ -5481,7 +5448,7 @@ J.
 \begin_layout Bibliography
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
-key "key-39"
+key "key-37"
 literal "false"
 
 \end_inset
@@ -5497,7 +5464,7 @@ J.
 \begin_layout Bibliography
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
-key "key-40"
+key "key-38"
 literal "false"
 
 \end_inset
@@ -5513,7 +5480,7 @@ E.
 \begin_layout Bibliography
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
-key "key-41"
+key "key-39"
 literal "false"
 
 \end_inset
@@ -5531,8 +5498,7 @@ M.
 \begin_layout Bibliography
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
-label "42"
-key "key-42"
+key "key-40"
 literal "false"
 
 \end_inset

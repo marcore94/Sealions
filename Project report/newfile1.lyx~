@@ -654,7 +654,7 @@ Due to the astonishing results in the aforementioned topics, the natural
  A prior approach used convnets for semantic segmentation 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "key-29,key-30,key-31,key-32,key-33,key-34,key-35"
+key "key-29,key-30,key-31,key-32,key-33"
 literal "false"
 
 \end_inset
@@ -669,7 +669,7 @@ An important advance in this sense was introduced by fully convolutional
  neural networks 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "key-36"
+key "key-34"
 literal "false"
 
 \end_inset
@@ -705,7 +705,7 @@ literal "false"
  
 \begin_inset CommandInset citation
 LatexCommand cite
-key "key-36"
+key "key-34"
 literal "false"
 
 \end_inset
@@ -731,7 +731,7 @@ literal "false"
  as outputs the classification maps
 \begin_inset CommandInset citation
 LatexCommand cite
-key "key-36"
+key "key-34"
 literal "false"
 
 \end_inset
@@ -751,7 +751,7 @@ ion by upsampling can be adopted.
  of the pixel-wise loss
 \begin_inset CommandInset citation
 LatexCommand cite
-key "key-36"
+key "key-34"
 literal "false"
 
 \end_inset
@@ -779,7 +779,7 @@ literal "false"
  The successive step was to extend the classifier to a Fully CNN 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "key-36"
+key "key-34"
 literal "false"
 
 \end_inset
@@ -1010,7 +1010,7 @@ Going deep in the training and testing procedures we noticed some important
 \end_layout
 
 \begin_layout Itemize
-mismatches in the ground truth provided by kaggle, we listed and removed
+mismatches in the ground truth provided by Kaggle, we listed and removed
  all these images
 \begin_inset Newline newline
 \end_inset
@@ -1204,7 +1204,7 @@ Example of two images covered with black areas
 
 \end_inset
 
-As can be seen from these two images avoiding balck patches is fundamental
+As can be seen from these two images avoiding black patches is fundamental
  to have a correct dataset.
 \end_layout
 
@@ -1240,7 +1240,7 @@ As explained before, to increase the dimension of the dataset and generalize
  the sea lions patches 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "key-39"
+key "key-37"
 literal "false"
 
 \end_inset
@@ -1266,7 +1266,7 @@ noprefix "false"
  
 \begin_inset CommandInset citation
 LatexCommand cite
-key "key-40"
+key "key-38"
 literal "false"
 
 \end_inset
@@ -1329,8 +1329,8 @@ The first implementation we tried for the augmentation procedure was to
  expected so we decided to replace it with the Keras built-in data generator
  which allows to apply augmentation as well.
  Data generator provided by Keras doesn't require bigger patches as input
- beacuse automatically applies interpolation to fill eventual missing pixels
- and mantain sizes of the input image.
+ because automatically applies interpolation to fill eventual missing pixels
+ and maintain sizes of the input image.
  With this augmentation tool the process of loading modified patches at
  runtime speeded up consistently while the applied transformations are the
  same, so the whole train process became less time consuming.
@@ -1767,7 +1767,7 @@ The optimizer we chose is Adam, a memory and computationally efficient algorithm
 \begin_inset Formula $\hat{v_{t}}$
 \end_inset
 
-the bias corrected second raw moment, the update rule at timestep 
+the bias corrected second raw moment, the update rule at time-step 
 \begin_inset Formula $t$
 \end_inset
 
@@ -1777,12 +1777,12 @@ the bias corrected second raw moment, the update rule at timestep
 
 .
  In more common scenarios, the effective magnitude of the steps can be approxima
-tely bounded by the stepsize 
+tely bounded by the step-size 
 \begin_inset Formula $\alpha$
 \end_inset
 
  and moreover this update rule also provides smaller steps in proximity
- of local optima, due to the ratio of first and secondo order moments, which
+ of local optima, due to the ratio of first and second order moments, which
  goes to 0 in this regions.
  Finally, in the context of Deep Convolutional Neural Networks, Adam shows
  performances similar or better than SGD with momentum, including also the
@@ -1876,7 +1876,7 @@ acc=\frac{TP+TN}{P+N}
  are respectively total number of positive samples, total number of negatives,
  correctly classified true positives and correctly classified true negatives.
  This means that the accuracy is defined as the proportion of true results
- among the total number of cases examinated.
+ among the total number of cases examined.
 \end_layout
 
 \begin_layout Section
@@ -1907,7 +1907,7 @@ As soon as the CNN building and training phases ended the fully convolutional
 \end_inset
 
 Since the constraints on the input shape were dropped it was possible to
- feed an entire image to the network that produced as output two heatmaps
+ feed an entire image to the network that produced as output two heat-maps
  that highlighted respectively the pixels belonging to the sea lion and
  the background classes according to the probabilities predicted by the
  classifier.
@@ -1918,7 +1918,7 @@ It is important to stress out that any shift-and-stitch or upsampling via
  deconvolution to yield the dense predictions was used 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "key-41"
+key "key-39"
 literal "false"
 
 \end_inset
@@ -1927,9 +1927,9 @@ literal "false"
 \begin_inset Newline newline
 \end_inset
 
-The final step was to use the computed heatmap of an entire image to locate
+The final step was to use the computed heat-map of an entire image to locate
  all the sea lions.
- To do so at first the heatmap was hard thresholded (with pixel probabilty
+ To do so at first the heat-map was hard thresholded (with pixel probability
  threshold set to 
 \begin_inset Formula $0.9$
 \end_inset
@@ -2000,7 +2000,7 @@ In the end the points of interest
 \begin_inset Formula $(\hat{x},\hat{y})$
 \end_inset
 
- are retrived as
+ are retrieved as
 \begin_inset Formula 
 \[
 (\hat{x},\hat{y};\hat{t})=argmaxminlocal_{(\hat{x},\hat{y};\hat{t})}((\nabla_{norm}^{2}L)(x,y;t))
@@ -2016,7 +2016,7 @@ Experimental activity and results
 \end_layout
 
 \begin_layout Section
-Developement tools
+Development tools
 \end_layout
 
 \begin_layout Standard
@@ -2036,7 +2036,7 @@ Thanks to the choice of Python we managed to use Keras, an high-level neural
 \begin_inset Newline newline
 \end_inset
 
-Another aspect that characterized the development was the use of dataframes
+Another aspect that characterized the development was the use of data-frames
  that allowed a better management of all the informations about the data
  set.
 \end_layout
@@ -2125,7 +2125,7 @@ learning rate: the best learning rate to improve at each epoch ended out
 
 \begin_layout Itemize
 optimizer: we tried replacing Adam with stochastic gradient descent (SGD)
- but with poor results, in fact it didn't give the same improvement performaces
+ but with poor results, in fact it didn't give the same improvement performances
  of Adam so we kept the latter
 \end_layout
 
@@ -4198,15 +4198,15 @@ noprefix "false"
 , replaced the last fully connected layer with a convolutional one maintaining
  all the weights.
  With this reshaped network we are able to evaluate an entire image and
- obtain a heatmap highlighting zone where is more probable to have a sea
+ obtain a heat-map highlighting zone where is more probable to have a sea
  lion.
 \begin_inset Newline newline
 \end_inset
 
-Then we decided to apply a threshold on the heatmap to create a grayscale
+Then we decided to apply a threshold on the heat-map to create a grayscale
  image with white zones corresponding to sea lions.
  On this new image it was possible to apply blob detection, refined through
- parameter tuning as for the heatmap threshold, to have a rough count of
+ parameter tuning as for the heat-map threshold, to have a rough count of
  how many sea lions are present in the considered image.
  To do so we used the built in function from the scikit-learn library and
  after some tests we decided for the following parameters:
@@ -4233,7 +4233,7 @@ status open
 \begin_inset Text
 
 \begin_layout Plain Layout
-Heatmap 
+Heat-map 
 \begin_inset Formula $threshold$
 \end_inset
 
@@ -4419,7 +4419,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Heatmap
+Heat-map
 \end_layout
 
 \end_inset
@@ -4741,8 +4741,8 @@ Sea lions counting based on blobs
 
 \end_inset
 
-As can be seen from these numbers, even if the prediction on the nuber of
- sea lions isn't performed with a deeply studied strategy, final results
+As can be seen from these numbers, even if the prediction on the number
+ of sea lions isn't performed with a deeply studied strategy, final results
  aren't too bad.
  In particular, looking at figure 
 \begin_inset CommandInset ref
@@ -4763,7 +4763,7 @@ noprefix "false"
 \begin_layout Standard
 Another final consideration that can be done is that the predicted number
  is clearly an overestimate of the real one, but the presence of puppies,
- which are not considered in this network, makes the two nubers be closer
+ which are not considered in this network, makes the two numbers be closer
  one to each other.
 \end_layout
 
@@ -4805,8 +4805,8 @@ First of all we have overcome the recognition of puppies due to the intrinsic
 
 Our task was to produce a binary classifier which could distinguish between
  a sea lion and the background.
- An extension to this could be a multiclass classifier which can effectively
- recognise among the classes of the original competition.
+ An extension to this could be a multi-class classifier which can effectively
+ recognize among the classes of the original competition.
 \begin_inset Newline newline
 \end_inset
 
@@ -4816,7 +4816,7 @@ Another approach that could produce an improvement in the results is to
  
 \begin_inset CommandInset citation
 LatexCommand cite
-key "key-41"
+key "key-39"
 literal "false"
 
 \end_inset
@@ -4830,7 +4830,7 @@ The last thing we imagine could work better is a direct object recognition
  require a much more detailed ground truth 
 \begin_inset CommandInset citation
 LatexCommand cite
-key "key-36"
+key "key-34"
 literal "false"
 
 \end_inset
@@ -5338,7 +5338,7 @@ literal "false"
 
 \end_inset
 
-D.C.Ciresan,A.Giusti,L.M.Gambardella,andJ.Schmid- huber.
+D.C.Ciresan,A.Giusti,L.M.Gambardella,andJ.Schmidhuber.
  Deep neural networks segment neuronal membranes in electron microscopy
  images.
  In NIPS, pages 2852–2860, 2012.
@@ -5390,7 +5390,7 @@ B.
  Arbela ́ez, R.
  Girshick, and J.
  Malik.
- Simul- taneous detection and segmentation.
+ Simultaneous detection and segmentation.
  In European Confer- ence on Computer Vision (ECCV), 2014.
 \end_layout
 
@@ -5398,39 +5398,6 @@ B.
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
 key "key-34"
-literal "false"
-
-\end_inset
-
-S.
- Gupta, R.
- Girshick, P.
- Arbelaez, and J.
- Malik.
- Learning rich features from RGB-D images for object detection and segmentation.
- In ECCV.
- Springer, 2014.
-\end_layout
-
-\begin_layout Bibliography
-\begin_inset CommandInset bibitem
-LatexCommand bibitem
-key "key-35"
-literal "false"
-
-\end_inset
-
-Y.
- Ganin and V.
- Lempitsky.
- N4-fields: Neural network nearest neighbor fields for image transforms.
- In ACCV, 2014.
-\end_layout
-
-\begin_layout Bibliography
-\begin_inset CommandInset bibitem
-LatexCommand bibitem
-key "key-36"
 literal "false"
 
 \end_inset
@@ -5446,7 +5413,7 @@ J.
 \begin_layout Bibliography
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
-key "key-37"
+key "key-35"
 literal "false"
 
 \end_inset
@@ -5463,7 +5430,7 @@ B.
 \begin_layout Bibliography
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
-key "key-38"
+key "key-36"
 literal "false"
 
 \end_inset
@@ -5481,7 +5448,7 @@ J.
 \begin_layout Bibliography
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
-key "key-39"
+key "key-37"
 literal "false"
 
 \end_inset
@@ -5497,7 +5464,7 @@ J.
 \begin_layout Bibliography
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
-key "key-40"
+key "key-38"
 literal "false"
 
 \end_inset
@@ -5513,7 +5480,7 @@ E.
 \begin_layout Bibliography
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
-key "key-41"
+key "key-39"
 literal "false"
 
 \end_inset
@@ -5532,7 +5499,7 @@ M.
 \begin_inset CommandInset bibitem
 LatexCommand bibitem
 label "42"
-key "key-42"
+key "key-40"
 literal "false"
 
 \end_inset
