@@ -32,6 +32,9 @@ Third assignment
 - binary_classifier_2_matrics_history.ipynb
 - binary_classifier_2_testing.ipynb
 
+Final assignment
+- fully_convolutional_model.ipynb
+
 # Results
 First model weights
 - /binary_classifier/net_0_weights.h5
@@ -42,6 +45,9 @@ Second model weights
 Third model weights and structure with training results
 - /binary_classifier/net_2_model.h5
 - /binary_classifier/metrics_lr0,0005_epochs60.csv
+
+Fully convolutional network detection samples
+- detection.ipynb
 
 .csv with wrong predicted patches
 - wrong_predictions.csv
