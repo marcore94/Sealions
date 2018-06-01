@@ -53,3 +53,4 @@ Fully convolutional network detection samples
 - wrong_predictions.csv
 
 NB In the repository are missing the images provided by Kaggle and the extracted patches due to the size and number of the images
+Here is the link to download the dataset (the images used ranged from 0 to 1000 except those marked as mismatched in the coordinates extraction) https://www.kaggle.com/c/6116/download/KaggleNOAASeaLions.7z
