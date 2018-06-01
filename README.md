@@ -29,7 +29,7 @@ Second assigment
 
 Third assignment
 - binary_classifier_2.ipynb
-- binary_classifier_2_matrics_history.ipynb
+- binary_classifier_2_metrics_history.ipynb
 - binary_classifier_2_testing.ipynb
 
 Final assignment
